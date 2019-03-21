@@ -788,19 +788,171 @@ list说明：
 
 返回参数说明：code="0"为成功
 
-#### 5.查询订单列表
+#### 5.查询订单详情
 
-请求路径：{requestUrl}/contract/orderList
+请求路径：{requestUrl}/contract/orderDetail
 
 请求方式：POST
 
 请求参数说明：
 
-| 字段  | 说明       | 必填(是/否/可选) | 备注                                                         | 类型   |
-| ----- | ---------- | ---------------- | ------------------------------------------------------------ | ------ |
-| tab   | 类别       | 是               | normal(new-新订单，open-待完成，canceling-取消中), all（new-新订单，open-待完成，canceling-取消中，canceled-取消，filled-盈满，rejected-拒绝） | String |
-| page  | 分页当前页 | 是               |                                                              | int    |
-| count | 每页记录数 | 是               |                                                              | int    |
+| 字段   | 说明       | 必填(是/否/可选) | 备注 | 类型   |
+| ------ | ---------- | ---------------- | ---- | ------ |
+| symbol | 合约符号   | 是               |      | String |
+| page   | 分页当前页 | 是               |      | int    |
+| count  | 每页记录数 | 是               |      | int    |
+
+返回参数说明：
+
+| 字段     | 说明           | 必填(是/否/可选) | 备注 | 类型 |
+| -------- | -------------- | ---------------- | ---- | ---- |
+| pageInfo | 返回的分页信息 | 是               |      | 对象 |
+| fills    | 返回的记录数组 | 是               |      | 数组 |
+
+pageInfo：通用分页对象（见orderList）
+
+fills数组中元素参数：
+
+| 字段    | 说明             | 必填(是/否/可选) | 备注 | 类型   |
+| ------- | ---------------- | ---------------- | ---- | ------ |
+| orderId | 订单ID           | 是               |      | String |
+| symbol  | 合约符号         | 是               |      | String |
+| amount  | 成交数量         | 是               |      | String |
+| price   | 成交价格         | 是               |      | String |
+| side    | 方向             | 是               |      | String |
+| time    | 成交时间的时间戳 | 是               |      | String |
+| tradeId | 交易ID           | 是               |      | String |
+
+#### 6.仓位信息
+
+请求路径：{requestUrl}/contract/positionInfo
+
+请求方式：POST
+
+请求参数说明：
+
+| 字段   | 说明     | 必填(是/否/可选) | 备注 | 类型   |
+| ------ | -------- | ---------------- | ---- | ------ |
+| symbol | 合约符号 | 是               |      | String |
+
+返回参数说明：
+
+| 字段             | 说明             | 必填(是/否/可选) | 备注 | 类型   |
+| ---------------- | ---------------- | ---------------- | ---- | ------ |
+| positionId       | 仓位ID           | 是               |      | String |
+| symbol           | 合约符号         | 是               |      | String |
+| amount           | 仓位数量         | 是               |      | String |
+| margin           | 仓位保证金       | 是               |      | String |
+| positionValue    | 仓位价值         | 是               |      | String |
+| leverage         | 杠杆             | 是               |      | String |
+| status           | 仓位状态         | 是               |      | String |
+| openPositionTime | 开仓时间的时间戳 | 是               |      | String |
+| flatPositionTime | 平仓时间的时间戳 | 是               |      | String |
+| realProfit       | 已实现盈亏       | 是               |      | String |
+| liquidation      | 强平价           | 否               |      | String |
+| side             | 仓位方向         | 是               |      | String |
+| frozen           | 仓位冻结金       | 是               |      | String |
+
+#### 7.调整保证金
+
+请求路径：{requestUrl}/contract/marginEdit
+
+请求方式：POST
+
+请求参数说明：
+
+| 字段         | 说明                         | 必填(是/否/可选) | 备注 | 类型   |
+| ------------ | ---------------------------- | ---------------- | ---- | ------ |
+| symbol       | 合约符号                     | 是               |      | String |
+| amountChange | 变更数量（带正负号表示方向） | 是               |      | String |
+
+返回参数说明：code="0"为成功
+
+#### 8.合约资产查询
+
+请求路径：{requestUrl}/contract/assetInfo
+
+请求方式：POST
+
+请求参数说明：
+
+| 字段       | 说明                                           | 必填(是/否/可选) | 备注 | 类型   |
+| ---------- | ---------------------------------------------- | ---------------- | ---- | ------ |
+| page       | 分页当前页                                     | 是               |      | int    |
+| count      | 分页每页记录数                                 | 是               |      | int    |
+| coinIdLike | 币种类型，前端已经要求将模糊查询改成精确查询。 | 否               |      | String |
+
+返回参数说明：
+
+| 字段     | 说明           | 必填(是/否/可选) | 备注 | 类型 |
+| -------- | -------------- | ---------------- | ---- | ---- |
+| pageInfo | 返回的分页信息 | 是               |      | 对象 |
+| records  | 返回的记录数组 | 是               |      | 数组 |
+
+pageInfo:通用分页参数（见orderList）
+
+records数组中的元素参数：
+
+| 字段     | 说明         | 必填(是/否/可选) | 备注 | 类型   |
+| -------- | ------------ | ---------------- | ---- | ------ |
+| btcValue | BTC估值      | 是               |      | String |
+| coinId   | 币种类型     | 是               |      | String |
+| count    | 资产数量     | 是               |      | String |
+| frozen   | 冻结资产数量 | 是               |      | String |
+
+#### 9.合约资产变更详情
+
+请求路径：{requestUrl}/contract/assetChangeDetail
+
+请求方式：POST
+
+请求参数说明：
+
+| 字段      | 说明             | 必填(是/否/可选) | 备注 | 类型   |
+| --------- | ---------------- | ---------------- | ---- | ------ |
+| timeStart | 查询限制起始时间 | 否               |      | Long   |
+| timeEnd   | 查询限制结束时间 | 否               |      | Long   |
+| coinId    | 币种类型         | 否               |      | String |
+| type      | 变更类型         | 否               |      | String |
+| page      | 分页当前页数     | 是               |      | int    |
+| count     | 分页每页记录数   | 是               |      | int    |
+
+返回参数说明：
+
+| 字段     | 说明           | 必填(是/否/可选) | 备注 | 类型 |
+| -------- | -------------- | ---------------- | ---- | ---- |
+| pageInfo | 返回的分页信息 | 是               |      | 对象 |
+| records  | 返回的记录数组 | 是               |      | 数组 |
+
+pageInfo:通用分页参数（见orderList）
+
+records数组中元素参数：
+
+| 字段              | 说明                             | 必填(是/否/可选) | 备注 | 类型   |
+| ----------------- | -------------------------------- | ---------------- | ---- | ------ |
+| coinId            | 币种类型                         | 是               |      | String |
+| count             | 变更数量                         | 是               |      | String |
+| fee               | 手续费                           | 是               |      | String |
+| frozenChangeCount | 冻结金额变化                     | 是               |      | String |
+| label             | 标签                             | 是               |      | String |
+| side              | 方向，0为交易产生，1转入，-1转出 | 是               |      | String |
+| state             | 状态，已完成1，未完成0           | 是               |      | String |
+| time              | 产生记录的时间的时间戳           | 是               |      | String |
+| type              | 类型                             | 是               |      | String |
+
+#### 10.查询活动委托订单列表
+
+请求路径：{requestUrl}/contract/openOrderList
+
+请求方式：POST
+
+请求参数说明：
+
+| 字段   | 说明       | 必填(是/否/可选) | 备注 | 类型   |
+| ------ | ---------- | ---------------- | ---- | ------ |
+| page   | 分页当前页 | 是               |      | int    |
+| count  | 每页记录数 | 是               |      | int    |
+| symbol |            | 是               |      | String |
 
 返回参数说明:
 
@@ -841,9 +993,9 @@ records数组中的元素参数：
 | property      | 合约类型                                | 是               |      | String |
 | amountRemain  | 剩余数量                                | 是               |      | String |
 
-#### 6.查询订单详情
+#### 11.查询历史委托订单列表
 
-请求路径：{requestUrl}/contract/orderDetail
+请求路径：{requestUrl}/contract/historyOrderList
 
 请求方式：POST
 
@@ -851,147 +1003,50 @@ records数组中的元素参数：
 
 | 字段   | 说明       | 必填(是/否/可选) | 备注 | 类型   |
 | ------ | ---------- | ---------------- | ---- | ------ |
-| symbol | 合约符号   | 是               |      | String |
 | page   | 分页当前页 | 是               |      | int    |
 | count  | 每页记录数 | 是               |      | int    |
+| symbol |            | 是               |      | String |
 
-返回参数说明：
+返回参数说明:
 
-| 字段     | 说明           | 必填(是/否/可选) | 备注 | 类型 |
-| -------- | -------------- | ---------------- | ---- | ---- |
-| pageInfo | 返回的分页信息 | 是               |      | 对象 |
-| fills    | 返回的记录数组 | 是               |      | 数组 |
+| 字段     | 说明     | 必填(是/否/可选) | 备注 | 类型 |
+| -------- | -------- | ---------------- | ---- | ---- |
+| pageInfo | 分页信息 | 是               |      | 对象 |
+| records  | 记录数组 | 是               |      | 数组 |
 
-pageInfo：通用分页对象（见orderList）
+pageInfo：
 
-fills数组中元素参数：
-
-| 字段    | 说明             | 必填(是/否/可选) | 备注 | 类型   |
-| ------- | ---------------- | ---------------- | ---- | ------ |
-| orderId | 订单ID           | 是               |      | String |
-| symbol  | 合约符号         | 是               |      | String |
-| amount  | 成交数量         | 是               |      | String |
-| price   | 成交价格         | 是               |      | String |
-| side    | 方向             | 是               |      | String |
-| time    | 成交时间的时间戳 | 是               |      | String |
-| tradeId | 交易ID           | 是               |      | String |
-
-#### 7.仓位信息
-
-请求路径：{requestUrl}/contract/positionInfo
-
-请求方式：POST
-
-请求参数说明：
-
-| 字段   | 说明     | 必填(是/否/可选) | 备注 | 类型   |
-| ------ | -------- | ---------------- | ---- | ------ |
-| symbol | 合约符号 | 是               |      | String |
-
-返回参数说明：
-
-| 字段             | 说明             | 必填(是/否/可选) | 备注 | 类型   |
-| ---------------- | ---------------- | ---------------- | ---- | ------ |
-| positionId       | 仓位ID           | 是               |      | String |
-| symbol           | 合约符号         | 是               |      | String |
-| amount           | 仓位数量         | 是               |      | String |
-| margin           | 仓位保证金       | 是               |      | String |
-| positionValue    | 仓位价值         | 是               |      | String |
-| leverage         | 杠杆             | 是               |      | String |
-| status           | 仓位状态         | 是               |      | String |
-| openPositionTime | 开仓时间的时间戳 | 是               |      | String |
-| flatPositionTime | 平仓时间的时间戳 | 是               |      | String |
-| realProfit       | 已实现盈亏       | 是               |      | String |
-| liquidation      | 强平价           | 否               |      | String |
-| side             | 仓位方向         | 是               |      | String |
-| frozen           | 仓位冻结金       | 是               |      | String |
-
-#### 8.调整保证金
-
-请求路径：{requestUrl}/contract/marginEdit
-
-请求方式：POST
-
-请求参数说明：
-
-| 字段         | 说明                         | 必填(是/否/可选) | 备注 | 类型   |
-| ------------ | ---------------------------- | ---------------- | ---- | ------ |
-| symbol       | 合约符号                     | 是               |      | String |
-| amountChange | 变更数量（带正负号表示方向） | 是               |      | String |
-
-返回参数说明：code="0"为成功
-
-#### 9.合约资产查询
-
-请求路径：{requestUrl}/contract/assetInfo
-
-请求方式：POST
-
-请求参数说明：
-
-| 字段       | 说明                                           | 必填(是/否/可选) | 备注 | 类型   |
-| ---------- | ---------------------------------------------- | ---------------- | ---- | ------ |
-| page       | 分页当前页                                     | 是               |      | int    |
-| count      | 分页每页记录数                                 | 是               |      | int    |
-| coinIdLike | 币种类型，前端已经要求将模糊查询改成精确查询。 | 否               |      | String |
-
-返回参数说明：
-
-| 字段     | 说明           | 必填(是/否/可选) | 备注 | 类型 |
-| -------- | -------------- | ---------------- | ---- | ---- |
-| pageInfo | 返回的分页信息 | 是               |      | 对象 |
-| records  | 返回的记录数组 | 是               |      | 数组 |
-
-pageInfo:通用分页参数（见orderList）
+| 字段        | 说明         | 必填(是/否/可选) | 备注 | 类型 |
+| ----------- | ------------ | ---------------- | ---- | ---- |
+| page        | 分页当前页数 | 是               |      | int  |
+| count       | 每页记录数   | 是               |      | int  |
+| pageTotal   | 总页数       | 是               |      | int  |
+| recordTotal | 总记录数     | 是               |      | int  |
 
 records数组中的元素参数：
 
-| 字段     | 说明         | 必填(是/否/可选) | 备注 | 类型   |
-| -------- | ------------ | ---------------- | ---- | ------ |
-| btcValue | BTC估值      | 是               |      | String |
-| coinId   | 币种类型     | 是               |      | String |
-| count    | 资产数量     | 是               |      | String |
-| frozen   | 冻结资产数量 | 是               |      | String |
+| 字段          | 说明                                    | 必填(是/否/可选) | 备注 | 类型   |
+| ------------- | --------------------------------------- | ---------------- | ---- | ------ |
+| orderId       | 订单ID                                  | 是               |      | String |
+| symbol        | 合约符号                                | 是               |      | String |
+| type          | 下单类型                                | 是               |      | String |
+| side          | 下单方向                                | 是               |      | String |
+| timeinforce   | 时效模式                                | 是               |      | String |
+| amountDisplay | 显示数量                                | 是               |      | String |
+| price         | 价格，market单为0                       | 是               |      | String |
+| amountReal    | 真实数量                                | 是               |      | String |
+| amountFill    | 成交数量                                | 是               |      | String |
+| orderValue    | 订单价值（当前marketPrice，估值多少钱） | 是               |      | String |
+| status        | 订单状态                                | 是               |      | String |
+| marginTotal   | 订单总保证金                            | 是               |      | String |
+| marginUsed    | 订单已使用保证金                        | 是               |      | String |
+| startTime     | 下单时间的时间戳                        | 是               |      | String |
+| postOnly      | 是否post only 单                        | 是               |      | String |
+| reduceOnly    | 是否 reduce only 单                     | 是               |      | String |
+| property      | 合约类型                                | 是               |      | String |
+| amountRemain  | 剩余数量                                | 是               |      | String |
 
-#### 10.合约资产变更详情
 
-请求路径：{requestUrl}/contract/assetChangeDetail
-
-请求方式：POST
-
-请求参数说明：
-
-| 字段      | 说明             | 必填(是/否/可选) | 备注 | 类型   |
-| --------- | ---------------- | ---------------- | ---- | ------ |
-| timeStart | 查询限制起始时间 | 否               |      | Long   |
-| timeEnd   | 查询限制结束时间 | 否               |      | Long   |
-| coinId    | 币种类型         | 否               |      | String |
-| type      | 变更类型         | 否               |      | String |
-| page      | 分页当前页数     | 是               |      | int    |
-| count     | 分页每页记录数   | 是               |      | int    |
-
-返回参数说明：
-
-| 字段     | 说明           | 必填(是/否/可选) | 备注 | 类型 |
-| -------- | -------------- | ---------------- | ---- | ---- |
-| pageInfo | 返回的分页信息 | 是               |      | 对象 |
-| records  | 返回的记录数组 | 是               |      | 数组 |
-
-pageInfo:通用分页参数（见orderList）
-
-records数组中元素参数：
-
-| 字段              | 说明                             | 必填(是/否/可选) | 备注 | 类型   |
-| ----------------- | -------------------------------- | ---------------- | ---- | ------ |
-| coinId            | 币种类型                         | 是               |      | String |
-| count             | 变更数量                         | 是               |      | String |
-| fee               | 手续费                           | 是               |      | String |
-| frozenChangeCount | 冻结金额变化                     | 是               |      | String |
-| label             | 标签                             | 是               |      | String |
-| side              | 方向，0为交易产生，1转入，-1转出 | 是               |      | String |
-| state             | 状态，已完成1，未完成0           | 是               |      | String |
-| time              | 产生记录的时间的时间戳           | 是               |      | String |
-| type              | 类型                             | 是               |      | String |
 
 ## [应答码对照表]
 
