@@ -138,7 +138,9 @@ response example：
 #### 2.orderbook
 
 request uri：{requestUrl}/spot/orderBook
+
 request method：GET
+
 request parameter infomation：
 
 | Field  | Description             | Required(Y or N) | Mark | Type   |
@@ -186,7 +188,9 @@ response example：
 #### 3.trade records（last 100）
 
 request uri：{requestUrl}/spot/trades
+
 request method：GET
+
 request parameter infomation：
 
 | Field  | Description | Required(Y or N) | Mark | Type   |
@@ -222,7 +226,9 @@ response example：
 #### 4.kline
 
 request uri：{requestUrl}/spot/kline
+
 request method：GET
+
 request parameter infomation：
 
 | Field  | Description | Required(Y or N) | Mark                                                         | Type   |
@@ -271,8 +277,10 @@ response example：
 request uri：{requestUrl}/spot/config
 
 request method：GET
-request parameter infomationDescription：null
-responseDescription:
+
+request parameter infomation：null
+
+response description:
 
 | Field        | Description       | Required(Y or N) | Mark | Type   |
 | ------------ | ----------------- | ---------------- | ---- | ------ |
@@ -317,8 +325,10 @@ response example：
 #### 1. create order for virtual coin
 
 request uri：{requestUrl}/spot/placeOrder
+
 request method：POST
-request parameter infomationDescription：
+
+request parameter infomation：
 
 | Field     | Description | Required(Y or N) | Mark                                          | Type   |
 | --------- | ----------- | ---------------- | --------------------------------------------- | ------ |
@@ -329,7 +339,7 @@ request parameter infomationDescription：
 | quantity  |             | Y                | deal quantity                                 | String |
 | timestamp |             | Y                |                                               | String |
 
-responseDescription:
+response description:
 
 | Field   | Description | Required(Y or N) | Mark | Type   |
 | ------- | ----------- | ---------------- | ---- | ------ |
@@ -352,8 +362,10 @@ response example：
 #### 2. cancel order for virtual coin
 
 request uri：{requestUrl}/spot/cancelOrder
+
 request method：POST
-request parameter infomationDescription:
+
+request parameter infomation:
 
 | Field   | Description | Required(Y or N) | Mark | Type   |
 | ------- | ----------- | ---------------- | ---- | ------ |
@@ -362,14 +374,16 @@ request parameter infomationDescription:
 #### 3. query virtual coin asset account
 
 request uri：{requestUrl}/spot/assetList
+
 request method：POST
-request parameter infomationDescription:
+
+request parameter infomation:
 
 | Field    | Description | Required(Y or N) | Mark                                  | Type   |
 | -------- | ----------- | ---------------- | ------------------------------------- | ------ |
 | coinType | coin type   | N                | if null, response ALL virtual account | String |
 
-response Description:
+response description:
 
 | Field       | Description        | Required(Y or N) | Mark                    | Type   |
 | ----------- | ------------------ | ---------------- | ----------------------- | ------ |
@@ -399,8 +413,10 @@ response example：
 #### 4. trade of order detail
 
 request uri：{requestUrl}/spot/orderDetail
+
 request method：POST
-request parameter infomationDescription:
+
+request parameter infomation:
 
 | Field   | Description        | Required(Y or N) | Mark         | Type   |
 | ------- | ------------------ | ---------------- | ------------ | ------ |
@@ -408,14 +424,14 @@ request parameter infomationDescription:
 | page    | current page       | N                | default = 1  | String |
 | count   | current page count | N                | default = 10 | String |
 
-response Description:
+response description:
 
 | Field | Description   | Required(Y or N) | Mark | Type |
 | ----- | ------------- | ---------------- | ---- | ---- |
 | num   | total numbers | Y                |      | Long |
 | list  | trade detail  | Y                |      | List |
 
-response Description (List):
+response description (List):
 
 | Field         | Description  | Required(Y or N) | Mark                    | Type   |
 | ------------- | ------------ | ---------------- | ----------------------- | ------ |
@@ -466,7 +482,9 @@ response example：
 #### 5. order list
 
 request uri：{requestUrl}/orderList
+
 request method：POST
+
 request parameter information:
 
 | Field      | Description                                                  | Required(Y or N) | Mark | Type   |
@@ -479,7 +497,7 @@ request parameter information:
 | page       | current page                                                 | N                |      | String |
 | count      | current page count                                           | N                |      | String |
 
-response Description:
+response description:
 
 | Field      | Description           | Required(Y or N) | Mark | Type |
 | ---------- | --------------------- | ---------------- | ---- | ---- |
@@ -488,7 +506,7 @@ response Description:
 | tradedNum  | history order numbers | Y                |      | Long |
 | list       | orde list             | Y                |      | List |
 
-list Description：
+list description：
 
 | Field      | Description        | Required(Y or N) | Mark                           | Type    |
 | ---------- | ------------------ | ---------------- | ------------------------------ | ------- |
@@ -539,14 +557,16 @@ response example：
 #### 6. query for single order
 
 request uri：{requestUrl}/singleOrder
+
 request method：POST
-request parameter infomationDescription:
+
+request parameter infomation:
 
 | Field   | Description | Required(Y or N) | Mark | Type   |
 | ------- | ----------- | ---------------- | ---- | ------ |
 | orderId |             | Y                |      | String |
 
-response Description：
+response description：
 
 | Field      | Description        | Required(Y or N) | Mark                           | Type    |
 | ---------- | ------------------ | ---------------- | ------------------------------ | ------- |
@@ -592,14 +612,16 @@ response example：
 #### 1.orderBook
 
 request uri：{requestUrl}/contract/orderBook
+
 request method：GET
+
 request parameter infomation：
 
 | Field  | Description | Required(Y or N) | Mark | Type   |
 | ------ | ----------- | ---------------- | ---- | ------ |
 | symbol |             | Y                |      | String |
 
-responseDescription:
+response description:
 
 | Field | Description | Required(Y or N) | Mark                                            | Type   |
 | ----- | ----------- | ---------------- | ----------------------------------------------- | ------ |
@@ -625,14 +647,16 @@ response example：
 #### 2.ticker
 
 request uri：{requestUrl}/contract/ticker
+
 request method：GET
+
 request parameter infomation：
 
 | Field  | Description | Required(Y or N) | Mark | Type   |
 | ------ | ----------- | ---------------- | ---- | ------ |
 | symbol |             | Y                |      | String |
 
-response Description:
+response description:
 
 | Field     | Description                                               | Required(Y or N) | Mark | Type   |
 | --------- | --------------------------------------------------------- | ---------------- | ---- | ------ |
@@ -678,7 +702,9 @@ response example：
 #### 1.create order for contract
 
 request uri：{requestUrl}/contract/order
+
 request method：POST
+
 request parameter infomation：
 
 | Field            | Description                 | Required(Y or N) | Mark                                                         | Type   |
@@ -698,7 +724,7 @@ request parameter infomation：
 | benchmarkPrice   |                             | N                |                                                              | String |
 | triggerPriceType |                             | N                |                                                              | String |
 
-response Description:
+response description:
 
 | Field   | Description | Required(Y or N) | Mark | Type   |
 | ------- | ----------- | ---------------- | ---- | ------ |
@@ -720,7 +746,9 @@ response example：
 #### 2.cancel order for contract
 
 request uri：{requestUrl}/contract/orderCancel
+
 request method：POST
+
 request parameter infomation：
 
 | Field   | Description | Required(Y or N) | Mark | Type   |
@@ -732,7 +760,9 @@ response description：when code = "0" is success
 #### 3.query leverage info
 
 request uri：{requestUrl}/contract/leverageInfo
+
 request method：POST
+
 request parameter infomation：
 
 | Field  | Description | Required(Y or N) | Mark | Type   |
@@ -749,7 +779,9 @@ response description：
 #### 4.edit leverage
 
 request uri：{requestUrl}/contract/leverageEdit
+
 request method：POST
+
 request parameter infomation：
 
 | Field    | Description       | Required(Y or N) | Mark | Type   |
@@ -762,7 +794,9 @@ request description：when code="0" is success
 #### 5.query order detail
 
 request uri：{requestUrl}/contract/orderDetail
+
 request method：POST
+
 request parameter infomation：
 
 | Field  | Description | Required(Y or N) | Mark | Type   |
@@ -795,7 +829,9 @@ fills：
 #### 6.position info
 
 request uri：{requestUrl}/contract/positionInfo
+
 request method：POST
+
 request parameter infomation：
 
 | Field  | Description | Required(Y or N) | Mark | Type   |
@@ -823,8 +859,10 @@ response description：
 #### 7.adjust margin
 
 request uri：{requestUrl}/contract/marginEdit
+
 request method：POST
-request parameter infomationDescription：
+
+request parameter infomation：
 
 | Field        | Description                              | Required(Y or N) | Mark | Type   |
 | ------------ | ---------------------------------------- | ---------------- | ---- | ------ |
@@ -836,7 +874,9 @@ response description：when code="0" is success
 #### 8.query asset account for contract
 
 request uri：{requestUrl}/contract/assetInfo
+
 request method：POST
+
 request parameter infomation：
 
 | Field      | Description | Required(Y or N) | Mark | Type   |
@@ -866,7 +906,9 @@ records：
 #### 9.asset change detail for contract
 
 request uri：{requestUrl}/contract/assetChangeDetail
+
 request method：POST
+
 request parameter infomation：
 
 | Field     | Description      | Required(Y or N) | Mark | Type   |
@@ -904,7 +946,9 @@ records：
 #### 10.query open order list
 
 request uri：{requestUrl}/contract/openOrderList
+
 request method：POST
+
 request parameter infomation：
 
 | Field  | Description        | Required(Y or N) | Mark | Type   |
@@ -955,7 +999,9 @@ records：
 #### 11.query history order list
 
 request uri：{requestUrl}/contract/historyOrderList
+
 request method：POST
+
 request parameter infomation：
 
 | Field | Description        | Required(Y or N) | Mark                                                         | Type   |
