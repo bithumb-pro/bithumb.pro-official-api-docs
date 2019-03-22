@@ -211,10 +211,10 @@ response example：
 	{
 	"info": [
 		{
-			"p":"3700.458232",
-			"s":"buy",
-			"t":"1552616758",
-			"v":"0.3456"
+		   "p":"3700.458232",
+		   "s":"buy",
+		   "t":"1552616758",
+		   "v":"0.3456"
 		}
 	 ],
 	 "success": true,
@@ -256,16 +256,16 @@ response example：
 	{
 	"info": [
 	     {
-			"c":"3700.458232",
-			"h":"3700.458232",
-			"l":"3700.458232",
-			"o":"3700.458232",
-			"s":"0.1234",
-			"t":"1",
-			"time":"1552616758",
-			"v":"0.12"
-		  }
-	 ],
+		"c":"3700.458232",
+		"h":"3700.458232",
+		"l":"3700.458232",
+		"o":"3700.458232",
+		"s":"0.1234",
+		"t":"1",
+		"time":"1552616758",
+		"v":"0.12"
+	    }
+	  ],
 	 "success": true,
 	 "msg": "",
 	 "code": "0",
@@ -350,9 +350,9 @@ response example：
 
 	{
 	"info": {
-			"orderId":"23132134242",
-			"symbol":"BTC-USDT"
-	 },
+		"orderId":"23132134242",
+		"symbol":"BTC-USDT"
+	   },
 	"code": "0",
 	"msg": "success",
 	"timestamp": 1551346473238,
@@ -397,13 +397,13 @@ response example：
 
 	{
 	"info": [
-	    {
+	     {
 	    	"coinType":"BTC",
-			"count":"100",
-		 	"frozen":"10",
-			"btcQuantity":"110",
-			"type":"1"
-		}
+		"count":"100",
+		 "frozen":"10",
+		"btcQuantity":"110",
+		"type":"1"
+	    }
 	  ],
 	"code": "0",
 	"msg": "success",
@@ -456,23 +456,23 @@ response example：
 	"info":{
 	    "num":"10",
 	    "list":[
-	        {
-				"orderId":"12300993210",
-				"orderSign":"taker",
-				"getCount":"0.1",
-				"getCountUnit":"BTC",
-				"loseCount":"370.01",
-				"loseCountUnit":"USDT",
-				"price":"3700.01",
-				"priceUnit":"USDT",
-				"fee":"0.0001",
-				"feeUnit":"BTC",
-				"time":"1552878781",
-				"fsymbol":"BTC-USDT",
-				"side":"buy"
-				},
-				...
-		]
+	         {
+		     "orderId":"12300993210",
+		     "orderSign":"taker",
+	             "getCount":"0.1",
+		     "getCountUnit":"BTC",
+	             "loseCount":"370.01",
+	             "loseCountUnit":"USDT",
+		     "price":"3700.01",
+		     "priceUnit":"USDT",
+		     "fee":"0.0001",
+		     "feeUnit":"BTC",
+   		     "time":"1552878781",
+		     "fsymbol":"BTC-USDT",
+		     "side":"buy"
+		 },
+		 ...
+	      ]
 	 },
 	"code": "0",
 	"msg": "success",
@@ -534,21 +534,21 @@ response example：
     "tradedNum":"100"
     "list":[
          {
-			"orderId":"12300993210",
-			"marketType":"USDT",
-			"coinType":"BTC",
-			"price":"3700",
-			"tradedNum":"0.01",
-			"quantity":"0.5",
-			"avgPrice":"0",
-			"status":"pending",
-			"type":"limit",
-			"side":"buy",
-			"createTime":"1552878781",
-			"tradeTotal":"0.5"
-			},
-			...
-	 ]
+	    "orderId":"12300993210",
+	    "marketType":"USDT",
+	    "coinType":"BTC",
+	    "price":"3700",
+	    "tradedNum":"0.01",
+	    "quantity":"0.5",
+	    "avgPrice":"0",
+	    "status":"pending",
+	    "type":"limit",
+	    "side":"buy",
+	    "createTime":"1552878781",
+	    "tradeTotal":"0.5"
+	 },
+         ...
+      ]
   },
 "code": "0",
 "msg": "success",
@@ -590,18 +590,18 @@ response example：
 
 ```
 "info":{
-		"orderId":"12300993210",
-		"marketType":"USDT",
-		"coinType":"BTC",
-		"price":"3700",
-		"tradedNum":"0.01",
-		"quantity":"0.5",
-		"avgPrice":"0",
-		"status":"pending",
-		"type":"limit",
-		"side":"buy",
-		"createTime":"1552878781",
-		"tradeTotal":"0.5"
+	"orderId":"12300993210",
+	"marketType":"USDT",
+   	"coinType":"BTC",
+	"price":"3700",
+	"tradedNum":"0.01",
+	"quantity":"0.5",
+	"avgPrice":"0",
+	"status":"pending",
+	"type":"limit",
+	"side":"buy",
+	"createTime":"1552878781",
+	"tradeTotal":"0.5"
   },
 "code": "0",
 "msg": "success",
@@ -636,10 +636,10 @@ response example：
 
 ```
 "info":{
-		"b":["3701:1","3700:0.5"],
-		"s":["3800:0.2","3801.1:0.3"],
-		"type":""
-	},
+	"b":["3701:1","3700:0.5"],
+	"s":["3800:0.2","3801.1:0.3"],
+	"type":""
+   },
 "code": "0",
 "msg": "success",
 "timestamp": 1551346473238,
@@ -680,19 +680,19 @@ response example：
 
 ```
 "info":{
-		"symbol":"BTC-USDT",
-		"type":"",
-		"lastPrice":"3700",
-		"high":"3800.1",
-		"low":"3699.01",
-		"volume":"23",
-		"change":"0.0123",
-		"openValue":"10",
-		"fundRate0":"",
-		"fundTime0":"",
-		"adlRanker":"",
-		"ver":
-	},
+	"symbol":"BTC-USDT",
+	"type":"",
+	"lastPrice":"3700",
+	"high":"3800.1",
+	"low":"3699.01",
+	"volume":"23",
+	"change":"0.0123",
+	"openValue":"10",
+	"fundRate0":"",
+	"fundTime0":"",
+	"adlRanker":"",
+	"ver":
+    },
 "code": "0",
 "msg": "success",
 "timestamp": 1551346473238,
