@@ -96,7 +96,9 @@ if need page, like:
 #### 1.ticker
 
 request uri：{requestUrl}/spot/ticker
+
 request method：GET
+
 request parameter infomation：
 
 | Field  | Description             | Required(Y or N) | Mark                        | Type   |
@@ -201,6 +203,7 @@ response:
 | t     | timestamp     | Y                |             | String |
 
 response example：
+	
 	{
 	"info": [
 			 {
