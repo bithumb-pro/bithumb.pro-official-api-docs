@@ -24,7 +24,7 @@ catalog
 | apiKey    | unique tag for user | N                | apply for the key in website by user.                        | String |
 | timestamp | request timestamp   | N                | the paramter will be need in request which need to authenticate, if space of time too long between current and request will be reject. | Long  |
 | signature | signature data      | N                | required by authentication of request.                       | String |
-| version   | version number      | N                | current version number                                       | String |
+| version   | version number      | Y               | current version number                                       | String |
 | msgNo     | requst id           | N                | just for some api(place order),max length is 50 chars        | String |
 
 ### Response Information
