@@ -398,11 +398,11 @@ response example：
 	{
 	"info": [
 	     {
-	    	"coinType":"BTC",
-		"count":"100",
-		 "frozen":"10",
-		"btcQuantity":"110",
-		"type":"1"
+	      "coinType":"BTC",
+		  "count":"100",
+		  "frozen":"10",
+		  "btcQuantity":"110",
+		  "type":"1"
 	    }
 	  ],
 	"code": "0",
