@@ -4,5 +4,5 @@
 
 | Name                                                         | Description                    |
 | ------------------------------------------------------------ | ------------------------------ |
-| [rest-api.md](https://github.com/bithumb-pro/bithumb.pro-official-api-docs/blob/master/rest-api_CN.md) | Details on the Rest API (/api) |
-| [ws-api.md](https://github.com/bithumb-pro/bithumb.pro-official-api-docs/blob/master/ws-api_CN.md) | Details on the Websocket API (/api) |
+| [rest-api.md](https://github.com/bithumb-pro/bithumb.pro-official-api-docs/blob/master/rest-api.md) | Details on the Rest API |
+| [ws-api.md](https://github.com/bithumb-pro/bithumb.pro-official-api-docs/blob/master/ws-api.md) | Details on the Websocket API |
