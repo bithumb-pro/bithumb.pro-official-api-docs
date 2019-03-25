@@ -49,12 +49,13 @@ ping: for heart cmd, client can send this cmd with a fixed time period(30 senond
 args requests：
 
 - subscribe cmd：support multi topics, such as:["CONTRACT_TICKER:BTCUSD","CONTRAC_ORDERBOOK10:BTCUSD"]
+- unSubscribe cmd: remove topic, as same as subscribe.
 - authKey cmd：args is fixed,["apiKey",timestamp(millionsecond),"apiSignature"]
 - ping cmd：no args
 
 example:
-signatureString=request path+current timestamp(millionsecond)+apiKey
-apiSignature = sha256_HMAC(signatureString,secretKey)
+ signatureString=request path+current timestamp(millionsecond)+apiKey
+ apiSignature = sha256_HMAC(signatureString,secretKey)
 
 ### topic：
 
