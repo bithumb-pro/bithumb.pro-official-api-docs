@@ -74,7 +74,7 @@ response data：
 | h      | high price in the past 24 hours |      | String |
 | l      | low price in the past 24 hours |      | String |
 | lp     | the last deal price   |      | String |
-| op     | no completed position amount |      | String |
+| op     | open position |      | String |
 | symbol |                          |      | String |
 | v      | deal amount in the past 24 hours |      | String |
 | ver    | version number             | mark orderbook is the last, prevent message backtracking | String |
@@ -138,7 +138,7 @@ response data：
 
 | 字段       | 说明               | 备注                          | 类型                                         |
 | ---------- | ------------------ | ----------------------------- | -------------------------------------------- |
-| amountFill | completed amount   |                               | String[2],first is price, second is quantity |
+| amountFill | filled amount   |                               | String[2],first is price, second is quantity |
 | amountReal | total amount       |                               | String[2],first is price, second is quantity |
 | avgPrice   | deal average price |                               | String                                       |
 | msgNo      | user defined       |                               | String                                       |
