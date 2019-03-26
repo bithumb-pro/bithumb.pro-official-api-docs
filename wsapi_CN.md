@@ -221,7 +221,8 @@ CONTRACT_POSITION: 推送用户合约私有仓位信息，当用户的合约仓�
 | -------------- | ------------------------ | ---- | ------ |
 | symbol         | 合约符号                 |      | String |
 | positionId     | 仓位ID                   |      | String |
-| amount         | 仓位数量，带符号         |      | String |
+| amount         | 仓位数量                 |      | String |
+| side           | buy or sell              |      | String |
 | entryPrice     | 开仓价格                 |      | String |
 | liquiPrice     | 强平价格                 |      | String |
 | frozen         | 冻结的金额               |      | String |
