@@ -2,7 +2,7 @@
 
 ## 1、General information
 
-- The base endpoint of websocket is wss(ws)://{server address}/message/realtime,
+- The base endpoint of websocket is wss://global-api.dcex.world/message/realtime,
 - The websocket server supply some topics for api user, such as ticker,orderbook etc. user can get real time msg by subscribing the topic which include normal (no security, like ticker, orderbook etc.) and private (need authenticate, like order change,position change etc. ).
 - The single connection between server and client can keepalive a long time, so keep connection need client send {"cmd":"ping"},if the websocket server receive the msg,then server will call back a {"code":"0","msg":"pong"} 
 specially, some topic response include field "ver",the field mark this message's version, prevent message backtracking
@@ -193,4 +193,3 @@ example：
 	"topic":"CONTRACT_ASSET",
 	"timestamp":1553236515}
 ```
-
