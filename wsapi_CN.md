@@ -2,36 +2,40 @@
 
 ## 1、概念
 
-
-ws的接入方式，以wss(ws)://{域名}/message/realtime为地址，用户可以按着文档的步骤，进行接入。
-
-topic：服务端支持订阅的主题（用户可以根据自己的需要订阅相关的主题，一旦订阅，当服务端产生相关的信息时，则会向该通道发送消息），包含普通的主题（不需要身份认证，像行情，订单薄等），私有主题（需要先进行身份认证，认证成功后，即可订阅该类主题，像私有订单变化，仓位变化等）。
-
-有些topic的响应信息里可能会包含ver字段，这个字段是用来防治消息出现回溯的情况
+- ws的接入方式，以wss://global-api.dcex.world/message/realtime为地址，用户可以按着文档的步骤，进行接入。
+- topic：服务端支持订阅的主题（用户可以根据自己的需要订阅相关的主题，一旦订阅，当服务端产生相关的信息时，则会向该通道发送消息），包含普通的主题（不需要身份认证，像行情，订单薄等），私有主题（需要先进行身份认证，认证成功后，即可订阅该类主题，像私有订单变化，仓位变化等）。
+- 有些topic的响应信息里可能会包含ver字段，这个字段是用来防治消息出现回溯的情况
 
 ## 2、接入流程
 
 ### 接入：
 
-ws的请求地址为：wss(ws)://{域名}/message/realtime或者wss(ws)://{域名}/message/realtime?subscribe=CONTRACT_ORDERBOOK:BTCUSD,CONTRACT_TICKER:BTCUSD
+ws的请求方式可以为：wss(ws)://{域名}/message/realtime
+或者以如下的方式：
+wss(ws)://{域名}/message/realtime?subscribe=CONTRACT_ORDERBOOK:BTCUSD,CONTRACT_TICKER:BTCUSD
 
 用户可以在创建连接的时候，订阅主题信息，并完成身份认证，通过header传递加密后的身份信息，服务端对传上来的信息进行校验，一旦验证通过，即可订阅私有主题，否则会立马关闭通道.
 
 header的信息如下：
 
+```
 {
-
-"apiKey":"",(从网页上获取)
-
-"apiTimestamp":1551848831,(连接发起的时间戳（秒）)
-
-"apiSignature":""(签名数据)
-
+	"apiKey":"",(从网页上获取)
+	"apiTimestamp":1551848831,(连接发起的时间戳（秒）)
+	"apiSignature":""(签名数据)
 }
+```
 
 响应的消息格式如下：
 
-{"code":4,"data":{""},"timestamp":1552037368,"topic":"CONTRACT_TICKER"}
+```
+{
+	"code":4,
+	"data":{""},
+	"timestamp":1552037368,
+	"topic":"CONTRACT_TICKER"
+}
+```
 
 code:为响应消息标记(详情请见code详解)
 
@@ -47,9 +51,11 @@ topic:主题
 
 {"cmd":"<command>", "args":["args1","args2","args3"...]}
 
-cmd有两种指令：
+cmd有四种指令：
 
 subscribe:订阅
+
+unSubscribe:取消订阅
 
 authKey:身份认证，用户可以在连接建立后，通过发送该指令，获取订阅私有topic的权限
 
@@ -149,18 +155,18 @@ CONTRACT_ORDER: 推送用户私有订单的消息，当其订单发生变化时�
 
 消息体如下：
 
-| 字段       | 说明                 | 备注                                                         | 类型                                      |
-| ---------- | -------------------- | ------------------------------------------------------------ | ----------------------------------------- |
-| amountFill | 已成交的数量         |                                                              | String[2],第一个为price，第二个为quantity |
-| amountReal | 委托数量             |                                                              | String[2],第一个为price，第二个为quantity |
-| avgPrice   | 成交均价             |                                                              | String                                    |
-| msgNo      | 用户自定义的请求信息 |                                                              | String                                    |
-| orderId    | 订单ID               |                                                              | String                                    |
-| price      | 委托价格             |                                                              | String                                    |
-| side       | 方向                 | buy,sell                                                     | String                                    |
-| status     | 订单状态             | (open(挂单中),filled(已成交),cancel(已取消),rejected(已拒绝)) | String                                    |
-| symbol     | 合约符号             |                                                              | String                                    |
-| type       | 订单类型             | limit,market                                                 | String                                    |
+| 字段       | 说明                 | 备注                                                         | 类型   |
+| ---------- | -------------------- | ------------------------------------------------------------ | ------ |
+| amountFill | 已成交的数量         |                                                              | String |
+| amountReal | 委托数量             |                                                              | String |
+| avgPrice   | 成交均价             |                                                              | String |
+| msgNo      | 用户自定义的请求信息 |                                                              | String |
+| orderId    | 订单ID               |                                                              | String |
+| price      | 委托价格             |                                                              | String |
+| side       | 方向                 | buy,sell                                                     | String |
+| status     | 订单状态             | (open(挂单中),filled(已成交),cancel(已取消),rejected(已拒绝)) | String |
+| symbol     | 合约符号             |                                                              | String |
+| type       | 订单类型             | limit,market                                                 | String |
 
 示例：
 
@@ -188,10 +194,10 @@ CONTRACT_ASSET: 推送用户私有资产的消息，当用户资产发生变动�
 
 消息体如下：
 
-| 字段         | 说明     | 备注 | 类型   |
-| ------------ | -------- | ---- | ------ |
-| availableAmt | 可用余额 |      | String |
-| totalAmt     | 总资产   |      | String |
+| 字段            | 说明     | 备注 | 类型   |
+| --------------- | -------- | ---- | ------ |
+| availableAmount | 可用余额 |      | String |
+| totalAmount     | 总资产   |      | String |
 
 示例：
 
@@ -199,14 +205,54 @@ CONTRACT_ASSET: 推送用户私有资产的消息，当用户资产发生变动�
 {
 	"code":4,
 	"data":{
-		"availableAmt":"0.9997228830328933",
-		"totalAmt":"0.999999019221543"
+		"availableAmount":"0.9997228830328933",
+		"totalAmount":"0.999999019221543"
 	},
 	"topic":"CONTRACT_ASSET",
-	"timestamp":1553236515}
+	"timestamp":1553236515
+}
 ```
 
+CONTRACT_POSITION: 推送用户合约私有仓位信息，当用户的合约仓位发生变动时，如果用户订阅了此主题，则立即会向订阅的channel里发送消息
 
+消息体如下：
+
+| 字段           | 说明                     | 备注 | 类型   |
+| -------------- | ------------------------ | ---- | ------ |
+| symbol         | 合约符号                 |      | String |
+| positionId     | 仓位ID                   |      | String |
+| amount         | 仓位数量，带符号         |      | String |
+| entryPrice     | 开仓价格                 |      | String |
+| liquiPrice     | 强平价格                 |      | String |
+| frozen         | 冻结的金额               |      | String |
+| margin         | 仓位保证金               |      | String |
+| positionValue  | 仓位价值                 |      | String |
+| markPrice      | 计算的mark价格           |      | String |
+| maxReMrgAmount | 最大可移除保证金         |      | String |
+| lastUpdateTime | position最后变动的时间戳 |      | String |
+
+示例：
+
+```
+{
+	"code":4,
+	"data":{
+		"symbol":"BTCUSD",
+		"positionId":"100001",
+		"amount":"100",
+		"entryPrice":"4800",
+		"liquiPrice":"4820",
+		"frozen":"0.02083",
+		"margin":"0.03",
+		"positionValue":"0.02083",
+		"markPrice":"4802",
+		"maxReMrgAmount":"0.001",
+		"lastUpdateTime":"1553580895"
+	},
+	"topic":"CONTRACT_ASSET",
+	"timestamp":1553236515
+}
+```
 
 ### code详解：
 

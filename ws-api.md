@@ -2,9 +2,9 @@
 
 ## 1、General information
 
-The base endpoint of websocket is wss(ws)://{server address}/message/realtime
-The websocket server supply some topics for api user, such as ticker,orderbook etc. user can get real time msg by subscribing the topic which include normal (no security, like ticker, orderbook etc.) and private (need authenticate, like order change,position change etc. ).
-The single connection between server and client can keepalive a long time, so keep connection need client send {"cmd":"ping"},if the websocket server receive the msg,then server will call back a {"code":"0","msg":"pong"} 
+- The base endpoint of websocket is wss://global-api.dcex.world/message/realtime,
+- The websocket server supply some topics for api user, such as ticker,orderbook etc. user can get real time msg by subscribing the topic which include normal (no security, like ticker, orderbook etc.) and private (need authenticate, like order change,position change etc. ).
+- The single connection between server and client can keepalive a long time, so keep connection need client send {"cmd":"ping"},if the websocket server receive the msg,then server will call back a {"code":"0","msg":"pong"} 
 specially, some topic response include field "ver",the field mark this message's version, prevent message backtracking
 
 ## 2、Access Process
@@ -41,20 +41,22 @@ the base command style ：
 
 {"cmd":"<command>", "args":["args1","args2","args3"...]}
 
-cmd have two type：
-subscribe: for subscribe
+cmd have four type：
+subscribe: for subscribe some of topic
+unSubscribe: for cancel subscribe some of topic
 authKey: for private identity authentication, client can send this cmd once the connection is created for get authority of private topic
 ping: for heart cmd, client can send this cmd with a fixed time period(30 senonds), if timeout not send, the connection will be closed by server.
 
 args requests：
 
-subscribe cmd：support multi topics, such as:["CONTRACT_TICKER:BTCUSD","CONTRAC_ORDERBOOK10:BTCUSD"]
+- subscribe cmd：support multi topics, such as:["CONTRACT_TICKER:BTCUSD","CONTRAC_ORDERBOOK10:BTCUSD"]
+- unSubscribe cmd: remove topic, as same as subscribe.
+- authKey cmd：args is fixed,["apiKey",timestamp(millionsecond),"apiSignature"]
+- ping cmd：no args
 
-authKey cmd：args is fixed,["apiKey",timestamp(millionsecond),"apiSignature"]
-ping cmd：no args
-
-signatureString=request path+current timestamp(millionsecond)+apiKey
-apiSignature = sha256_HMAC(signatureString,secretKey)
+example:
+ signatureString=request path+current timestamp(millionsecond)+apiKey
+ apiSignature = sha256_HMAC(signatureString,secretKey)
 
 ### topic：
 
@@ -74,7 +76,7 @@ response data：
 | h      | high price in the past 24 hours |      | String |
 | l      | low price in the past 24 hours |      | String |
 | lp     | the last deal price   |      | String |
-| op     | no completed position amount |      | String |
+| op     | open position |      | String |
 | symbol |                          |      | String |
 | v      | deal amount in the past 24 hours |      | String |
 | ver    | version number             | mark orderbook is the last, prevent message backtracking | String |
@@ -99,7 +101,7 @@ example：
     	"topic":"CONTRACT_TICKER"
     }
 
-CONTRACT_ORDERBOOK:the last new contract orderbook msg,if client subscribe the topic,once orderbook is changed, server will send msg which is orderbook changed to channel.special,when quantity=0,mark the price in orderbook had not exist.
+CONTRACT_ORDERBOOK:the last new contract orderbook msg,if client subscribe the topic,once orderbook changed, server will send msg which is orderbook changed to channel.specially,when quantity=0,mark the price in orderbook had not exist.
 
 response data：
 
@@ -126,20 +128,20 @@ example：
 }
 ```
 
-CONTRACT_ORDERBOOK10: the last new contract orderbook msg(include the last new 10 asks and 10 bids),if client subscribe the topic,once orderbook is changed, server will send msg to channel.
+CONTRACT_ORDERBOOK10: the last new contract orderbook msg(include the last new 10 asks and 10 bids),if client subscribe the topic,once orderbook changed, server will send msg to channel.
 
 response data refer to CONTRACT_ORDERBOOK
 
 #### private topic：
 
-CONTRACT_ORDER:  the last new private contract order msg, if client subscribe the topic,once user order is changed, server will send msg to channel.
+CONTRACT_ORDER:  the last new private contract order msg, if client subscribe the topic,once user order changed, server will send msg to channel.
 
 response data：
 
 | 字段       | 说明               | 备注                          | 类型                                         |
 | ---------- | ------------------ | ----------------------------- | -------------------------------------------- |
-| amountFill | completed amount   |                               | String[2],first is price, second is quantity |
-| amountReal | total amount       |                               | String[2],first is price, second is quantity |
+| amountFill | filled amount   |                               | String |
+| amountReal | total amount       |                               | String |
 | avgPrice   | deal average price |                               | String                                       |
 | msgNo      | user defined       |                               | String                                       |
 | orderId    |                    |                               | String                                       |
@@ -171,14 +173,14 @@ example：
 }
 ```
 
-CONTRACT_ASSET: the last new private contract asset account msg,if client subscribe the topic,once user asset account is changed, server will send msg to channel.
+CONTRACT_ASSET: the last new private contract asset account msg,if client subscribe the topic,once user asset account changed, server will send msg to channel.
 
 response data：
 
 | Field         | Description     | Mark | Type  |
 | ------------ | -------- | ---- | ------ |
-| availableAmt | Available Amount |      | String |
-| totalAmt     | Total Amount |      | String |
+| availableAmount | Available Amount |      | String |
+| totalAmount | Total Amount |      | String |
 
 example：
 
@@ -186,10 +188,73 @@ example：
 {
 	"code":4,
 	"data":{
-		"availableAmt":"0.9997228830328933",
-		"totalAmt":"0.999999019221543"
+		"availableAmount":"0.9997228830328933",
+		"totalAmount":"0.999999019221543"
 	},
 	"topic":"CONTRACT_ASSET",
 	"timestamp":1553236515}
 ```
 
+CONTRACT_POSITION:  the last new private contract position  msg,if client subscribe the topic,once position changed, server will send msg to channel.
+
+response data：
+
+| Field          | Description                                     | Mark | Type   |
+| -------------- | ----------------------------------------------- | ---- | ------ |
+| symbol         |                                                 |      | String |
+| positionId     | position id                                     |      | String |
+| amount         | position amount with positive and negative sign |      | String |
+| entryPrice     | open price                                      |      | String |
+| liquiPrice     | Forced liquidation                              |      | String |
+| frozen         | frozen amount                                   |      | String |
+| margin         | position margin                                 |      | String |
+| positionValue  | position value                                  |      | String |
+| markPrice      | mark price                                      |      | String |
+| maxReMrgAmount | the max can removed margin amount               |      | String |
+| lastUpdateTime | the last position changed time                  |      | String |
+
+example：
+
+```
+{
+	"code":4,
+	"data":{
+		"symbol":"BTCUSD",
+		"positionId":"100001",
+		"amount":"100",
+		"entryPrice":"4800",
+		"liquiPrice":"4820",
+		"frozen":"0.02083",
+		"margin":"0.03",
+		"positionValue":"0.02083",
+		"markPrice":"4802",
+		"maxReMrgAmount":"0.001",
+		"lastUpdateTime":"1553580895"
+	},
+	"topic":"CONTRACT_ASSET",
+	"timestamp":1553236515
+}
+```
+
+### code detail：
+
+code style is String，the success response code  is below 10000, or is wrong response
+
+| code  | msg                 | mark |
+| ----- | ------------------- | ---- |
+| 0     | pong                |      |
+| 00000 | Auth key success    |      |
+| 00001 | Subscribe success   |      |
+| 00002 | Connect success     |      |
+| 00003 | UnSubscribe success |      |
+|       |                     |      |
+|       |                     |      |
+| 10000 | No cmd              |      |
+| 10001 | No apiKey           |      |
+| 10002 | Invalid apiKey      |      |
+| 10003 | Signature Fail      |      |
+| 10004 | Need verify apiKey  |      |
+| 10005 | No topic            |      |
+|       |                     |      |
+|       |                     |      |
+| 99999 | UnKnow error        |      |
