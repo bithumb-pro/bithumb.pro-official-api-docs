@@ -31,7 +31,7 @@ header的信息如下：
 ```
 {
 	"code":4,
-	"data":{""},
+	"data":{},
 	"timestamp":1552037368,
 	"topic":"CONTRACT_TICKER"
 }
@@ -53,13 +53,13 @@ topic:主题
 
 cmd有四种指令：
 
-subscribe:订阅
+subscribe: 用于订阅topic
 
-unSubscribe:取消订阅
+unSubscribe: 用于取消订阅topic
 
-authKey:身份认证，用户可以在连接建立后，通过发送该指令，获取订阅私有topic的权限
+authKey: 身份认证，用户可以在连接建立后，通过发送该指令，获取订阅私有topic的权限
 
-ping:心跳指令,客户端可设置为30s发送一次。客户端用来维持和服务器的连接的状态，超时未发送该指令时，服务端会清除掉此连接。
+ping: 心跳指令,客户端可设置为30s发送一次。客户端用来维持和服务器的连接的状态，超时未发送该指令时，服务端会清除掉此连接。
 
 args参数数组：
 
