@@ -217,20 +217,22 @@ CONTRACT_POSITION: 推送用户合约私有仓位信息，当用户的合约仓�
 
 消息体如下：
 
-| 字段           | 说明                     | 备注 | 类型   |
-| -------------- | ------------------------ | ---- | ------ |
-| symbol         | 合约符号                 |      | String |
-| positionId     | 仓位ID                   |      | String |
-| amount         | 仓位数量                 |      | String |
-| side           | buy or sell              |      | String |
-| entryPrice     | 开仓价格                 |      | String |
-| liquiPrice     | 强平价格                 |      | String |
-| frozen         | 冻结的金额               |      | String |
-| margin         | 仓位保证金               |      | String |
-| positionValue  | 仓位价值                 |      | String |
-| markPrice      | 计算的mark价格           |      | String |
-| maxReMrgAmount | 最大可移除保证金         |      | String |
-| lastUpdateTime | position最后变动的时间戳 |      | String |
+| 字段           | 说明                                 | 备注 | 类型   |
+| -------------- | ------------------------------------ | ---- | ------ |
+| symbol         | 合约符号                             |      | String |
+| positionId     | 仓位ID                               |      | String |
+| amount         | 仓位数量                             |      | String |
+| side           | buy or sell                          |      | String |
+| entryPrice     | 开仓价格                             |      | String |
+| liquiPrice     | 强平价格                             |      | String |
+| frozen         | 冻结的金额                           |      | String |
+| margin         | 仓位保证金                           |      | String |
+| positionValue  | 仓位价值                             |      | String |
+| markPrice      | 计算的mark价格                       |      | String |
+| maxReMrgAmount | 最大可移除保证金                     |      | String |
+| lastUpdateTime | position最后变动的时间戳             |      | String |
+| status         | 仓位状态，newOpen(初始化),open,close |      | String |
+| realProfit     | 已实现盈亏                           |      | String |
 
 示例：
 
@@ -248,7 +250,9 @@ CONTRACT_POSITION: 推送用户合约私有仓位信息，当用户的合约仓�
 		"positionValue":"0.02083",
 		"markPrice":"4802",
 		"maxReMrgAmount":"0.001",
-		"lastUpdateTime":"1553580895"
+		"lastUpdateTime":"1553580895",
+		"status":"open",
+		"realProfit":"0.01"
 	},
 	"topic":"CONTRACT_ASSET",
 	"timestamp":1553236515

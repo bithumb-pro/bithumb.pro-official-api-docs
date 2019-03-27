@@ -199,20 +199,22 @@ CONTRACT_POSITION:  the last new private contract position  msg,if client subscr
 
 response data：
 
-| Field          | Description                       | Mark | Type   |
-| -------------- | --------------------------------- | ---- | ------ |
-| symbol         |                                   |      | String |
-| positionId     | position id                       |      | String |
-| amount         | position amount                   |      | String |
-| side           | buy or sell                       |      | String |
-| entryPrice     | open price                        |      | String |
-| liquiPrice     | Forced liquidation                |      | String |
-| frozen         | frozen amount                     |      | String |
-| margin         | position margin                   |      | String |
-| positionValue  | position value                    |      | String |
-| markPrice      | mark price                        |      | String |
-| maxReMrgAmount | the max can removed margin amount |      | String |
-| lastUpdateTime | the last position changed time    |      | String |
+| Field          | Description                                      | Mark | Type   |
+| -------------- | ------------------------------------------------ | ---- | ------ |
+| symbol         |                                                  |      | String |
+| positionId     | position id                                      |      | String |
+| amount         | position amount                                  |      | String |
+| side           | buy or sell                                      |      | String |
+| entryPrice     | open price                                       |      | String |
+| liquiPrice     | Forced liquidation                               |      | String |
+| frozen         | frozen amount                                    |      | String |
+| margin         | position margin                                  |      | String |
+| positionValue  | position value                                   |      | String |
+| markPrice      | mark price                                       |      | String |
+| maxReMrgAmount | the max can removed margin amount                |      | String |
+| lastUpdateTime | the last position changed time                   |      | String |
+| status         | position status,  newOpen(first init),open,close |      | String |
+| realProfit     | acquired profit                                  |      | String |
 
 example：
 
@@ -230,7 +232,9 @@ example：
 		"positionValue":"0.02083",
 		"markPrice":"4802",
 		"maxReMrgAmount":"0.001",
-		"lastUpdateTime":"1553580895"
+		"lastUpdateTime":"1553580895",
+		"status":"open",
+		"realProfit":"0.01"
 	},
 	"topic":"CONTRACT_ASSET",
 	"timestamp":1553236515
