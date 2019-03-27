@@ -25,7 +25,7 @@ response msg style：
 
 	{
 		"code":4,
-		"data":{""},
+		"data":{},
 		"timestamp":1552037368,
 		"topic":"CONTRACT_TICKER"
 	}
