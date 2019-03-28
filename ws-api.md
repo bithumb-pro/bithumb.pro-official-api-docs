@@ -215,6 +215,7 @@ response data：
 | lastUpdateTime | the last position changed time                   |      | String |
 | status         | position status,  newOpen(first init),open,close |      | String |
 | realProfit     | acquired profit                                  |      | String |
+| leverage       | leverage value                                   |      | String |
 
 example：
 
@@ -234,7 +235,8 @@ example：
 		"maxReMrgAmount":"0.001",
 		"lastUpdateTime":"1553580895",
 		"status":"open",
-		"realProfit":"0.01"
+		"realProfit":"0.01",
+		"leverage":"1"
 	},
 	"topic":"CONTRACT_ASSET",
 	"timestamp":1553236515

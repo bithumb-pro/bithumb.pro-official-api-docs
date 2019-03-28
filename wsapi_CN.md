@@ -233,6 +233,7 @@ CONTRACT_POSITION: 推送用户合约私有仓位信息，当用户的合约仓�
 | lastUpdateTime | position最后变动的时间戳             |      | String |
 | status         | 仓位状态，newOpen(初始化),open,close |      | String |
 | realProfit     | 已实现盈亏                           |      | String |
+| leverage       | 杠杆值                               |      | String |
 
 示例：
 
@@ -252,7 +253,8 @@ CONTRACT_POSITION: 推送用户合约私有仓位信息，当用户的合约仓�
 		"maxReMrgAmount":"0.001",
 		"lastUpdateTime":"1553580895",
 		"status":"open",
-		"realProfit":"0.01"
+		"realProfit":"0.01",
+		"leverage":"1"
 	},
 	"topic":"CONTRACT_ASSET",
 	"timestamp":1553236515
