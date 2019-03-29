@@ -161,15 +161,15 @@ response data：
 
 | Field  | Description                         | Mark | Type   |
 | ------ | -------------------------------- | ---- | ------ |
-| c      | price changed in the past 24 hours |      | String |
-| fr     | the value at next funding fee rate changed |      | String |
-| ft     | the time at next funding fee rate changed |      | String |
-| h      | high price in the past 24 hours |      | String |
-| l      | low price in the past 24 hours |      | String |
-| lp     | the last deal price   |      | String |
-| op     | open position |      | String |
+| change | price changed in the past 24 hours |      | String |
+| fundRate0 | the value at next funding fee rate changed |      | String |
+| fundTime0 | the time at next funding fee rate changed |      | String |
+| high  | high price in the past 24 hours |      | String |
+| low    | low price in the past 24 hours |      | String |
+| lastPrice | the last deal price   |      | String |
+| openValue | open position |      | String |
 | symbol |                          |      | String |
-| v      | deal amount in the past 24 hours |      | String |
+| volume | deal amount in the past 24 hours |      | String |
 | ver    | version number             | mark orderbook is the last, prevent message backtracking | String |
 
 example：
@@ -177,15 +177,15 @@ example：
     {
     	"code":4,
     	"data": {
-    		"c":"0.0015007503751875",
-    		"fr":"0.00375",
-    		"ft":"1553241600",
-    		"h":"4005",
-    		"l":"3998",
-    		"lp":"4004",
-    		"op":"1.1581583219035874",
+    		"change":"0.0015007503751875",
+    		"fundRate0":"0.00375",
+    		"fundTime0":"1553241600",
+    		"high":"4005",
+    		"low":"3998",
+    		"lastPrice":"4004",
+    		"openValue":"1.1581583219035874",
     		"symbol":"TBTCUSD",
-    		"v":"3577",
+    		"volume":"3577",
     		"ver":"314"
     	},
     	"timestamp":1553234681,
