@@ -64,6 +64,97 @@ topic for certain type msg,the style such as "topic" or "topic:symbol", example:
 
 #### public topic：
 
+TICKER: the last new ticker msg
+
+response data：
+
+| Field  | Description                            | Mark                         | Type   |
+| ------ | -------------------------------------- | ---------------------------- | ------ |
+| c      | the last new price                     |                              | String |
+| h      | the highest price in the past 24 hours |                              | String |
+| l      | the lowest price in the past 24 hours  |                              | String |
+| p      | price changed in the past 24 hours     |                              | String |
+| symbol |                                        |                              | String |
+| v      | deal quantity in the past 24 hours     |                              | String |
+| ver    | version number                         | prevent message backtracking | String |
+
+example：
+
+```
+{
+	"code":4,
+	"data": {
+		"c":"0.0015007503751875",
+		"h":"4005",
+		"l":"3998",
+		"p":"0.01",
+		"symbol":"TBTCUSD",
+		"v":"3577",
+		"ver":"314"
+	},
+	"timestamp":1553234681,
+	"topic":"TICKER"
+}
+```
+
+ORDERBOOK: the last order book changed data
+
+response data：
+
+| Field  | Description    | Mark                         | Type                                         |
+| ------ | -------------- | ---------------------------- | -------------------------------------------- |
+| b      | bids           |                              | String[2],firt is price，second is quantity  |
+| s      | asks           |                              | String[2],first is price，second is quantity |
+| symbol |                |                              | String                                       |
+| ver    | version number | prevent message backtracking | String                                       |
+
+example：
+
+```
+{
+  "code":4,
+  "data":{
+  	"b":[["4003.5","1"],["4001.5","890"],["4000.5","10"],["3997","36"],["3996","100"]],
+  	"s":[["4005","100"],["4006","107"]],
+  	"symbol":"TBTCUSD",
+  	"ver":"375"
+  },
+  "timestamp":1553235407,
+  "topic":"CONTRACT_ORDERBOOK"
+}
+```
+
+TRADE：the last trade msg
+
+response data：
+
+| Field  | Description    | Mark                         | Type   |
+| ------ | -------------- | ---------------------------- | ------ |
+| p      | deal price     |                              | String |
+| s      | trade type     | buy or sell                  | String |
+| v      | deal quantity  |                              | String |
+| t      | trade time     |                              | String |
+| symbol |                |                              | String |
+| ver    | version number | prevent message backtracking | String |
+
+example：
+
+```
+{
+  "code":4,
+  "data":{
+  	"p":"4003.5",
+  	"s":"buy",
+  	"v":"0.1",
+  	"t":"",
+  	"symbol":"TBTCUSD",
+  	"ver":"375"
+  },
+  "timestamp":1553235407,
+  "topic":"CONTRACT_ORDERBOOK"
+}
+```
+
 CONTRACT_TICKER:the last new contract ticker msg
 
 response data：
