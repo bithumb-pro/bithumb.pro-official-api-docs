@@ -258,6 +258,7 @@ CONTRACT_ORDER: 推送用户私有订单的消息，当其订单发生变化时�
 | status     | 订单状态             | (open(挂单中),filled(已成交),cancel(已取消),rejected(已拒绝)) | String |
 | symbol     | 合约符号             |                                                              | String |
 | type       | 订单类型             | limit,market                                                 | String |
+| time       | 下单时间             |                                                              | Long   |
 
 示例：
 
@@ -274,7 +275,8 @@ CONTRACT_ORDER: 推送用户私有订单的消息，当其订单发生变化时�
 		"side":"buy",
 		"status":"open",
 		"symbol":"TBTCUSD",
-		"type":"limit"
+		"type":"limit",
+		"time":1553245866000
 	},
 	"topic":"CONTRACT_ORDER",
 	"timestamp":1553235866
@@ -285,10 +287,14 @@ CONTRACT_ASSET: 推送用户私有资产的消息，当用户资产发生变动�
 
 消息体如下：
 
-| 字段            | 说明     | 备注 | 类型   |
-| --------------- | -------- | ---- | ------ |
-| availableAmount | 可用余额 |      | String |
-| totalAmount     | 总资产   |      | String |
+| 字段                 | 说明       | 备注 | 类型   |
+| -------------------- | ---------- | ---- | ------ |
+| availableAmount      | 可用余额   |      | String |
+| totalAmount          | 总资产     |      | String |
+| coin                 | 资产类型   |      | String |
+| openPositionMargin   | 仓位保证金 |      | String |
+| openOrderMarginTotal | 委托保证金 |      | String |
+| remainMargin         | 保证金余额 |      | String |
 
 示例：
 
@@ -296,8 +302,12 @@ CONTRACT_ASSET: 推送用户私有资产的消息，当用户资产发生变动�
 {
 	"code":4,
 	"data":{
-		"availableAmount":"0.9997228830328933",
-		"totalAmount":"0.999999019221543"
+		"availableAmount":"100000.0068646403170306",
+		"totalAmount":"100000.0096280041581585",
+		"coin":"BTC",
+		"openPositionMargin":"0.0000200306255019",
+		"openOrderMarginTotal":"0.0027432190040949",
+		"remainMargin":"0.0027633638411279"
 	},
 	"topic":"CONTRACT_ASSET",
 	"timestamp":1553236515
@@ -308,23 +318,23 @@ CONTRACT_POSITION: 推送用户合约私有仓位信息，当用户的合约仓�
 
 消息体如下：
 
-| 字段           | 说明                                 | 备注 | 类型   |
-| -------------- | ------------------------------------ | ---- | ------ |
-| symbol         | 合约符号                             |      | String |
-| positionId     | 仓位ID                               |      | String |
-| amount         | 仓位数量                             |      | String |
-| side           | buy or sell                          |      | String |
-| entryPrice     | 开仓价格                             |      | String |
-| liquiPrice     | 强平价格                             |      | String |
-| frozen         | 冻结的金额                           |      | String |
-| margin         | 仓位保证金                           |      | String |
-| positionValue  | 仓位价值                             |      | String |
-| markPrice      | 计算的mark价格                       |      | String |
-| maxReMrgAmount | 最大可移除保证金                     |      | String |
-| lastUpdateTime | position最后变动的时间戳             |      | String |
-| status         | 仓位状态，newOpen(初始化),open,close |      | String |
-| realProfit     | 已实现盈亏                           |      | String |
-| leverage       | 杠杆值                               |      | String |
+| 字段                     | 说明                                 | 备注 | 类型   |
+| ------------------------ | ------------------------------------ | ---- | ------ |
+| symbol                   | 合约符号                             |      | String |
+| positionId               | 仓位ID                               |      | String |
+| amount                   | 仓位数量                             |      | String |
+| side                     | buy or sell                          |      | String |
+| entryPrice               | 开仓价格                             |      | String |
+| liquiPrice               | 强平价格                             |      | String |
+| frozen                   | 冻结的金额                           |      | String |
+| margin                   | 仓位保证金                           |      | String |
+| positionValue            | 仓位价值                             |      | String |
+| markPrice                | 计算的mark价格                       |      | String |
+| maxRemovableMarginAmount | 最大可移除保证金                     |      | String |
+| lastUpdateTime           | position最后变动的时间戳             |      | String |
+| status                   | 仓位状态，newOpen(初始化),open,close |      | String |
+| realProfit               | 已实现盈亏                           |      | String |
+| leverage                 | 杠杆值                               |      | String |
 
 示例：
 
@@ -341,13 +351,40 @@ CONTRACT_POSITION: 推送用户合约私有仓位信息，当用户的合约仓�
 		"margin":"0.03",
 		"positionValue":"0.02083",
 		"markPrice":"4802",
-		"maxReMrgAmount":"0.001",
+		"maxRemovableMarginAmount":"0.001",
 		"lastUpdateTime":"1553580895",
 		"status":"open",
 		"realProfit":"0.01",
 		"leverage":"1"
 	},
-	"topic":"CONTRACT_ASSET",
+	"topic":"CONTRACT_POSITION",
+	"timestamp":1553236515
+}
+```
+
+CONTRACT_INFO: 推送用户私有的通用消息，当用户仓位，订单，资产发生变动时，如果用户订阅了此主题，则立即会向订阅的channel里发送消息
+
+消息体如下：
+
+| 字段      | 说明     | 备注 | 类型   |
+| --------- | -------- | ---- | ------ |
+| symbol    | 合约符号 |      | String |
+| riskLimit | 风险限额 |      | String |
+| leverage  | 杠杆倍数 |      | String |
+| fundRate0 | 资金费用 |      | String |
+
+示例：
+
+```
+{
+	"code":4,
+	"data":{
+		"symbol":"100000.0068646403170306",
+		"riskLimit":"100000.0096280041581585",
+		"leverage":"BTC",
+		"fundRate0":"0.0000200306255019"
+	},
+	"topic":"CONTRACT_INFO",
 	"timestamp":1553236515
 }
 ```
@@ -358,11 +395,13 @@ code格式为String，10000以下的code表示为服务端产生的正确的响�
 
 | code  | msg                 | mark |
 | ----- | ------------------- | ---- |
-| 0     | pong                |      |
+| 0     | Pong                |      |
 | 00000 | Auth key success    |      |
 | 00001 | Subscribe success   |      |
 | 00002 | Connect success     |      |
 | 00003 | UnSubscribe success |      |
+| 00006 | Init msg            |      |
+| 00007 | Normal msg          |      |
 |       |                     |      |
 |       |                     |      |
 | 10000 | No cmd              |      |

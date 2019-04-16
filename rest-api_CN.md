@@ -53,8 +53,6 @@
 
   ​	"apiKey" : "XXXXXXXXXXXX", 	// (用户申请页面获取)
 
-  ​	"bizCode" :"PLACE_ORDER_COIN", 
-
   ​	"msgNo":"1234567890", 参考[请求参数说明]
 
   ​	"timestamp":15348923323343,
@@ -63,7 +61,7 @@
 
   }   字典顺序排序(升序)    生成 源串:
 
-  apiKey=XXXXXXX&bizCode=PLACE_ORDER_SPOT&msgNo=123456789&timestamp=1455323333332&version=v1.0.0
+  apiKey=XXXXXXX&msgNo=123456789&timestamp=1455323333332&version=v1.0.0
 
   然后通过HmacSHA256 使用secretKey生成 signature,并将signature加到请求参数中.
 
@@ -76,7 +74,6 @@
   {
   ​	"timestamp":"1455323333332",
   ​	"apiKey":"XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX", //(用户申请页面获取)
-  ​	"bizCode":"PLACE_ORDER_COIN", 
   ​        "version":"v1.0.0"，
   ​	"signature":"1EF13F23D123A3123GXXXXXXXXXXXXXXXXXXXXXXXXX"	//参考[数据签名]
   }
@@ -235,8 +232,8 @@
 | ------ | ----------------------------- | ---------------- | ------------------------------------------------------------ | ------ |
 | symbol | 币对符号，格式是 token-market | 是               | 前面交易币种 后面是交易市场     (BTC-USDT)                   | String |
 | type   | k线类型                       | 是               | m1,m3,m5,m15,m30,h1,h3,h4,h6,h8,h12,d1,d3,w1,M1(m为分钟，h为小时，d为天，w为周，M为月) | String |
-| start  | 开始时间                      | 是               | 11位到秒                                                     | Long   |
-| end    | 结束时间                      | 是               | 11位到秒                                                     | Long   |
+| start  | 开始时间                      | 是               | 10位到秒                                                     | Long   |
+| end    | 结束时间                      | 是               | 10位到秒                                                     | Long   |
 
 返回结果说明:
 
@@ -701,7 +698,7 @@ list说明：
 
 #### 1.合约下单
 
-请求路径：{requestUrl}/contract/order
+请求路径：{requestUrl}/contract/order/create
 
 请求方式：POST
 
@@ -718,7 +715,7 @@ list说明：
 | side             | 订单方向                        | 是               | buy或者sell                                                  | String |
 | postOnly         | 是否只下post单（是否只做maker） | 是               | false或者true                                                | String |
 | reduceOnly       | 是否只下reduce单（是否只减仓）  | 是               | false或true                                                  | String |
-| timeinforce      | 订单时效类型（默认GTC）         | 是               | 'GTC'（一直有效直到取消），'FOK'（全部成交或取消）， 'IOC'（立即成交或取消，可以是部分成交） | String |
+| timeInForce      | 订单时效类型（默认GTC）         | 是               | 'GTC'（一直有效直到取消），'FOK'（全部成交或取消）， 'IOC'（立即成交或取消，可以是部分成交） | String |
 | leverage         | 杠杆值                          | 否               |                                                              | String |
 | triggerPrice     | 触发价格                        | 否               | trigger单需填写（用于触发单）                                | String |
 | benchmarkPrice   | 触发订单字段。                  | 否               | 下单时候的价格，用于判断是价格是向上还是向下穿越触发         | String |
@@ -745,7 +742,7 @@ list说明：
 
 #### 2.合约取消订单
 
-请求路径：{requestUrl}/contract/orderCancel
+请求路径：{requestUrl}/contract/order/cancel
 
 请求方式：POST
 
@@ -757,7 +754,7 @@ list说明：
 
 返回参数说明：code = "0"为成功
 
-#### 3.查询杠杆信息
+#### 3.查询杠杆信息 (废除)
 
 请求路径：{requestUrl}/contract/leverageInfo
 
@@ -778,7 +775,7 @@ list说明：
 
 #### 4.修改杠杆
 
-请求路径：{requestUrl}/contract/leverageEdit
+请求路径：{requestUrl}/contract/leverage/update
 
 请求方式：POST
 
@@ -791,7 +788,7 @@ list说明：
 
 返回参数说明：code="0"为成功
 
-#### 5.查询订单详情
+#### 5.查询订单详情 (废除)
 
 请求路径：{requestUrl}/contract/orderDetail
 
@@ -828,7 +825,7 @@ fills数组中元素参数：
 
 #### 6.仓位信息
 
-请求路径：{requestUrl}/contract/positionInfo
+请求路径：{requestUrl}/contract/position
 
 请求方式：POST
 
@@ -858,7 +855,7 @@ fills数组中元素参数：
 
 #### 7.调整保证金
 
-请求路径：{requestUrl}/contract/marginEdit
+请求路径：{requestUrl}/contract/margin/update
 
 请求方式：POST
 
@@ -867,13 +864,13 @@ fills数组中元素参数：
 | 字段         | 说明                         | 必填(是/否/可选) | 备注 | 类型   |
 | ------------ | ---------------------------- | ---------------- | ---- | ------ |
 | symbol       | 合约符号                     | 是               |      | String |
-| amountChange | 变更数量（带正负号表示方向） | 是               |      | String |
+| changeAmount | 变更数量（带正负号表示方向） | 是               |      | String |
 
 返回参数说明：code="0"为成功
 
 #### 8.合约资产查询
 
-请求路径：{requestUrl}/contract/assetInfo
+请求路径：{requestUrl}/contract/asset/info
 
 请求方式：POST
 
@@ -903,7 +900,7 @@ records数组中的元素参数：
 | count    | 资产数量     | 是               |      | String |
 | frozen   | 冻结资产数量 | 是               |      | String |
 
-#### 9.合约资产变更详情
+#### 9.合约资产变更详情(废除)
 
 请求路径：{requestUrl}/contract/assetChangeDetail
 
@@ -943,7 +940,7 @@ records数组中元素参数：
 | time              | 产生记录的时间的时间戳           | 是               |      | String |
 | type              | 类型                             | 是               |      | String |
 
-#### 10.查询活动委托订单列表
+#### 10.查询活动委托订单列表（废除）
 
 请求路径：{requestUrl}/contract/openOrderList
 
@@ -996,7 +993,7 @@ records数组中的元素参数：
 | property      | 合约类型                                | 是               |      | String |
 | amountRemain  | 剩余数量                                | 是               |      | String |
 
-#### 11.查询历史委托订单列表
+#### 11.查询历史委托订单列表 （废除）
 
 请求路径：{requestUrl}/contract/historyOrderList
 
@@ -1048,6 +1045,96 @@ records数组中的元素参数：
 | reduceOnly    | 是否 reduce only 单                     | 是               |      | String |
 | property      | 合约类型                                | 是               |      | String |
 | amountRemain  | 剩余数量                                | 是               |      | String |
+
+#### 12.查询用户私有合约信息 
+
+请求路径：{requestUrl}/contract/info
+
+请求方式：POST
+
+请求参数说明：
+
+| 字段   | 说明     | 必填(是/否/可选) | 备注 | 类型   |
+| ------ | -------- | ---------------- | ---- | ------ |
+| symbol | 合约符号 | 是               |      | String |
+
+返回参数说明：
+
+| 字段      | 说明               | 必填(是/否/可选) | 备注 | 类型   |
+| --------- | ------------------ | ---------------- | ---- | ------ |
+| symbol    | 合约符号           | 是               |      | String |
+| leverage  | 杠杆值的字符串形式 | 是               |      | String |
+| fundRate0 | 资金费用           | 是               |      | String |
+| riskLimit | 风险限额           | 是               |      | String |
+
+#### 13.查询用户合约账户信息 
+
+请求路径：{requestUrl}/contract/account/info
+
+请求方式：POST
+
+请求参数说明：
+
+| 字段 | 说明     | 必填(是/否/可选) | 备注 | 类型   |
+| ---- | -------- | ---------------- | ---- | ------ |
+| coin | 币种符号 | 是               |      | String |
+
+返回参数说明：
+
+| 字段                 | 说明               | 必填(是/否/可选) | 备注 | 类型   |
+| -------------------- | ------------------ | ---------------- | ---- | ------ |
+| coin                 | 币种符号           | 是               |      | String |
+| totalAmount          | 总资产             | 是               |      | String |
+| remainMargin         | 剩余保证金         | 是               |      | String |
+| openPositionMargin   | 仓位保证金         | 是               |      | String |
+| openOrderMarginTotal | 活动委托订单保证金 | 是               |      | String |
+| availableAmount      | 可用数量           | 是               |      | String |
+
+#### 14.订单列表查询（活动委托和历史委托）
+
+请求路径：{requestUrl}/contract/orders
+
+请求方式：POST
+
+请求参数说明：
+
+| 字段   | 说明                        | 必填(是/否/可选) | 备注   | 类型    |
+| ------ | --------------------------- | ---------------- | ------ | ------- |
+| symbol | 合约符号                    | 是               |        | String  |
+| type   | 订单类型（open or history） | 是               |        | String  |
+| page   |                             | 否               | 默认1  | Integer |
+| count  |                             | 否               | 默认10 | Integer |
+
+返回参数说明:
+
+| 字段     | 说明     | 必填(是/否/可选) | 备注 | 类型 |
+| -------- | -------- | ---------------- | ---- | ---- |
+| pageInfo | 分页信息 | 是               |      | 对象 |
+| records  | 记录数组 | 是               |      | 数组 |
+
+pageInfo：
+
+| 字段        | 说明         | 必填(是/否/可选) | 备注 | 类型 |
+| ----------- | ------------ | ---------------- | ---- | ---- |
+| page        | 分页当前页数 | 是               |      | int  |
+| count       | 每页记录数   | 是               |      | int  |
+| pageTotal   | 总页数       | 是               |      | int  |
+| recordTotal | 总记录数     | 是               |      | int  |
+
+records数组中的元素参数：
+
+| 字段       | 说明              | 必填(是/否/可选) | 备注                                      | 类型   |
+| ---------- | ----------------- | ---------------- | ----------------------------------------- | ------ |
+| orderId    | 订单ID            | 是               |                                           | String |
+| symbol     | 合约符号          | 是               |                                           | String |
+| type       | 下单类型          | 是               | limit or market                           | String |
+| side       | 下单方向          | 是               | buy or sell                               | String |
+| price      | 价格，market单为0 | 是               |                                           | String |
+| amountReal | 真实数量          | 是               |                                           | String |
+| amountFill | 成交数量          | 是               |                                           | String |
+| status     | 订单状态          | 是               | open、cancel、filled、rejected、untrigger | String |
+| avgPrice   | 平均成交价        | 是               |                                           | String |
+| time       | 下单的时间戳      | 是               |                                           | Long   |
 
 
 

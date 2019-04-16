@@ -241,6 +241,7 @@ response data：
 | status     | order status       | (open,filled,cancel,rejected) | String                                       |
 | symbol     |                    |                               | String                                       |
 | type       | order type         | limit,market                  | String                                       |
+| time | create time |  | Long |
 
 example：
 
@@ -257,7 +258,8 @@ example：
 		"side":"buy",
 		"status":"open",
 		"symbol":"TBTCUSD",
-		"type":"limit"
+		"type":"limit",
+		"time":1553236866000
 	},
 	"topic":"CONTRACT_ORDER",
 	"timestamp":1553235866
@@ -272,6 +274,10 @@ response data：
 | ------------ | -------- | ---- | ------ |
 | availableAmount | Available Amount |      | String |
 | totalAmount | Total Amount |      | String |
+| coin | Coin type | | String |
+| openPositionMargin |  | | String |
+| openOrderMarginTotal | Open order margin | | String |
+| remainMargin |  | | String |
 
 example：
 
@@ -279,8 +285,12 @@ example：
 {
 	"code":4,
 	"data":{
-		"availableAmount":"0.9997228830328933",
-		"totalAmount":"0.999999019221543"
+		"availableAmount":"100000.0068646403170306",
+		"totalAmount":"100000.0096280041581585",
+		"coin":"BTC",
+		"openPositionMargin":"0.0000200306255019",
+		"openOrderMarginTotal":"0.0027432190040949",
+		"remainMargin":"0.0027633638411279"
 	},
 	"topic":"CONTRACT_ASSET",
 	"timestamp":1553236515}
@@ -290,23 +300,23 @@ CONTRACT_POSITION:  the last new private contract position  msg,if client subscr
 
 response data：
 
-| Field          | Description                                      | Mark | Type   |
-| -------------- | ------------------------------------------------ | ---- | ------ |
-| symbol         |                                                  |      | String |
-| positionId     | position id                                      |      | String |
-| amount         | position amount                                  |      | String |
-| side           | buy or sell                                      |      | String |
-| entryPrice     | open price                                       |      | String |
-| liquiPrice     | Forced liquidation                               |      | String |
-| frozen         | frozen amount                                    |      | String |
-| margin         | position margin                                  |      | String |
-| positionValue  | position value                                   |      | String |
-| markPrice      | mark price                                       |      | String |
-| maxReMrgAmount | the max can removed margin amount                |      | String |
-| lastUpdateTime | the last position changed time                   |      | String |
-| status         | position status,  newOpen(first init),open,close |      | String |
-| realProfit     | acquired profit                                  |      | String |
-| leverage       | leverage value                                   |      | String |
+| Field                    | Description                                      | Mark | Type   |
+| ------------------------ | ------------------------------------------------ | ---- | ------ |
+| symbol                   |                                                  |      | String |
+| positionId               | position id                                      |      | String |
+| amount                   | position amount                                  |      | String |
+| side                     | buy or sell                                      |      | String |
+| entryPrice               | open price                                       |      | String |
+| liquiPrice               | Forced liquidation                               |      | String |
+| frozen                   | frozen amount                                    |      | String |
+| margin                   | position margin                                  |      | String |
+| positionValue            | position value                                   |      | String |
+| markPrice                | mark price                                       |      | String |
+| maxRemovableMarginAmount | the max can removed margin amount                |      | String |
+| lastUpdateTime           | the last position changed time                   |      | String |
+| status                   | position status,  newOpen(first init),open,close |      | String |
+| realProfit               | acquired profit                                  |      | String |
+| leverage                 | leverage value                                   |      | String |
 
 example：
 
@@ -323,13 +333,40 @@ example：
 		"margin":"0.03",
 		"positionValue":"0.02083",
 		"markPrice":"4802",
-		"maxReMrgAmount":"0.001",
+		"maxRemovableMarginAmount":"0.001",
 		"lastUpdateTime":"1553580895",
 		"status":"open",
 		"realProfit":"0.01",
 		"leverage":"1"
 	},
-	"topic":"CONTRACT_ASSET",
+	"topic":"CONTRACT_POSITION",
+	"timestamp":1553236515
+}
+```
+
+CONTRACT_INFO: the last new private contract normal msg, if client subscribe the topic,once position、order、asset changed, server will send msg to channel.
+
+response data：
+
+| Field     | Description | Mark | Type   |
+| --------- | ----------- | ---- | ------ |
+| symbol    |             |      | String |
+| riskLimit | risk limit  |      | String |
+| leverage  |             |      | String |
+| fundRate0 |             |      | String |
+
+example：
+
+```
+{
+	"code":4,
+	"data":{
+		"symbol":"100000.0068646403170306",
+		"riskLimit":"100000.0096280041581585",
+		"leverage":"BTC",
+		"fundRate0":"0.0000200306255019"
+	},
+	"topic":"CONTRACT_INFO",
 	"timestamp":1553236515
 }
 ```
@@ -345,6 +382,8 @@ code style is String，the success response code  is below 10000, or is wrong re
 | 00001 | Subscribe success   |      |
 | 00002 | Connect success     |      |
 | 00003 | UnSubscribe success |      |
+| 00006 | Init msg            |      |
+| 00007 | Normal msg          |      |
 |       |                     |      |
 |       |                     |      |
 | 10000 | No cmd              |      |
