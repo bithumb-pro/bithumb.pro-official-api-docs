@@ -117,7 +117,7 @@ response:
 response example：
 
 	{
-	"info": [
+	"data": [
 	    {
 	        "c": "3700.458408",
 	        "h": "3700.458408",
@@ -147,15 +147,17 @@ request parameter infomation：
 
 response:
 
-| Field | Description | Required(Y or N) | Mark | Type                                      |
-| ----- | ----------- | ---------------- | ---- | ----------------------------------------- |
-| b     | Bids        | Y                |      | String[2]（first:price, second:quantity） |
-| s     | Asks        | Y                |      | String[2]（first:price, second:quantity） |
+| Field  | Description    | Required(Y or N) | Mark | Type                                      |
+| ------ | -------------- | ---------------- | ---- | ----------------------------------------- |
+| b      | Bids           | Y                |      | String[2]（first:price, second:quantity） |
+| s      | Asks           | Y                |      | String[2]（first:price, second:quantity） |
+| ver    | version number | Y                |      | String                                    |
+| symbol |                | Y                |      | String                                    |
 
 response example：
 
 	{
-	"info": {
+	"data": {
 	    "b": [
 	        [
 	            "3700.458232",
@@ -175,7 +177,9 @@ response example：
 	            "3700.471159",
 	            "0.11"
 	        ]
-	    ]
+	    ],
+	    "ver":"1",
+	    "symbol":"ETH-USDT"
 	},
 	"success": true,
 	"msg": "",
@@ -203,11 +207,12 @@ response:
 | s     | trade type    | Y                | buy or sell | String |
 | v     | deal quantity | Y                |             | String |
 | t     | timestamp     | Y                |             | String |
+| ver   |               | Y                |             | String |
 
 response example：
 	
 	{
-	"info": [
+	"data": [
 		{
 		   "p":"3700.458232",
 		   "s":"buy",
@@ -252,7 +257,7 @@ response:
 response example：
 	
 	{
-	"info": [
+	"data": [
 	     {
 		"c":"3700.458232",
 		"h":"3700.458232",
@@ -294,7 +299,7 @@ symbolConfig description：
 response example：
 
 	{
-	"info": {
+	"data": {
 	    "symbolConfig": [
 	        {
 	            "symbol": "BTC-USDT",
@@ -347,7 +352,7 @@ response description:
 response example：
 
 	{
-	"info": {
+	"data": {
 		"orderId":"23132134242",
 		"symbol":"BTC-USDT"
 	   },
@@ -389,12 +394,12 @@ response description:
 | count       | usable amount      | Y                |                         | String |
 | frozen      | frozen amount      | Y                |                         | String |
 | btcQuantity | probably equal BTC | Y                |                         | String |
-| type        | Type               | Y                | 1=virtual coin，2=legal |        |
+| type        | type               | Y                | 1=virtual coin，2=legal |        |
 
 response example：
 
 	{
-	"info": [
+	"data": [
 	     {
 	      "coinType":"BTC",
 		  "count":"100",
@@ -451,7 +456,7 @@ response description (List):
 response example：
 	
 	{
-	"info":{
+	"data":{
 	    "num":"10",
 	    "list":[
 	         {
@@ -526,7 +531,7 @@ list description：
 response example：
 
 ```
-"info":{
+"data":{
     "num":"10",
     "tradingNum":"10",
     "tradedNum":"100"
@@ -587,7 +592,7 @@ response description：
 response example：
 
 ```
-"info":{
+"data":{
 	"orderId":"12300993210",
 	"marketType":"USDT",
    	"coinType":"BTC",
@@ -628,12 +633,12 @@ response description:
 | ----- | ----------- | ---------------- | ----------------------------------------------- | ------ |
 | b     | Bids        | Y                | split by ":",first is price, second is quantity | String |
 | s     | Asks        | Y                | split by ":",first is price, second is quantity | String |
-| type  | Type        |                  |                                                 |        |
+| type  | type        | Y                |                                                 | String |
 
 response example：
 
 ```
-"info":{
+"data":{
 	"b":["3701:1","3700:0.5"],
 	"s":["3800:0.2","3801.1:0.3"],
 	"type":""
@@ -677,7 +682,7 @@ response description:
 response example：
 
 ```
-"info":{
+"data":{
 	"symbol":"BTC-USDT",
 	"type":"",
 	"lastPrice":"3700",
@@ -734,7 +739,7 @@ response description:
 response example：
 
 ```
-"info":{
+"data":{
 	"orderId":"12314342399321"
   },
 "code": "0",
