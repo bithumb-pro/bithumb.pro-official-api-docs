@@ -4,7 +4,7 @@ catalog
 
 ## [General Rest Api Information]
 
-- The base endpoint is: **https://global-openapi.dcex.world/**
+- The base endpoint is: **https://global-openapi.dcex.world/openapi/api/**
 - All endpoints return either a JSON object or array.
 - For `GET` endpoints, parameters must be sent as a `query string`.
 - For POST endpoints, parameters must be send in the request body, with content type by JSON(application/json)
@@ -370,9 +370,11 @@ request method：POST
 
 request parameter infomation:
 
-| Field   | Description | Required(Y or N) | Mark | Type   |
-| ------- | ----------- | ---------------- | ---- | ------ |
-| orderId |             | Y                |      | String |
+| Field      | Description | Required(Y or N) | Mark | Type   |
+| ---------- | ----------- | ---------------- | ---- | ------ |
+| orderId    |             | Y                |      | String |
+| coinType   |             | Y                |      | String |
+| marketType |             | Y                |      | String |
 
 #### 3. query virtual coin asset account
 
@@ -422,11 +424,13 @@ request method：POST
 
 request parameter infomation:
 
-| Field   | Description        | Required(Y or N) | Mark         | Type   |
-| ------- | ------------------ | ---------------- | ------------ | ------ |
-| orderId |                    | Y                |              | String |
-| page    | current page       | N                | default = 1  | String |
-| count   | current page count | N                | default = 10 | String |
+| Field      | Description        | Required(Y or N) | Mark         | Type   |
+| ---------- | ------------------ | ---------------- | ------------ | ------ |
+| orderId    |                    | Y                |              | String |
+| coinType   |                    | Y                |              | String |
+| marketType |                    | Y                |              | String |
+| page       | current page       | N                | default = 1  | String |
+| count      | current page count | N                | default = 10 | String |
 
 response description:
 
@@ -568,9 +572,11 @@ request method：POST
 
 request parameter infomation:
 
-| Field   | Description | Required(Y or N) | Mark | Type   |
-| ------- | ----------- | ---------------- | ---- | ------ |
-| orderId |             | Y                |      | String |
+| Field      | Description | Required(Y or N) | Mark | Type   |
+| ---------- | ----------- | ---------------- | ---- | ------ |
+| orderId    |             | Y                |      | String |
+| coinType   |             | Y                |      | String |
+| marketType |             | Y                |      | String |
 
 response description：
 
