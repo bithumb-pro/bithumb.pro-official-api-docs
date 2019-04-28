@@ -4,7 +4,7 @@
 
 ## [REST API简介]
 
-- 本篇列出REST接口的baseurl **https://global-openapi.dcex.world/openapi/api/**
+- 本篇列出REST接口的baseurl **https://global-openapi.bithumb.pro/openapi/api/**
 - 所有接口的响应都是JSON格式
 - GET`方法的接口, 参数必须在`query string`中发送
 - POST方法的接口，参数必须在request body中发送(application/json)
@@ -381,9 +381,10 @@ symbolConfig对象说明：
 
 请求参数说明:
 
-| 字段     | 说明     | 必填(是/否/可选) | 备注                 | 类型   |
-| -------- | -------- | ---------------- | -------------------- | ------ |
-| coinType | 币种类型 | 可选             | 如 BTC（不传查所有） | String |
+| 字段      | 说明                                          | 必填(是/否/可选) | 备注                 | 类型   |
+| --------- | --------------------------------------------- | ---------------- | -------------------- | ------ |
+| coinType  | 币种类型                                      | 可选             | 如 BTC（不传查所有） | String |
+| assetType | 资产类型(spot=现货虚拟资产, wallet=钱包资产 ) | 是               |                      |        |
 
 返回结果说明:
 
@@ -483,32 +484,30 @@ symbolConfig对象说明：
 	}
 
 
-#### 5. 订单列表
+#### 5. 查询历史订单列表
 
-请求路径：{requestUrl}/orderList
+请求路径：{requestUrl}/spot/orderList
 
 请求方式：POST
 
 请求参数说明:
 
-| 字段       | 说明                                                  | 必填(是/否/可选) | 备注 | 类型   |
-| ---------- | ----------------------------------------------------- | ---------------- | ---- | ------ |
-| side       | 订单买卖类型（buy，sell）                             | 是               |      | String |
-| coinType   | 币种类型                                              | 是               |      | String |
-| marketType | 市场类型                                              | 是               |      | String |
-| status     | 订单类型（traded=历史单据，trading=委托单据）         | 是               |      | String |
-| queryRange | 查询订单的范围（thisweek=本周，thisweekago=本周以前） | 是               |      | String |
-| page       | 页码                                                  | 否               |      | String |
-| count      | 每一页的显示条数                                      | 否               |      | String |
+| 字段       | 说明                                                  | 必填(是/否/可选) | 备注 | 类型    |
+| ---------- | ----------------------------------------------------- | ---------------- | ---- | ------- |
+| side       | 订单买卖类型（buy，sell）                             | 是               |      | String  |
+| coinType   | 币种类型                                              | 是               |      | String  |
+| marketType | 市场类型                                              | 是               |      | String  |
+| status     | 订单类型（traded=历史单据）                           | 是               |      | String  |
+| queryRange | 查询订单的范围（thisweek=本周，thisweekago=本周以前） | 是               |      | String  |
+| page       | 页码                                                  | 否               |      | Integer |
+| count      | 每一页的显示条数                                      | 否               |      | Integer |
 
 返回结果说明:
 
-| 字段       | 说明             | 必填(是/否/可选) | 备注 | 类型 |
-| ---------- | ---------------- | ---------------- | ---- | ---- |
-| num        | 总条数           | 是               |      | Long |
-| tradingNum | 进行中的订单数量 | 是               |      | Long |
-| tradedNum  | 历史订单数量     | 是               |      | Long |
-| list       | 订单列表         | 是               |      | List |
+| 字段 | 说明     | 必填(是/否/可选) | 备注 | 类型 |
+| ---- | -------- | ---------------- | ---- | ---- |
+| num  | 总条数   | 是               |      | Long |
+| list | 订单列表 | 是               |      | List |
 
 list说明：
 
@@ -532,8 +531,6 @@ list说明：
 ```
 "data":{
     "num":"10",
-    "tradingNum":"10",
-    "tradedNum":"100"
     "list":[{
 			"orderId":"12300993210",
 			"marketType":"USDT",
@@ -560,7 +557,7 @@ list说明：
 
 #### 6. 单个订单查询
 
-请求路径：{requestUrl}/singleOrder
+请求路径：{requestUrl}/spot/singleOrder
 
 请求方式：POST
 
@@ -606,6 +603,73 @@ list说明：
 			"createTime":"1552878781",
 			"tradeTotal":"0.5"
 	},
+"code": "0",
+"msg": "success",
+"timestamp": 1551346473238,
+"params": []
+}
+```
+
+#### 7. 查询历史订单列表
+
+请求路径：{requestUrl}/spot/openOrders
+
+请求方式：POST
+
+请求参数说明:
+
+| 字段   | 说明             | 必填(是/否/可选) | 备注 | 类型    |
+| ------ | ---------------- | ---------------- | ---- | ------- |
+| symbol |                  | 是               |      | String  |
+| page   | 页码             | 否               |      | Integer |
+| count  | 每一页的显示条数 | 否               |      | Integer |
+
+返回结果说明:
+
+| 字段 | 说明     | 必填(是/否/可选) | 备注 | 类型 |
+| ---- | -------- | ---------------- | ---- | ---- |
+| num  | 总条数   | 是               |      | Long |
+| list | 订单列表 | 是               |      | List |
+
+list说明：
+
+| 字段       | 说明         | 必填(是/否/可选) | 备注                           | 类型    |
+| ---------- | ------------ | ---------------- | ------------------------------ | ------- |
+| orderId    | 订单id       | 是               |                                | String  |
+| marketType | 市场类型     | 是               |                                | String  |
+| coinType   | 币种类型     | 是               |                                | String  |
+| price      | 挂单价格     | 是               |                                | decimal |
+| tradedNum  | 已成交数量   | 是               |                                | Decimal |
+| quantity   | 挂单数量     | 是               |                                | Decimal |
+| avgPrice   | 平均成交价格 | 是               |                                | Decimal |
+| status     | 订单状态     | 是               | send，pending，success，cancel | String  |
+| type       | 订单类型     | 是               | market，limit                  | String  |
+| side       | 订单方向     | 是               | buy，sell                      | String  |
+| createTime | 挂单时间     | 是               |                                | Date    |
+| tradeTotal | 委托总额     | 是               |                                | Decimal |
+
+响应示例：
+
+```
+"data":{
+    "num":"10",
+    "list":[{
+			"orderId":"12300993210",
+			"marketType":"USDT",
+			"coinType":"BTC",
+			"price":"3700",
+			"tradedNum":"0.01",
+			"quantity":"0.5",
+			"avgPrice":"0",
+			"status":"pending",
+			"type":"limit",
+			"side":"buy",
+			"createTime":"1552878781",
+			"tradeTotal":"0.5"
+			},
+			...
+		]
+},
 "code": "0",
 "msg": "success",
 "timestamp": 1551346473238,
@@ -664,20 +728,22 @@ list说明：
 
 返回结果说明:
 
-| 字段      | 说明                             | 必填(是/否/可选) | 备注 | 类型   |
-| --------- | -------------------------------- | ---------------- | ---- | ------ |
-| symbol    | 合约符号                         | 是               |      | String |
-| type      | 类型                             | 是               |      | String |
-| lastPrice | 最新成交价                       | 是               |      | String |
-| high      | 24小时最高                       | 是               |      | String |
-| low       | 24小时最低                       | 是               |      | String |
-| volume    | 24小时成交量                     | 是               |      | String |
-| change    | 需要*100才是百分数               | 是               |      | String |
-| openValue | 未平仓数量                       | 是               |      | String |
-| fundRate0 | 下次合约费率交换值               | 是               |      | String |
-| fundTime0 | 下次费率交换的时间(时间戳到毫秒) | 是               |      | String |
-| adlRanker | ADL排位区间                      | 是               |      | String |
-| ver       | 版本号                           | 是               |      | String |
+| 字段         | 说明                             | 必填(是/否/可选) | 备注 | 类型   |
+| ------------ | -------------------------------- | ---------------- | ---- | ------ |
+| symbol       | 合约符号                         | 是               |      | String |
+| type         | 类型                             | 是               |      | String |
+| lastPrice    | 最新成交价                       | 是               |      | String |
+| high         | 24小时最高                       | 是               |      | String |
+| low          | 24小时最低                       | 是               |      | String |
+| volume       | 24小时成交量                     | 是               |      | String |
+| change       | 需要*100才是百分数               | 是               |      | String |
+| openValue    | 未平仓数量                       | 是               |      | String |
+| fundRate0    | 下次合约费率交换值               | 是               |      | String |
+| fundTime0    | 下次费率交换的时间(时间戳到毫秒) | 是               |      | String |
+| adlRanker    | ADL排位区间                      | 是               |      | String |
+| ver          | 版本号                           | 是               |      | String |
+| openInterest |                                  | 是               |      | String |
+| turnover     |                                  | 是               |      | String |
 
 响应示例：
 
@@ -694,7 +760,9 @@ list说明：
 		"fundRate0":"",
 		"fundTime0":"",
 		"adlRanker":"",
-		"ver":
+		"ver":"0",
+		"openInterest":"",
+		"turnover":""
 	},
 "code": "0",
 "msg": "success",

@@ -4,7 +4,7 @@ catalog
 
 ## [General Rest Api Information]
 
-- The base endpoint is: **https://global-openapi.dcex.world/openapi/api/**
+- The base endpoint is: **https://global-openapi.bithumb.pro/openapi/api/**
 - All endpoints return either a JSON object or array.
 - For `GET` endpoints, parameters must be sent as a `query string`.
 - For POST endpoints, parameters must be send in the request body, with content type by JSON(application/json)
@@ -384,9 +384,10 @@ request method：POST
 
 request parameter infomation:
 
-| Field    | Description | Required(Y or N) | Mark                                  | Type   |
-| -------- | ----------- | ---------------- | ------------------------------------- | ------ |
-| coinType | coin type   | N                | if null, response ALL virtual account | String |
+| Field     | Description              | Required(Y or N) | Mark                                | Type   |
+| --------- | ------------------------ | ---------------- | ----------------------------------- | ------ |
+| coinType  | coin type                | N                | if null, response ALL virtual asset | String |
+| assetType | asset type (spot,wallet) | Y                | spot for virtual                    | String |
 
 response description:
 
@@ -488,9 +489,9 @@ response example：
     }
 
 
-#### 5. order list
+#### 5. query history order list
 
-request uri：{requestUrl}/orderList
+request uri：{requestUrl}/spot/orderList
 
 request method：POST
 
@@ -501,19 +502,17 @@ request parameter information:
 | side       | order side（buy，sell）                                      | Y                |      | String |
 | coinType   | coin type                                                    | Y                |      | String |
 | marketType | market type                                                  | Y                |      | String |
-| status     | order status（traded (history order)、trading(open order)）  | Y                |      | String |
+| status     | order status（traded (history order)）                       | Y                |      | String |
 | queryRange | the range of order（thisweek(in 7 day)，thisweekago(before 7 ago)） | Y                |      | String |
 | page       | current page                                                 | N                |      | String |
 | count      | current page count                                           | N                |      | String |
 
 response description:
 
-| Field      | Description           | Required(Y or N) | Mark | Type |
-| ---------- | --------------------- | ---------------- | ---- | ---- |
-| num        | total numbers         | Y                |      | Long |
-| tradingNum | open order numbers    | Y                |      | Long |
-| tradedNum  | history order numbers | Y                |      | Long |
-| list       | orde list             | Y                |      | List |
+| Field | Description   | Required(Y or N) | Mark | Type |
+| ----- | ------------- | ---------------- | ---- | ---- |
+| num   | total numbers | Y                |      | Long |
+| list  | orde list     | Y                |      | List |
 
 list description：
 
@@ -537,8 +536,6 @@ response example：
 ```
 "data":{
     "num":"10",
-    "tradingNum":"10",
-    "tradedNum":"100"
     "list":[
          {
 	    "orderId":"12300993210",
@@ -564,9 +561,9 @@ response example：
 }
 ```
 
-#### 6. query for single order
+#### 6. query single order
 
-request uri：{requestUrl}/singleOrder
+request uri：{requestUrl}/spot/singleOrder
 
 request method：POST
 
@@ -611,6 +608,74 @@ response example：
 	"side":"buy",
 	"createTime":"1552878781",
 	"tradeTotal":"0.5"
+  },
+"code": "0",
+"msg": "success",
+"timestamp": 1551346473238,
+"params": []
+}
+```
+
+#### 7. query open order list
+
+request uri：{requestUrl}/spot/openOrders
+
+request method：POST
+
+request parameter information:
+
+| Field  | Description        | Required(Y or N) | Mark | Type   |
+| ------ | ------------------ | ---------------- | ---- | ------ |
+| symbol |                    | Y                |      | String |
+| page   | current page       | N                |      | String |
+| count  | current page count | N                |      | String |
+
+response description:
+
+| Field | Description   | Required(Y or N) | Mark | Type |
+| ----- | ------------- | ---------------- | ---- | ---- |
+| num   | total numbers | Y                |      | Long |
+| list  | orde list     | Y                |      | List |
+
+list description：
+
+| Field      | Description        | Required(Y or N) | Mark                           | Type    |
+| ---------- | ------------------ | ---------------- | ------------------------------ | ------- |
+| orderId    |                    | Y                |                                | String  |
+| marketType | market type        | Y                |                                | String  |
+| coinType   | coin type          | Y                |                                | String  |
+| price      | order price        | Y                |                                | decimal |
+| tradedNum  | completed quantity | Y                |                                | Decimal |
+| quantity   | total quantity     | Y                |                                | Decimal |
+| avgPrice   | average price      | Y                |                                | Decimal |
+| status     | order status       | Y                | send，pending，success，cancel | String  |
+| type       | order type         | Y                | market，limit                  | String  |
+| side       | order side         | Y                | buy，sell                      | String  |
+| createTime | order create time  | Y                |                                | Date    |
+| tradeTotal |                    | Y                |                                | Decimal |
+
+response example：
+
+```
+"data":{
+    "num":"10",
+    "list":[
+         {
+	    "orderId":"12300993210",
+	    "marketType":"USDT",
+	    "coinType":"BTC",
+	    "price":"3700",
+	    "tradedNum":"0.01",
+	    "quantity":"0.5",
+	    "avgPrice":"0",
+	    "status":"pending",
+	    "type":"limit",
+	    "side":"buy",
+	    "createTime":"1552878781",
+	    "tradeTotal":"0.5"
+	 },
+         ...
+      ]
   },
 "code": "0",
 "msg": "success",
@@ -670,20 +735,22 @@ request parameter infomation：
 
 response description:
 
-| Field     | Description                                               | Required(Y or N) | Mark | Type   |
-| --------- | --------------------------------------------------------- | ---------------- | ---- | ------ |
-| symbol    | contract symbol                                           | Y                |      | String |
-| type      | Type                                                      | Y                |      | String |
-| lastPrice | last price                                                | Y                |      | String |
-| high      | high price in the past of 24 hours                        | Y                |      | String |
-| low       | low price in the past of 24 hours                         | Y                |      | String |
-| volume    | completed quantity in the past of 24 hours                | Y                |      | String |
-| change    | need * 100                                                | Y                |      | String |
-| openValue | not completed value                                       | Y                |      | String |
-| fundRate0 | contract fee change value in the next time                | Y                |      | String |
-| fundTime0 | contract fee change time(million second) in the next time | Y                |      | String |
-| adlRanker | ADL range                                                 | Y                |      | String |
-| ver       | version number                                            | Y                |      | String |
+| Field        | Description                                               | Required(Y or N) | Mark | Type   |
+| ------------ | --------------------------------------------------------- | ---------------- | ---- | ------ |
+| symbol       | contract symbol                                           | Y                |      | String |
+| type         | Type                                                      | Y                |      | String |
+| lastPrice    | last price                                                | Y                |      | String |
+| high         | high price in the past of 24 hours                        | Y                |      | String |
+| low          | low price in the past of 24 hours                         | Y                |      | String |
+| volume       | completed quantity in the past of 24 hours                | Y                |      | String |
+| change       | need * 100                                                | Y                |      | String |
+| openValue    | not completed value                                       | Y                |      | String |
+| fundRate0    | contract fee change value in the next time                | Y                |      | String |
+| fundTime0    | contract fee change time(million second) in the next time | Y                |      | String |
+| adlRanker    | ADL range                                                 | Y                |      | String |
+| ver          | version number                                            | Y                |      | String |
+| openInterest |                                                           | Y                |      | String |
+| turnover     |                                                           | Y                |      | String |
 
 response example：
 
@@ -700,7 +767,9 @@ response example：
 	"fundRate0":"",
 	"fundTime0":"",
 	"adlRanker":"",
-	"ver":
+	"ver":"0",
+	"openInterest":"",
+	"turnover":""
     },
 "code": "0",
 "msg": "success",

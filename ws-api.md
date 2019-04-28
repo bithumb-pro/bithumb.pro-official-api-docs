@@ -2,7 +2,7 @@
 
 ## 1、General information
 
-- The base endpoint of websocket is wss://global-api.dcex.world/message/realtime,
+- The base endpoint of websocket is wss://global-api.bithumb.pro/message/realtime,
 - The websocket server supply some topics for api user, such as ticker,orderbook etc. user can get real time msg by subscribing the topic which include normal (no security, like ticker, orderbook etc.) and private (need authenticate, like order change,position change etc. ).
 - The single connection between server and client can keepalive a long time, so keep connection need client send {"cmd":"ping"},if the websocket server receive the msg,then server will call back a {"code":"0","msg":"pong"} 
 specially, some topic response include field "ver",the field mark this message's version, prevent message backtracking
@@ -171,6 +171,8 @@ response data：
 | symbol |                          |      | String |
 | volume | deal amount in the past 24 hours |      | String |
 | ver    | version number             | mark orderbook is the last, prevent message backtracking | String |
+| openInterest |  |  | String |
+| turnover |  |  | String |
 
 example：
 
@@ -186,7 +188,9 @@ example：
     		"openValue":"1.1581583219035874",
     		"symbol":"TBTCUSD",
     		"volume":"3577",
-    		"ver":"314"
+    		"ver":"314",
+    		"openInterest":"",
+    		"turnover":""
     	},
     	"timestamp":1553234681,
     	"topic":"CONTRACT_TICKER"

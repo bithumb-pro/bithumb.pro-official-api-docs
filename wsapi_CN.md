@@ -2,7 +2,7 @@
 
 ## 1、概念
 
-- ws的接入方式，以wss://global-api.dcex.world/message/realtime为地址，用户可以按着文档的步骤，进行接入。
+- ws的接入方式，以wss://global-api.bithumb.pro/message/realtime为地址，用户可以按着文档的步骤，进行接入。
 - topic：服务端支持订阅的主题（用户可以根据自己的需要订阅相关的主题，一旦订阅，当服务端产生相关的信息时，则会向该通道发送消息），包含普通的主题（不需要身份认证，像行情，订单薄等），私有主题（需要先进行身份认证，认证成功后，即可订阅该类主题，像私有订单变化，仓位变化等）。
 - 有些topic的响应信息里可能会包含ver字段，这个字段是用来防治消息出现回溯的情况
 
@@ -176,18 +176,20 @@ CONTRACT_TICKER: 推送最新的合约行情消息
 
 消息体如下：
 
-| 字段      | 说明                             | 备注                                         | 类型   |
-| --------- | -------------------------------- | -------------------------------------------- | ------ |
-| change    | 24小时涨跌幅(需要*100才是百分数) |                                              | String |
-| fundRate0 | 下次合约费率交换值               |                                              | String |
-| fundTime0 | 下次费率交换的时间               |                                              | String |
-| high      | 24小时最高价                     |                                              | String |
-| low       | 24小时最低价                     |                                              | String |
-| lastPrice | 最新成交价                       |                                              | String |
-| openValue | 未平仓数量                       |                                              | String |
-| symbol    | 合约符号                         |                                              | String |
-| volume    | 24小时成交量                     |                                              | String |
-| ver       | 版本号                           | 该字段是单调递增的，用来保证消息不会出现回溯 | String |
+| 字段         | 说明                             | 备注                                         | 类型   |
+| ------------ | -------------------------------- | -------------------------------------------- | ------ |
+| change       | 24小时涨跌幅(需要*100才是百分数) |                                              | String |
+| fundRate0    | 下次合约费率交换值               |                                              | String |
+| fundTime0    | 下次费率交换的时间               |                                              | String |
+| high         | 24小时最高价                     |                                              | String |
+| low          | 24小时最低价                     |                                              | String |
+| lastPrice    | 最新成交价                       |                                              | String |
+| openValue    | 未平仓数量                       |                                              | String |
+| symbol       | 合约符号                         |                                              | String |
+| volume       | 24小时成交量                     |                                              | String |
+| ver          | 版本号                           | 该字段是单调递增的，用来保证消息不会出现回溯 | String |
+| openInterest |                                  |                                              | String |
+| turnover     |                                  |                                              | String |
 
 示例：
 
@@ -203,7 +205,9 @@ CONTRACT_TICKER: 推送最新的合约行情消息
     		"openValue":"1.1581583219035874",
     		"symbol":"TBTCUSD",
     		"volume":"3577",
-    		"ver":"314"
+    		"ver":"314",
+    		"openInterest":"",
+    		"turnover":""
     	},
     	"timestamp":1553234681,
     	"topic":"CONTRACT_TICKER"
