@@ -610,7 +610,7 @@ list说明：
 }
 ```
 
-#### 7. 查询历史订单列表
+#### 7. 查询未成交订单列表
 
 请求路径：{requestUrl}/spot/openOrders
 
