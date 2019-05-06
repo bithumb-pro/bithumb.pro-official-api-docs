@@ -4,7 +4,7 @@
 
 ## [REST API简介]
 
-- 本篇列出REST接口的baseurl **https://global-openapi.bithumb.pro/openapi/api/**
+- 本篇列出REST接口的baseurl **https://global-openapi.bithumb.pro/openapi/v1/**
 - 所有接口的响应都是JSON格式
 - GET`方法的接口, 参数必须在`query string`中发送
 - POST方法的接口，参数必须在request body中发送(application/json)
@@ -80,11 +80,11 @@
 
 - 应答事例:
 
-{
+ {
     "code": "0", //响应码，参考[api响应码]
     "msg": "success",
     "data": ""
-}
+  }
 
 ## [接口说明]
 
@@ -677,6 +677,51 @@ list说明：
 }
 ```
 
+#### 8. 查询我的成交记录
+
+请求路径：{requestUrl}/spot/myTrades
+
+请求方式：POST
+
+请求参数说明:
+
+| 字段      | 说明             | 必填(是/否/可选) | 备注 | 类型    |
+| --------- | ---------------- | ---------------- | ---- | ------- |
+| symbol    |                  | 是               |      | String  |
+| startTime | 指定成交起始时间 | 是               | 毫秒 | Long    |
+| limit     | 显示条数         | 是               |      | Integer |
+
+返回结果说明:
+
+| 字段      | 说明                       | 必填(是/否/可选) | 备注 | 类型       |
+| --------- | -------------------------- | ---------------- | ---- | ---------- |
+| id        |                            | 是               |      | Long       |
+| price     | 成交价格                   | 是               |      | BigDecimal |
+| amount    | 成交量                     | 是               |      | BigDecimal |
+| side      | 成交类型（buy or sell）    | 是               |      | String     |
+| direction | 成交角色（taker or maker） | 是               |      | String     |
+| time      | 成交时间                   | 是               |      | Date       |
+
+响应示例：
+
+```
+"data":[
+			"id":"12300993210",
+			"price":"100.01",
+			"amount":"0.1",
+			"side":"buy",
+			"direction":"taker",
+			"time": 1557047375000
+			},
+			...
+		],
+"code": "0",
+"msg": "success",
+"timestamp": 1551346473238,
+"params": []
+}
+```
+
 ### [合约普通接口]
 
 #### 1.订单薄
@@ -831,26 +876,7 @@ list说明：
 
 返回参数说明：code = "0"为成功
 
-#### 3.查询杠杆信息 (废除)
-
-请求路径：{requestUrl}/contract/leverageInfo
-
-请求方式：POST
-
-请求参数说明：
-
-| 字段   | 说明     | 必填(是/否/可选) | 备注 | 类型   |
-| ------ | -------- | ---------------- | ---- | ------ |
-| symbol | 合约符号 | 是               |      | String |
-
-返回参数说明：
-
-| 字段     | 说明               | 必填(是/否/可选) | 备注 | 类型   |
-| -------- | ------------------ | ---------------- | ---- | ------ |
-| symbol   | 合约符号           | 是               |      | String |
-| leverage | 杠杆值的字符串形式 | 是               |      | String |
-
-#### 4.修改杠杆
+#### 3.修改杠杆
 
 请求路径：{requestUrl}/contract/leverage/update
 
@@ -865,42 +891,7 @@ list说明：
 
 返回参数说明：code="0"为成功
 
-#### 5.查询订单详情 (废除)
-
-请求路径：{requestUrl}/contract/orderDetail
-
-请求方式：POST
-
-请求参数说明：
-
-| 字段   | 说明       | 必填(是/否/可选) | 备注 | 类型   |
-| ------ | ---------- | ---------------- | ---- | ------ |
-| symbol | 合约符号   | 是               |      | String |
-| page   | 分页当前页 | 是               |      | int    |
-| count  | 每页记录数 | 是               |      | int    |
-
-返回参数说明：
-
-| 字段     | 说明           | 必填(是/否/可选) | 备注 | 类型 |
-| -------- | -------------- | ---------------- | ---- | ---- |
-| pageInfo | 返回的分页信息 | 是               |      | 对象 |
-| fills    | 返回的记录数组 | 是               |      | 数组 |
-
-pageInfo：通用分页对象（见orderList）
-
-fills数组中元素参数：
-
-| 字段    | 说明             | 必填(是/否/可选) | 备注 | 类型   |
-| ------- | ---------------- | ---------------- | ---- | ------ |
-| orderId | 订单ID           | 是               |      | String |
-| symbol  | 合约符号         | 是               |      | String |
-| amount  | 成交数量         | 是               |      | String |
-| price   | 成交价格         | 是               |      | String |
-| side    | 方向             | 是               |      | String |
-| time    | 成交时间的时间戳 | 是               |      | String |
-| tradeId | 交易ID           | 是               |      | String |
-
-#### 6.仓位信息
+#### 4.仓位信息
 
 请求路径：{requestUrl}/contract/position
 
@@ -930,7 +921,7 @@ fills数组中元素参数：
 | side             | 仓位方向         | 是               |      | String |
 | frozen           | 仓位冻结金       | 是               |      | String |
 
-#### 7.调整保证金
+#### 5.调整保证金
 
 请求路径：{requestUrl}/contract/margin/update
 
@@ -945,7 +936,7 @@ fills数组中元素参数：
 
 返回参数说明：code="0"为成功
 
-#### 8.合约资产查询
+#### 6.合约资产查询
 
 请求路径：{requestUrl}/contract/asset/info
 
@@ -977,153 +968,7 @@ records数组中的元素参数：
 | count    | 资产数量     | 是               |      | String |
 | frozen   | 冻结资产数量 | 是               |      | String |
 
-#### 9.合约资产变更详情(废除)
-
-请求路径：{requestUrl}/contract/assetChangeDetail
-
-请求方式：POST
-
-请求参数说明：
-
-| 字段      | 说明             | 必填(是/否/可选) | 备注 | 类型   |
-| --------- | ---------------- | ---------------- | ---- | ------ |
-| timeStart | 查询限制起始时间 | 否               |      | Long   |
-| timeEnd   | 查询限制结束时间 | 否               |      | Long   |
-| coinId    | 币种类型         | 否               |      | String |
-| type      | 变更类型         | 否               |      | String |
-| page      | 分页当前页数     | 是               |      | int    |
-| count     | 分页每页记录数   | 是               |      | int    |
-
-返回参数说明：
-
-| 字段     | 说明           | 必填(是/否/可选) | 备注 | 类型 |
-| -------- | -------------- | ---------------- | ---- | ---- |
-| pageInfo | 返回的分页信息 | 是               |      | 对象 |
-| records  | 返回的记录数组 | 是               |      | 数组 |
-
-pageInfo:通用分页参数（见orderList）
-
-records数组中元素参数：
-
-| 字段              | 说明                             | 必填(是/否/可选) | 备注 | 类型   |
-| ----------------- | -------------------------------- | ---------------- | ---- | ------ |
-| coinId            | 币种类型                         | 是               |      | String |
-| count             | 变更数量                         | 是               |      | String |
-| fee               | 手续费                           | 是               |      | String |
-| frozenChangeCount | 冻结金额变化                     | 是               |      | String |
-| label             | 标签                             | 是               |      | String |
-| side              | 方向，0为交易产生，1转入，-1转出 | 是               |      | String |
-| state             | 状态，已完成1，未完成0           | 是               |      | String |
-| time              | 产生记录的时间的时间戳           | 是               |      | String |
-| type              | 类型                             | 是               |      | String |
-
-#### 10.查询活动委托订单列表（废除）
-
-请求路径：{requestUrl}/contract/openOrderList
-
-请求方式：POST
-
-请求参数说明：
-
-| 字段   | 说明       | 必填(是/否/可选) | 备注 | 类型   |
-| ------ | ---------- | ---------------- | ---- | ------ |
-| page   | 分页当前页 | 是               |      | int    |
-| count  | 每页记录数 | 是               |      | int    |
-| symbol |            | 是               |      | String |
-
-返回参数说明:
-
-| 字段     | 说明     | 必填(是/否/可选) | 备注 | 类型 |
-| -------- | -------- | ---------------- | ---- | ---- |
-| pageInfo | 分页信息 | 是               |      | 对象 |
-| records  | 记录数组 | 是               |      | 数组 |
-
-pageInfo：
-
-| 字段        | 说明         | 必填(是/否/可选) | 备注 | 类型 |
-| ----------- | ------------ | ---------------- | ---- | ---- |
-| page        | 分页当前页数 | 是               |      | int  |
-| count       | 每页记录数   | 是               |      | int  |
-| pageTotal   | 总页数       | 是               |      | int  |
-| recordTotal | 总记录数     | 是               |      | int  |
-
-records数组中的元素参数：
-
-| 字段          | 说明                                    | 必填(是/否/可选) | 备注 | 类型   |
-| ------------- | --------------------------------------- | ---------------- | ---- | ------ |
-| orderId       | 订单ID                                  | 是               |      | String |
-| symbol        | 合约符号                                | 是               |      | String |
-| type          | 下单类型                                | 是               |      | String |
-| side          | 下单方向                                | 是               |      | String |
-| timeinforce   | 时效模式                                | 是               |      | String |
-| amountDisplay | 显示数量                                | 是               |      | String |
-| price         | 价格，market单为0                       | 是               |      | String |
-| amountReal    | 真实数量                                | 是               |      | String |
-| amountFill    | 成交数量                                | 是               |      | String |
-| orderValue    | 订单价值（当前marketPrice，估值多少钱） | 是               |      | String |
-| status        | 订单状态                                | 是               |      | String |
-| marginTotal   | 订单总保证金                            | 是               |      | String |
-| marginUsed    | 订单已使用保证金                        | 是               |      | String |
-| startTime     | 下单时间的时间戳                        | 是               |      | String |
-| postOnly      | 是否post only 单                        | 是               |      | String |
-| reduceOnly    | 是否 reduce only 单                     | 是               |      | String |
-| property      | 合约类型                                | 是               |      | String |
-| amountRemain  | 剩余数量                                | 是               |      | String |
-
-#### 11.查询历史委托订单列表 （废除）
-
-请求路径：{requestUrl}/contract/historyOrderList
-
-请求方式：POST
-
-请求参数说明：
-
-| 字段   | 说明       | 必填(是/否/可选) | 备注 | 类型   |
-| ------ | ---------- | ---------------- | ---- | ------ |
-| page   | 分页当前页 | 是               |      | int    |
-| count  | 每页记录数 | 是               |      | int    |
-| symbol |            | 是               |      | String |
-
-返回参数说明:
-
-| 字段     | 说明     | 必填(是/否/可选) | 备注 | 类型 |
-| -------- | -------- | ---------------- | ---- | ---- |
-| pageInfo | 分页信息 | 是               |      | 对象 |
-| records  | 记录数组 | 是               |      | 数组 |
-
-pageInfo：
-
-| 字段        | 说明         | 必填(是/否/可选) | 备注 | 类型 |
-| ----------- | ------------ | ---------------- | ---- | ---- |
-| page        | 分页当前页数 | 是               |      | int  |
-| count       | 每页记录数   | 是               |      | int  |
-| pageTotal   | 总页数       | 是               |      | int  |
-| recordTotal | 总记录数     | 是               |      | int  |
-
-records数组中的元素参数：
-
-| 字段          | 说明                                    | 必填(是/否/可选) | 备注 | 类型   |
-| ------------- | --------------------------------------- | ---------------- | ---- | ------ |
-| orderId       | 订单ID                                  | 是               |      | String |
-| symbol        | 合约符号                                | 是               |      | String |
-| type          | 下单类型                                | 是               |      | String |
-| side          | 下单方向                                | 是               |      | String |
-| timeinforce   | 时效模式                                | 是               |      | String |
-| amountDisplay | 显示数量                                | 是               |      | String |
-| price         | 价格，market单为0                       | 是               |      | String |
-| amountReal    | 真实数量                                | 是               |      | String |
-| amountFill    | 成交数量                                | 是               |      | String |
-| orderValue    | 订单价值（当前marketPrice，估值多少钱） | 是               |      | String |
-| status        | 订单状态                                | 是               |      | String |
-| marginTotal   | 订单总保证金                            | 是               |      | String |
-| marginUsed    | 订单已使用保证金                        | 是               |      | String |
-| startTime     | 下单时间的时间戳                        | 是               |      | String |
-| postOnly      | 是否post only 单                        | 是               |      | String |
-| reduceOnly    | 是否 reduce only 单                     | 是               |      | String |
-| property      | 合约类型                                | 是               |      | String |
-| amountRemain  | 剩余数量                                | 是               |      | String |
-
-#### 12.查询用户私有合约信息 
+#### 7.查询用户私有合约信息 
 
 请求路径：{requestUrl}/contract/info
 
@@ -1144,7 +989,7 @@ records数组中的元素参数：
 | fundRate0 | 资金费用           | 是               |      | String |
 | riskLimit | 风险限额           | 是               |      | String |
 
-#### 13.查询用户合约账户信息 
+#### 8.查询用户合约账户信息 
 
 请求路径：{requestUrl}/contract/account/info
 
@@ -1167,7 +1012,7 @@ records数组中的元素参数：
 | openOrderMarginTotal | 活动委托订单保证金 | 是               |      | String |
 | availableAmount      | 可用数量           | 是               |      | String |
 
-#### 14.订单列表查询（活动委托和历史委托）
+#### 9.订单列表查询（活动委托和历史委托）
 
 请求路径：{requestUrl}/contract/orders
 

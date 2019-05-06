@@ -4,7 +4,7 @@ catalog
 
 ## [General Rest Api Information]
 
-- The base endpoint is: **https://global-openapi.bithumb.pro/openapi/api/**
+- The base endpoint is: **https://global-openapi.bithumb.pro/openapi/v1/**
 - All endpoints return either a JSON object or array.
 - For `GET` endpoints, parameters must be sent as a `query string`.
 - For POST endpoints, parameters must be send in the request body, with content type by JSON(application/json)
@@ -56,7 +56,7 @@ if need page, like:
 
 ## [Data of Signature] (Important)
 
-- The part just for authentication of request, the pair of apiKey and secretKey can be apply in website (https://global.dcex.world)
+- The part just for authentication of request, the pair of apiKey and secretKey can be apply in website (https://bithumb.pro)
 
 - For authentication of request, the request paramters need to be sign  by HmacSHA256
 
@@ -684,6 +684,49 @@ response example：
 }
 ```
 
+#### 8. query my trades
+
+request uri：{requestUrl}/spot/myTrades
+
+request method：POST
+
+request parameter information:
+
+| Field     | Description       | Required(Y or N) | Mark | Type    |
+| --------- | ----------------- | ---------------- | ---- | ------- |
+| symbol    |                   | Y                |      | String  |
+| startTime | trades start time | N                |      | Long    |
+| limit     |                   | N                |      | Integer |
+
+response description:
+
+| Field     | Description | Required(Y or N) | Mark | Type       |
+| --------- | ----------- | ---------------- | ---- | ---------- |
+| id        |             | Y                |      | Long       |
+| price     |             | Y                |      | BigDecimal |
+| amount    |             | Y                |      | BigDecimal |
+| side      |             | Y                |      | String     |
+| direction |             | Y                |      | String     |
+| time      |             | Y                |      | Date       |
+
+response example：
+
+```
+"data":[
+	    "id":1,
+	    "price":100.01,
+	    "amount":0.1,
+	    "side":"buy",
+	    "direction":"taker",
+	    "time":1557047375000,
+      ],
+"code": "0",
+"msg": "success",
+"timestamp": 1551346473238,
+"params": []
+}
+```
+
 ### [Normal api for contract]
 
 #### 1.orderBook
@@ -838,26 +881,7 @@ request parameter infomation：
 
 response description：when code = "0" is success
 
-#### 3.query leverage info (Deprecated)
-
-request uri：{requestUrl}/contract/leverageInfo
-
-request method：POST
-
-request parameter infomation：
-
-| Field  | Description | Required(Y or N) | Mark | Type   |
-| ------ | ----------- | ---------------- | ---- | ------ |
-| symbol |             | Y                |      | String |
-
-response description：
-
-| Field    | Description | Required(Y or N) | Mark | Type   |
-| -------- | ----------- | ---------------- | ---- | ------ |
-| symbol   |             | Y                |      | String |
-| leverage |             | Y                |      | String |
-
-#### 4.edit leverage
+#### 3.edit leverage
 
 request uri：{requestUrl}/contract/leverageEdit
 
@@ -872,42 +896,7 @@ request parameter infomation：
 
 request description：when code="0" is success
 
-#### 5.query order detail (Deprecated)
-
-request uri：{requestUrl}/contract/orderDetail
-
-request method：POST
-
-request parameter infomation：
-
-| Field  | Description | Required(Y or N) | Mark | Type   |
-| ------ | ----------- | ---------------- | ---- | ------ |
-| symbol |             | Y                |      | String |
-| page   |             | Y                |      | Int    |
-| count  |             | Y                |      | Int    |
-
-response description：
-
-| Field    | Description | Required(Y or N) | Mark | Type   |
-| -------- | ----------- | ---------------- | ---- | ------ |
-| pageInfo |             | Y                |      | Object |
-| fills    |             | Y                |      | Array  |
-
-pageInfo:(refer to orderList）
-
-fills：
-
-| Field   | Description                 | Required(Y or N) | Mark | Type   |
-| ------- | --------------------------- | ---------------- | ---- | ------ |
-| orderId |                             | Y                |      | String |
-| symbol  |                             | Y                |      | String |
-| amount  | completed amount            | Y                |      | String |
-| price   | deal price                  | Y                |      | String |
-| side    | order side                  | Y                |      | String |
-| time    | completed time(millisecond) | Y                |      | String |
-| tradeId |                             | Y                |      | String |
-
-#### 6.position info
+#### 4.position info
 
 request uri：{requestUrl}/contract/position
 
@@ -937,7 +926,7 @@ response description：
 | side             | position side         | Y                |      | String |
 | frozen           | position frozen       | Y                |      | String |
 
-#### 7.adjust margin
+#### 5.adjust margin
 
 request uri：{requestUrl}/contract/margin/update
 
@@ -952,7 +941,7 @@ request parameter infomation：
 
 response description：when code="0" is success
 
-#### 8.query asset account for contract
+#### 6.query asset account for contract
 
 request uri：{requestUrl}/contract/asset/info
 
@@ -984,153 +973,7 @@ records：
 | count    | usable amount      | Y                |      | String |
 | frozen   | frozen amount      | Y                |      | String |
 
-#### 9.asset change detail for contract (Deprecated)
-
-request uri：{requestUrl}/contract/assetChangeDetail
-
-request method：POST
-
-request parameter infomation：
-
-| Field     | Description      | Required(Y or N) | Mark | Type   |
-| --------- | ---------------- | ---------------- | ---- | ------ |
-| timeStart | query start time | N                |      | Long   |
-| timeEnd   | query end time   | N                |      | Long   |
-| coinId    | coin type        | N                |      | String |
-| type      |                  | N                |      | String |
-| page      |                  | Y                |      | Int    |
-| count     |                  | Y                |      | Int    |
-
-request description：
-
-| Field    | Description | Required(Y or N) | Mark | Type   |
-| -------- | ----------- | ---------------- | ---- | ------ |
-| pageInfo |             | Y                |      | Object |
-| records  |             | Y                |      | Array  |
-
-pageInfo:（refer to orderList）
-
-records：
-
-| Field             | Description                 | Required(Y or N) | Mark                      | Type   |
-| ----------------- | --------------------------- | ---------------- | ------------------------- | ------ |
-| coinId            | coin type                   | Y                |                           | String |
-| count             | change amount               | Y                |                           | String |
-| fee               |                             | Y                |                           | String |
-| frozenChangeCount | frozen amount change        | Y                |                           | String |
-| label             |                             | Y                |                           | String |
-| side              | order side                  | Y                | -1:out,0:transaction,1:in | String |
-| state             | order state                 | Y                | 0:not, 1 completed        | String |
-| time              | create time (millionsecond) | Y                |                           | String |
-| type              |                             | Y                |                           | String |
-
-#### 10.query open order list (Deprecated)
-
-request uri：{requestUrl}/contract/openOrderList
-
-request method：POST
-
-request parameter infomation：
-
-| Field  | Description        | Required(Y or N) | Mark | Type   |
-| ------ | ------------------ | ---------------- | ---- | ------ |
-| page   | current page       | Y                |      | Int    |
-| count  | current page count | Y                |      | Int    |
-| symbol |                    | Y                |      | String |
-
-response description:
-
-| Field    | Description | Required(Y or N) | Mark | Type   |
-| -------- | ----------- | ---------------- | ---- | ------ |
-| pageInfo | page info   | Y                |      | Object |
-| records  | record data | Y                |      | Array  |
-
-pageInfo：
-
-| Field       | Description        | Required(Y or N) | Mark | Type |
-| ----------- | ------------------ | ---------------- | ---- | ---- |
-| page        | current page       | Y                |      | Int  |
-| count       | current page count | Y                |      | Int  |
-| pageTotal   | total page         | Y                |      | Int  |
-| recordTotal | total record count | Y                |      | Int  |
-
-records：
-
-| Field         | Description                           | Required(Y or N) | Mark | Type   |
-| ------------- | ------------------------------------- | ---------------- | ---- | ------ |
-| orderId       |                                       | Y                |      | String |
-| symbol        |                                       | Y                |      | String |
-| type          |                                       | Y                |      | String |
-| side          |                                       | Y                |      | String |
-| timeinforce   |                                       | Y                |      | String |
-| amountDisplay |                                       | Y                |      | String |
-| price         | order price，type = market is 0       | Y                |      | String |
-| amountReal    | real quantity                         | Y                |      | String |
-| amountFill    | completed quantity                    | Y                |      | String |
-| orderValue    | order value（compute by marketPrice） | Y                |      | String |
-| status        | order status                          | Y                |      | String |
-| marginTotal   | order total margin                    | Y                |      | String |
-| marginUsed    | used margin                           | Y                |      | String |
-| startTime     | create time(millionsecond)            | Y                |      | String |
-| postOnly      |                                       | Y                |      | String |
-| reduceOnly    |                                       | Y                |      | String |
-| property      |                                       | Y                |      | String |
-| amountRemain  | remain amount                         | Y                |      | String |
-
-#### 11.query history order list (Deprecated)
-
-request uri：{requestUrl}/contract/historyOrderList
-
-request method：POST
-
-request parameter infomation：
-
-| Field | Description        | Required(Y or N) | Mark                                                         | Type   |
-| ----- | ------------------ | ---------------- | ------------------------------------------------------------ | ------ |
-| page  | current page       | Y                |                                                              | Int    |
-| count | current page count | Y                |                                                              | Int    |
-
-response description:
-
-| Field    | Description | Required(Y or N) | Mark | Type   |
-| -------- | ----------- | ---------------- | ---- | ------ |
-| pageInfo | page info   | Y                |      | Object |
-| records  | record data | Y                |      | Array  |
-| symbol   |             | Y                |      | String |
-
-pageInfo：
-
-| Field       | Description        | Required(Y or N) | Mark | Type |
-| ----------- | ------------------ | ---------------- | ---- | ---- |
-| page        | current page       | Y                |      | Int  |
-| count       | current page count | Y                |      | Int  |
-| pageTotal   | total page         | Y                |      | Int  |
-| recordTotal | total record count | Y                |      | Int  |
-
-records：
-
-| Field         | Description                           | Required(Y or N) | Mark | Type   |
-| ------------- | ------------------------------------- | ---------------- | ---- | ------ |
-| orderId       |                                       | Y                |      | String |
-| symbol        |                                       | Y                |      | String |
-| type          |                                       | Y                |      | String |
-| side          |                                       | Y                |      | String |
-| timeinforce   |                                       | Y                |      | String |
-| amountDisplay |                                       | Y                |      | String |
-| price         | order price，type = market is 0       | Y                |      | String |
-| amountReal    | real quantity                         | Y                |      | String |
-| amountFill    | completed quantity                    | Y                |      | String |
-| orderValue    | order value（compute by marketPrice） | Y                |      | String |
-| status        | order status                          | Y                |      | String |
-| marginTotal   | order total margin                    | Y                |      | String |
-| marginUsed    | used margin                           | Y                |      | String |
-| startTime     | create time(millionsecond)            | Y                |      | String |
-| postOnly      |                                       | Y                |      | String |
-| reduceOnly    |                                       | Y                |      | String |
-| property      |                                       | Y                |      | String |
-| amountRemain  | remain amount                         | Y                |      | String |
-
-#### 12.query user contract info
+#### 7.query user contract info
 
 request url：{requestUrl}/contract/info
 
@@ -1151,7 +994,7 @@ response description:
 | fundRate0 |                 | Y                |      | String |
 | riskLimit | risk limit      | Ys               |      | String |
 
-#### 13.query user contract account info 
+#### 8.query user contract account info 
 
 request url：{requestUrl}/contract/account/info
 
@@ -1174,7 +1017,7 @@ response description:
 | openOrderMarginTotal |                  | Y                |      | String |
 | availableAmount      | available amount | Y                |      | String |
 
-#### 14.query order list (open order or history order list)
+#### 9.query order list (open order or history order list)
 
 request url：{requestUrl}/contract/orders
 
