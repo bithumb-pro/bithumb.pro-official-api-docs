@@ -88,6 +88,27 @@ if need page, like:
 
 ## [Api Detail]
 
+### [Normal]
+
+#### 1.query server time
+
+request uri：{requestUrl}/serverTime
+
+request method：GET
+
+request parameter infomation：none
+
+response example：
+
+```
+{
+"data": 1557134972000,
+"success": true,
+"msg": "",
+"code": "0"
+}
+```
+
 ### [Normal api for spot]
 
 #### 1.ticker

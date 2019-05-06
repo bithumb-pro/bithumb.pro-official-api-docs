@@ -87,6 +87,27 @@
 
 ## [接口说明]
 
+### [普通接口]
+
+#### 1.系统时间
+
+请求路径：{requestUrl}/serverTime
+
+请求方式：GET
+
+请求参数说明：无
+
+响应示例：
+
+```
+{
+"data": 1557134972000,
+"success": true,
+"msg": "",
+"code": "0"
+}
+```
+
 ### [现货普通接口]
 
 #### 1.行情
@@ -334,7 +355,7 @@ symbolConfig对象说明：
 | symbol    | 币对符号，格式是 token-market | 是               | 前面交易币种 后面是交易市场     (BTC-USDT) | String |
 | type      | 交易类型 (limit or market)    | 是               | limit 限价  market 市价                    | String |
 | side      | 交易方向 (buy or sell)        | 是               | buy 买入  sell 卖出                        | String |
-| price     | 价格                          | 是               | type为 市价(limit)交易时 固定值 "-1"       | String |
+| price     | 价格                          | 是               | type为 市价(market)交易时 固定值 "-1"      | String |
 | quantity  | 数量                          | 是               | 交易数量                                   | String |
 | timestamp | 时间戳                        | 是               |                                            | String |
 
