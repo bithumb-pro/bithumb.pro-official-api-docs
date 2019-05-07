@@ -108,6 +108,92 @@
 }
 ```
 
+#### 2.配置详情
+
+请求路径：{requestUrl}/spot/config
+
+请求方式：GET
+
+请求参数说明：无
+
+返回结果说明:
+
+| 字段           | 说明     | 必填(是/否/可选) | 备注 | 类型   |
+| -------------- | -------- | ---------------- | ---- | ------ |
+| spotConfig     | 现货配置 | 是               |      | Object |
+| coinConfig     | 币种配置 | 是               |      | Object |
+| contractConfig | 合约配置 | 是               |      | Object |
+
+coinConfig对象：
+
+| 字段           | 说明                        | 必填(是/否/可选) | 备注 | 类型   |
+| -------------- | --------------------------- | ---------------- | ---- | ------ |
+| name           | 币种名称                    | 是               |      | String |
+| fullName       | 全称                        | 是               |      | String |
+| depositStatus  | 是否可充值                  | 是               |      | String |
+| withDrawStatus | 是否可提                    | 是               |      | String |
+| minWithDraw    | 最小提币数量                | 是               |      | String |
+| withDrawFee    | 提币手续费                  | 是               |      | String |
+| makerFeeRate   | 交易时作为maker，交易手续费 | 是               |      | String |
+| takerFeeRate   | 交易时作为taker，交易手续费 | 是               |      | String |
+
+contractConfig对象：
+
+| 字段         | 说明                        | 必填(是/否/可选) | 备注 | 类型   |
+| ------------ | --------------------------- | ---------------- | ---- | ------ |
+| symbol       | 交易对                      | 是               |      | String |
+| makerFeeRate | 交易时作为maker，交易手续费 | 是               |      | String |
+| takerFeeRate | 交易时作为taker，交易手续费 | 是               |      | String |
+
+spotConfig对象：
+
+| 字段     | 说明   | 必填(是/否/可选) | 备注                   | 类型                                          |
+| -------- | ------ | ---------------- | ---------------------- | --------------------------------------------- |
+| symbol   | 交易对 | 是               |                        | String                                        |
+| accuracy | 精度   | 是               | 包含价格精度和数量精度 | String[2](第一个为价格精度，第二个为数量精度) |
+
+响应示例：
+
+```
+{
+    "data": {
+        "coinConfig": [
+            {
+                "makerFeeRate": "0.001",
+                "minWithDraw": "10",
+                "withDrawFee": "0.1",
+                "name": "BXA",
+                "depositStatus": "0",
+                "fullName": "Exchange Alliance",
+                "takerFeeRate": "0.001",
+                "withDrawStatus": "0"
+            },
+            ...
+        ],
+        "contractConfig": [
+            {
+                "symbol": "TBTCUSD",
+                "makerFeeRate": "-0.00025",
+                "takerFeeRate": "0.00075"
+            }
+        ],
+        "spotConfig": [
+            {
+                "symbol": "BTC-USDT",
+                "accuracy": [
+                    "2",
+                    "6"
+                ]
+            },
+            ...
+    ]
+},
+"code": "0",
+"msg": "success",
+"timestamp": 1557200664263
+}
+```
+
 ### [现货普通接口]
 
 #### 1.行情
@@ -292,54 +378,6 @@
 	 "params": []
 	}
 
-#### 5.交易对配置
-
-请求路径：{requestUrl}/spot/config
-
-请求方式：GET
-
-请求参数说明：无
-
-返回结果说明:
-
-| 字段         | 说明           | 必填(是/否/可选) | 备注 | 类型 |
-| ------------ | -------------- | ---------------- | ---- | ---- |
-| symbolConfig | 交易对精度配置 | 是               |      | 对象 |
-
-symbolConfig对象说明：
-
-| 字段     | 说明   | 必填(是/否/可选) | 备注                   | 类型                                          |
-| -------- | ------ | ---------------- | ---------------------- | --------------------------------------------- |
-| symbol   | 交易对 | 是               |                        | String                                        |
-| accuracy | 精度   | 是               | 包含价格精度和数量精度 | String[2](第一个为价格精度，第二个为数量精度) |
-
-响应示例：
-
-	{
-	"info": {
-	    "symbolConfig": [
-	        {
-	            "symbol": "BTC-USDT",
-	            "accuracy": [
-	                "8",
-	                "8"
-	            ]
-	        },
-	        {
-	            "symbol": "ETH-USDT",
-	            "accuracy": [
-	                "8",
-	                "8"
-	            ]
-	        }
-	    ]
-	},
-	"code": "0",
-	"msg": "success",
-	"timestamp": 1551346473238,
-	"params": []
-	}
-
 ### [现货认证接口]
 
 #### 1. 币币下单
@@ -387,11 +425,10 @@ symbolConfig对象说明：
 
 请求参数说明:
 
-| 字段       | 说明     | 必填(是/否/可选) | 备注       | 类型   |
-| ---------- | -------- | ---------------- | ---------- | ------ |
-| orderId    | 订单号   | 是               | 由平台返回 | String |
-| coinType   | 币种类型 | 是               |            | String |
-| marketType | 市场类型 | 是               |            | String |
+| 字段    | 说明     | 必填(是/否/可选) | 备注       | 类型   |
+| ------- | -------- | ---------------- | ---------- | ------ |
+| orderId | 订单号   | 是               | 由平台返回 | String |
+| symbol  | 币种类型 | 是               |            | String |
 
 #### 3. 币币交易账户资产查询
 
@@ -441,13 +478,12 @@ symbolConfig对象说明：
 
 请求参数说明:
 
-| 字段       | 说明     | 必填(是/否/可选) | 备注                  | 类型   |
-| ---------- | -------- | ---------------- | --------------------- | ------ |
-| orderId    | 订单id   | 是               | 平台返回 不选查询所有 | String |
-| coinType   | 币种类型 | 是               |                       | String |
-| marketType | 市场类型 | 是               |                       | String |
-| page       | 页码     | 可选             | 不选默认1             | String |
-| count      | 显示条数 | 可选             | 不选默认10            | String |
+| 字段    | 说明     | 必填(是/否/可选) | 备注                  | 类型   |
+| ------- | -------- | ---------------- | --------------------- | ------ |
+| orderId | 订单id   | 是               | 平台返回 不选查询所有 | String |
+| symbol  |          | 是               |                       | String |
+| page    | 页码     | 可选             | 不选默认1             | String |
+| count   | 显示条数 | 可选             | 不选默认10            | String |
 
 返回结果说明:
 
@@ -515,8 +551,7 @@ symbolConfig对象说明：
 | 字段       | 说明                                                  | 必填(是/否/可选) | 备注 | 类型    |
 | ---------- | ----------------------------------------------------- | ---------------- | ---- | ------- |
 | side       | 订单买卖类型（buy，sell）                             | 是               |      | String  |
-| coinType   | 币种类型                                              | 是               |      | String  |
-| marketType | 市场类型                                              | 是               |      | String  |
+| symbol     |                                                       | 是               |      | String  |
 | status     | 订单类型（traded=历史单据）                           | 是               |      | String  |
 | queryRange | 查询订单的范围（thisweek=本周，thisweekago=本周以前） | 是               |      | String  |
 | page       | 页码                                                  | 否               |      | Integer |
@@ -534,8 +569,7 @@ list说明：
 | 字段       | 说明         | 必填(是/否/可选) | 备注                           | 类型    |
 | ---------- | ------------ | ---------------- | ------------------------------ | ------- |
 | orderId    | 订单id       | 是               |                                | String  |
-| marketType | 市场类型     | 是               |                                | String  |
-| coinType   | 币种类型     | 是               |                                | String  |
+| symbol     |              | 是               |                                | String  |
 | price      | 挂单价格     | 是               |                                | decimal |
 | tradedNum  | 已成交数量   | 是               |                                | Decimal |
 | quantity   | 挂单数量     | 是               |                                | Decimal |
@@ -553,8 +587,7 @@ list说明：
     "num":"10",
     "list":[{
 			"orderId":"12300993210",
-			"marketType":"USDT",
-			"coinType":"BTC",
+			"symbol":"BTC-USDT",
 			"price":"3700",
 			"tradedNum":"0.01",
 			"quantity":"0.5",
@@ -583,19 +616,17 @@ list说明：
 
 请求参数说明:
 
-| 字段       | 说明         | 必填(是/否/可选) | 备注 | 类型   |
-| ---------- | ------------ | ---------------- | ---- | ------ |
-| orderId    | 订单唯一编号 | 是               |      | String |
-| coinType   | 币种类型     | 是               |      | String |
-| marketType | 市场类型     | 是               |      | String |
+| 字段    | 说明         | 必填(是/否/可选) | 备注 | 类型   |
+| ------- | ------------ | ---------------- | ---- | ------ |
+| orderId | 订单唯一编号 | 是               |      | String |
+| symbol  |              | 是               |      | String |
 
 返回结果说明：
 
 | 字段       | 说明         | 必填(是/否/可选) | 备注                           | 类型    |
 | ---------- | ------------ | ---------------- | ------------------------------ | ------- |
 | orderId    | 订单id       | 是               |                                | String  |
-| marketType | 市场类型     | 是               |                                | String  |
-| coinType   | 币种类型     | 是               |                                | String  |
+| symbol     |              | 是               |                                | String  |
 | price      | 挂单价格     | 是               |                                | decimal |
 | tradedNum  | 已成交数量   | 是               |                                | Decimal |
 | quantity   | 挂单数量     | 是               |                                | Decimal |
@@ -611,8 +642,7 @@ list说明：
 ```
 "data":{
 			"orderId":"12300993210",
-			"marketType":"USDT",
-			"coinType":"BTC",
+			"symbol":"BTC-USDT",
 			"price":"3700",
 			"tradedNum":"0.01",
 			"quantity":"0.5",
@@ -656,8 +686,7 @@ list说明：
 | 字段       | 说明         | 必填(是/否/可选) | 备注                           | 类型    |
 | ---------- | ------------ | ---------------- | ------------------------------ | ------- |
 | orderId    | 订单id       | 是               |                                | String  |
-| marketType | 市场类型     | 是               |                                | String  |
-| coinType   | 币种类型     | 是               |                                | String  |
+| symbol     | 市场类型     | 是               |                                | String  |
 | price      | 挂单价格     | 是               |                                | decimal |
 | tradedNum  | 已成交数量   | 是               |                                | Decimal |
 | quantity   | 挂单数量     | 是               |                                | Decimal |
@@ -675,8 +704,7 @@ list说明：
     "num":"10",
     "list":[{
 			"orderId":"12300993210",
-			"marketType":"USDT",
-			"coinType":"BTC",
+			"symbol":"BTC-USDT",
 			"price":"3700",
 			"tradedNum":"0.01",
 			"quantity":"0.5",

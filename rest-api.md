@@ -109,6 +109,92 @@ response example：
 }
 ```
 
+#### 2. config detail
+
+request uri：{requestUrl}/spot/config
+
+request method：GET
+
+request parameter infomation：null
+
+response description:
+
+| Field          | Description     | Required(Y or N) | Mark | Type   |
+| -------------- | --------------- | ---------------- | ---- | ------ |
+| spotConfig     | spot config     | Y                |      | Object |
+| coinConfig     | coin config     | Y                |      | Object |
+| contractConfig | contract config | Y                |      | Object |
+
+coinConfig：
+
+| Field          | Description           | Required(Y or N) | Mark | Type   |
+| -------------- | --------------------- | ---------------- | ---- | ------ |
+| name           | coin name             | Y                |      | String |
+| fullName       | full name             | Y                |      | String |
+| depositStatus  | can deposit           | Y                |      | String |
+| withDrawStatus | can withdraw          | Y                |      | String |
+| minWithDraw    | min withdraw amount   | Y                |      | String |
+| withDrawFee    | withdraw fee          | Y                |      | String |
+| makerFeeRate   | maker transaction fee | Y                |      | String |
+| takerFeeRate   | taker transaction fee | Y                |      | String |
+
+contractConfig：
+
+| Field        | Description           | Required(Y or N) | Mark | Type   |
+| ------------ | --------------------- | ---------------- | ---- | ------ |
+| symbol       |                       | Y                |      | String |
+| makerFeeRate | maker transaction fee | Y                |      | String |
+| takerFeeRate | taker transaction fee | Y                |      | String |
+
+spotConfig：
+
+| Field    | Description | Required(Y or N) | Mark | Type     |
+| -------- | ----------- | ---------------- | ---- | -------- |
+| symbol   |             | Y                |      | String   |
+| accuracy |             | Y                |      | String[] |
+
+response example：
+
+```
+{
+    "data": {
+        "coinConfig": [
+            {
+                "makerFeeRate": "0.001",
+                "minWithDraw": "10",
+                "withDrawFee": "0.1",
+                "name": "BXA",
+                "depositStatus": "0",
+                "fullName": "Exchange Alliance",
+                "takerFeeRate": "0.001",
+                "withDrawStatus": "0"
+            },
+            ...
+        ],
+        "contractConfig": [
+            {
+                "symbol": "TBTCUSD",
+                "makerFeeRate": "-0.00025",
+                "takerFeeRate": "0.00075"
+            }
+        ],
+        "spotConfig": [
+            {
+                "symbol": "BTC-USDT",
+                "accuracy": [
+                    "2",
+                    "6"
+                ]
+            },
+            ...
+    ]
+},
+"code": "0",
+"msg": "success",
+"timestamp": 1557200664263
+}
+```
+
 ### [Normal api for spot]
 
 #### 1.ticker
@@ -295,54 +381,6 @@ response example：
 	 "params": []
 	}
 
-#### 5.symbol config
-
-request uri：{requestUrl}/spot/config
-
-request method：GET
-
-request parameter infomation：null
-
-response description:
-
-| Field        | Description       | Required(Y or N) | Mark | Type   |
-| ------------ | ----------------- | ---------------- | ---- | ------ |
-| symbolConfig | config for symbol | Y                |      | Object |
-
-symbolConfig description：
-
-| Field    | Description | Required(Y or N) | Mark                           | Type                                    |
-| -------- | ----------- | ---------------- | ------------------------------ | --------------------------------------- |
-| symbol   |             | Y                |                                | String                                  |
-| accuracy | accuracy    | Y                | accuracy of price and quantity | String[2](first:price，second:quantity) |
-
-response example：
-
-	{
-	"data": {
-	    "symbolConfig": [
-	        {
-	            "symbol": "BTC-USDT",
-	            "accuracy": [
-	                "8",
-	                "8"
-	            ]
-	        },
-	        {
-	            "symbol": "ETH-USDT",
-	            "accuracy": [
-	                "8",
-	                "8"
-	            ]
-	        }
-	    ]
-	},
-	"code": "0",
-	"msg": "success",
-	"timestamp": 1551346473238,
-	"params": []
-	}
-
 ### [Authentication api for spot]
 
 #### 1. create order for virtual coin
@@ -390,11 +428,10 @@ request method：POST
 
 request parameter infomation:
 
-| Field      | Description | Required(Y or N) | Mark | Type   |
-| ---------- | ----------- | ---------------- | ---- | ------ |
-| orderId    |             | Y                |      | String |
-| coinType   |             | Y                |      | String |
-| marketType |             | Y                |      | String |
+| Field   | Description | Required(Y or N) | Mark | Type   |
+| ------- | ----------- | ---------------- | ---- | ------ |
+| orderId |             | Y                |      | String |
+| symbol  |             | Y                |      | String |
 
 #### 3. query virtual coin asset account
 
@@ -437,7 +474,7 @@ response example：
 	"params": []
 	}
 
-#### 4. trade of order detail
+#### 4. trade for order detail
 
 request uri：{requestUrl}/spot/orderDetail
 
@@ -445,13 +482,12 @@ request method：POST
 
 request parameter infomation:
 
-| Field      | Description        | Required(Y or N) | Mark         | Type   |
-| ---------- | ------------------ | ---------------- | ------------ | ------ |
-| orderId    |                    | Y                |              | String |
-| coinType   |                    | Y                |              | String |
-| marketType |                    | Y                |              | String |
-| page       | current page       | N                | default = 1  | String |
-| count      | current page count | N                | default = 10 | String |
+| Field   | Description        | Required(Y or N) | Mark         | Type   |
+| ------- | ------------------ | ---------------- | ------------ | ------ |
+| orderId |                    | Y                |              | String |
+| symbol  |                    | Y                |              | String |
+| page    | current page       | N                | default = 1  | String |
+| count   | current page count | N                | default = 10 | String |
 
 response description:
 
@@ -520,8 +556,7 @@ request parameter information:
 | Field      | Description                                                  | Required(Y or N) | Mark | Type   |
 | ---------- | ------------------------------------------------------------ | ---------------- | ---- | ------ |
 | side       | order side（buy，sell）                                      | Y                |      | String |
-| coinType   | coin type                                                    | Y                |      | String |
-| marketType | market type                                                  | Y                |      | String |
+| symbol     |                                                              | Y                |      | String |
 | status     | order status（traded (history order)）                       | Y                |      | String |
 | queryRange | the range of order（thisweek(in 7 day)，thisweekago(before 7 ago)） | Y                |      | String |
 | page       | current page                                                 | N                |      | String |
@@ -539,8 +574,7 @@ list description：
 | Field      | Description        | Required(Y or N) | Mark                           | Type    |
 | ---------- | ------------------ | ---------------- | ------------------------------ | ------- |
 | orderId    |                    | Y                |                                | String  |
-| marketType | market type        | Y                |                                | String  |
-| coinType   | coin type          | Y                |                                | String  |
+| symbol     |                    | Y                |                                | String  |
 | price      | order price        | Y                |                                | decimal |
 | tradedNum  | completed quantity | Y                |                                | Decimal |
 | quantity   | total quantity     | Y                |                                | Decimal |
@@ -559,8 +593,7 @@ response example：
     "list":[
          {
 	    "orderId":"12300993210",
-	    "marketType":"USDT",
-	    "coinType":"BTC",
+	    "symbol":"BTC-USDT",
 	    "price":"3700",
 	    "tradedNum":"0.01",
 	    "quantity":"0.5",
@@ -589,19 +622,17 @@ request method：POST
 
 request parameter infomation:
 
-| Field      | Description | Required(Y or N) | Mark | Type   |
-| ---------- | ----------- | ---------------- | ---- | ------ |
-| orderId    |             | Y                |      | String |
-| coinType   |             | Y                |      | String |
-| marketType |             | Y                |      | String |
+| Field   | Description | Required(Y or N) | Mark | Type   |
+| ------- | ----------- | ---------------- | ---- | ------ |
+| orderId |             | Y                |      | String |
+| symbol  |             | Y                |      | String |
 
 response description：
 
 | Field      | Description        | Required(Y or N) | Mark                           | Type    |
 | ---------- | ------------------ | ---------------- | ------------------------------ | ------- |
 | orderId    |                    | Y                |                                | String  |
-| marketType | market type        | Y                |                                | String  |
-| coinType   | coin type          | Y                |                                | String  |
+| symbol     |                    | Y                |                                | String  |
 | price      | order price        | Y                |                                | decimal |
 | tradedNum  | completed quantity | Y                |                                | Decimal |
 | quantity   | total quantity     | Y                |                                | Decimal |
@@ -617,8 +648,7 @@ response example：
 ```
 "data":{
 	"orderId":"12300993210",
-	"marketType":"USDT",
-   	"coinType":"BTC",
+	"symbol":"BTC-USDT",
 	"price":"3700",
 	"tradedNum":"0.01",
 	"quantity":"0.5",
@@ -662,8 +692,7 @@ list description：
 | Field      | Description        | Required(Y or N) | Mark                           | Type    |
 | ---------- | ------------------ | ---------------- | ------------------------------ | ------- |
 | orderId    |                    | Y                |                                | String  |
-| marketType | market type        | Y                |                                | String  |
-| coinType   | coin type          | Y                |                                | String  |
+| symbol     |                    | Y                |                                | String  |
 | price      | order price        | Y                |                                | decimal |
 | tradedNum  | completed quantity | Y                |                                | Decimal |
 | quantity   | total quantity     | Y                |                                | Decimal |
@@ -682,8 +711,7 @@ response example：
     "list":[
          {
 	    "orderId":"12300993210",
-	    "marketType":"USDT",
-	    "coinType":"BTC",
+	    "symbol":"BTC-USDT",
 	    "price":"3700",
 	    "tradedNum":"0.01",
 	    "quantity":"0.5",
