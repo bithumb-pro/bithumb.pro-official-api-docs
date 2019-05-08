@@ -132,9 +132,9 @@ coinConfig：
 | name           | coin name             | Y                |      | String |
 | fullName       | full name             | Y                |      | String |
 | depositStatus  | can deposit           | Y                |      | String |
-| withDrawStatus | can withdraw          | Y                |      | String |
-| minWithDraw    | min withdraw amount   | Y                |      | String |
-| withDrawFee    | withdraw fee          | Y                |      | String |
+| withdrawStatus | can withdraw          | Y                |      | String |
+| minWithdraw    | min withdraw amount   | Y                |      | String |
+| withdrawFee    | withdraw fee          | Y                |      | String |
 | makerFeeRate   | maker transaction fee | Y                |      | String |
 | takerFeeRate   | taker transaction fee | Y                |      | String |
 
@@ -161,13 +161,13 @@ response example：
         "coinConfig": [
             {
                 "makerFeeRate": "0.001",
-                "minWithDraw": "10",
-                "withDrawFee": "0.1",
+                "minWithdraw": "10",
+                "withdrawFee": "0.1",
                 "name": "BXA",
                 "depositStatus": "0",
                 "fullName": "Exchange Alliance",
                 "takerFeeRate": "0.001",
-                "withDrawStatus": "0"
+                "withdrawStatus": "0"
             },
             ...
         ],

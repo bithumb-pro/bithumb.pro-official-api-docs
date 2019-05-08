@@ -131,9 +131,9 @@ coinConfig对象：
 | name           | 币种名称                    | 是               |      | String |
 | fullName       | 全称                        | 是               |      | String |
 | depositStatus  | 是否可充值                  | 是               |      | String |
-| withDrawStatus | 是否可提                    | 是               |      | String |
-| minWithDraw    | 最小提币数量                | 是               |      | String |
-| withDrawFee    | 提币手续费                  | 是               |      | String |
+| withdrawStatus | 是否可提                    | 是               |      | String |
+| minWithdraw    | 最小提币数量                | 是               |      | String |
+| withdrawFee    | 提币手续费                  | 是               |      | String |
 | makerFeeRate   | 交易时作为maker，交易手续费 | 是               |      | String |
 | takerFeeRate   | 交易时作为taker，交易手续费 | 是               |      | String |
 
@@ -160,13 +160,13 @@ spotConfig对象：
         "coinConfig": [
             {
                 "makerFeeRate": "0.001",
-                "minWithDraw": "10",
-                "withDrawFee": "0.1",
+                "minWithdraw": "10",
+                "withdrawFee": "0.1",
                 "name": "BXA",
                 "depositStatus": "0",
                 "fullName": "Exchange Alliance",
                 "takerFeeRate": "0.001",
-                "withDrawStatus": "0"
+                "withdrawStatus": "0"
             },
             ...
         ],
