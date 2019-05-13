@@ -1116,7 +1116,6 @@ records数组中的元素参数：
 | 9000 | missing parameter      | 缺少参数     |          |
 | 9001 | version not matched    | 版本号不对   |          |
 | 9002 | verifySignature failed | 验证签名失败 |          |
-| 9003 | msgNo is exist         |              |          |
 | 9004 | access denied          | 请求不允许   |          |
 | 9005 | key expired            | apiKey过期   |          |
 | 9006 | no server              | 无服务       |          |

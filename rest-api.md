@@ -1121,7 +1121,6 @@ records：
 | 9000 | missing parameter      |             |      |
 | 9001 | version not matched    |             |      |
 | 9002 | verifySignature failed |             |      |
-| 9003 | msgNo is exist         |             |      |
 | 9004 | access denied          |             |      |
 | 9005 | key expired            |             |      |
 | 9006 | no server              |             |      |
