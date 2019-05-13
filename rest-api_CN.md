@@ -118,39 +118,40 @@
 
 返回结果说明:
 
-| 字段           | 说明     | 必填(是/否/可选) | 备注 | 类型   |
-| -------------- | -------- | ---------------- | ---- | ------ |
-| spotConfig     | 现货配置 | 是               |      | Object |
-| coinConfig     | 币种配置 | 是               |      | Object |
-| contractConfig | 合约配置 | 是               |      | Object |
+| 字段           | 说明     | 备注 | 类型   |
+| -------------- | -------- | ---- | ------ |
+| spotConfig     | 现货配置 |      | Object |
+| coinConfig     | 币种配置 |      | Object |
+| contractConfig | 合约配置 |      | Object |
 
 coinConfig对象：
 
-| 字段           | 说明                        | 必填(是/否/可选) | 备注 | 类型   |
-| -------------- | --------------------------- | ---------------- | ---- | ------ |
-| name           | 币种名称                    | 是               |      | String |
-| fullName       | 全称                        | 是               |      | String |
-| depositStatus  | 是否可充值                  | 是               |      | String |
-| withdrawStatus | 是否可提                    | 是               |      | String |
-| minWithdraw    | 最小提币数量                | 是               |      | String |
-| withdrawFee    | 提币手续费                  | 是               |      | String |
-| makerFeeRate   | 交易时作为maker，交易手续费 | 是               |      | String |
-| takerFeeRate   | 交易时作为taker，交易手续费 | 是               |      | String |
+| 字段           | 说明                        | 备注 | 类型   |
+| -------------- | --------------------------- | ---- | ------ |
+| name           | 币种名称                    |      | String |
+| fullName       | 全称                        |      | String |
+| depositStatus  | 是否可充值                  |      | String |
+| withdrawStatus | 是否可提                    |      | String |
+| minWithdraw    | 最小提币数量                |      | String |
+| withdrawFee    | 提币手续费                  |      | String |
+| makerFeeRate   | 交易时作为maker，交易手续费 |      | String |
+| takerFeeRate   | 交易时作为taker，交易手续费 |      | String |
+| minTxAmt       | 最小交易量                  |      | String |
 
 contractConfig对象：
 
-| 字段         | 说明                        | 必填(是/否/可选) | 备注 | 类型   |
-| ------------ | --------------------------- | ---------------- | ---- | ------ |
-| symbol       | 交易对                      | 是               |      | String |
-| makerFeeRate | 交易时作为maker，交易手续费 | 是               |      | String |
-| takerFeeRate | 交易时作为taker，交易手续费 | 是               |      | String |
+| 字段         | 说明                        | 备注 | 类型   |
+| ------------ | --------------------------- | ---- | ------ |
+| symbol       | 交易对                      |      | String |
+| makerFeeRate | 交易时作为maker，交易手续费 |      | String |
+| takerFeeRate | 交易时作为taker，交易手续费 |      | String |
 
 spotConfig对象：
 
-| 字段     | 说明   | 必填(是/否/可选) | 备注                   | 类型                                          |
-| -------- | ------ | ---------------- | ---------------------- | --------------------------------------------- |
-| symbol   | 交易对 | 是               |                        | String                                        |
-| accuracy | 精度   | 是               | 包含价格精度和数量精度 | String[2](第一个为价格精度，第二个为数量精度) |
+| 字段     | 说明   | 备注                   | 类型                                          |
+| -------- | ------ | ---------------------- | --------------------------------------------- |
+| symbol   | 交易对 |                        | String                                        |
+| accuracy | 精度   | 包含价格精度和数量精度 | String[2](第一个为价格精度，第二个为数量精度) |
 
 响应示例：
 
@@ -210,14 +211,14 @@ spotConfig对象：
 
 返回结果说明:
 
-| 字段 | 说明             | 必填(是/否/可选) | 备注 | 类型   |
-| ---- | ---------------- | ---------------- | ---- | ------ |
-| c    | 24小时最新成交价 | 是               |      | String |
-| h    | 24小时最高价     | 是               |      | String |
-| l    | 24小时最低价     | 是               |      | String |
-| p    | 24小时涨跌幅     | 是               |      | String |
-| v    | 24小时成交量     | 是               |      | String |
-| s    | 交易对           | 是               |      | String |
+| 字段 | 说明             | 备注 | 类型   |
+| ---- | ---------------- | ---- | ------ |
+| c    | 24小时最新成交价 |      | String |
+| h    | 24小时最高价     |      | String |
+| l    | 24小时最低价     |      | String |
+| p    | 24小时涨跌幅     |      | String |
+| v    | 24小时成交量     |      | String |
+| s    | 交易对           |      | String |
 
 响应示例：
 
@@ -252,11 +253,11 @@ spotConfig对象：
 
 返回结果说明:
 
-| 字段 | 说明                 | 必填(是/否/可选) | 备注         | 类型                                    |
-| ---- | -------------------- | ---------------- | ------------ | --------------------------------------- |
-| b    | 买方向订单薄（bids） | 是               |              | String[2]（第一个为价格，第二个为数量） |
-| s    | 卖方向订单薄（asks） | 是               |              | String[2]（第一个为价格，第二个为数量） |
-| ver  | 版本号               | 是               | 防止消息回溯 | String                                  |
+| 字段 | 说明                 | 备注         | 类型                                    |
+| ---- | -------------------- | ------------ | --------------------------------------- |
+| b    | 买方向订单薄（bids） |              | String[2]（第一个为价格，第二个为数量） |
+| s    | 卖方向订单薄（asks） |              | String[2]（第一个为价格，第二个为数量） |
+| ver  | 版本号               | 防止消息回溯 | String                                  |
 
 响应示例：
 
@@ -304,13 +305,13 @@ spotConfig对象：
 
 返回结果说明:
 
-| 字段 | 说明     | 必填(是/否/可选) | 备注 | 类型   |
-| ---- | -------- | ---------------- | ---- | ------ |
-| p    | 成交价格 | 是               |      | String |
-| s    | 交易类型 | 是               |      | String |
-| v    | 成交量   | 是               |      | String |
-| t    | 时间戳   | 是               |      | String |
-| ver  | 版本号   | 是               |      | String |
+| 字段 | 说明     | 备注 | 类型   |
+| ---- | -------- | ---- | ------ |
+| p    | 成交价格 |      | String |
+| s    | 交易类型 |      | String |
+| v    | 成交量   |      | String |
+| t    | 时间戳   |      | String |
+| ver  | 版本号   |      | String |
 
 响应示例：
 	
@@ -346,16 +347,16 @@ spotConfig对象：
 
 返回结果说明:
 
-| 字段 | 说明         | 必填(是/否/可选) | 备注 | 类型   |
-| ---- | ------------ | ---------------- | ---- | ------ |
-| c    | 收盘价       | 是               |      | String |
-| h    | 最高价       | 是               |      | String |
-| l    | 最低价       | 是               |      | String |
-| o    | 开盘价       | 是               |      | String |
-| s    | 累计成交额   | 是               |      | String |
-| t    | 累计成交笔数 | 是               |      | String |
-| time | 时间戳       | 是               |      | String |
-| v    | 累计成交量   | 是               |      | String |
+| 字段 | 说明         | 备注 | 类型   |
+| ---- | ------------ | ---- | ------ |
+| c    | 收盘价       |      | String |
+| h    | 最高价       |      | String |
+| l    | 最低价       |      | String |
+| o    | 开盘价       |      | String |
+| s    | 累计成交额   |      | String |
+| t    | 累计成交笔数 |      | String |
+| time | 时间戳       |      | String |
+| v    | 累计成交量   |      | String |
 
 响应示例：
 	
@@ -399,10 +400,10 @@ spotConfig对象：
 
 返回结果说明:
 
-| 字段    | 说明           | 必填(是/否/可选) | 备注                        | 类型   |
-| ------- | -------------- | ---------------- | --------------------------- | ------ |
-| orderId | 返回平台订单号 | 是               | 供撤单查询使用 不支持 msgNo | String |
-| symbol  | 返回币对符号   | 是               |                             | String |
+| 字段    | 说明           | 备注                        | 类型   |
+| ------- | -------------- | --------------------------- | ------ |
+| orderId | 返回平台订单号 | 供撤单查询使用 不支持 msgNo | String |
+| symbol  | 返回币对符号   |                             | String |
 
 响应示例：
 
@@ -445,13 +446,13 @@ spotConfig对象：
 
 返回结果说明:
 
-| 字段        | 说明     | 必填(是/否/可选) | 备注             | 类型   |
-| ----------- | -------- | ---------------- | ---------------- | ------ |
-| coinType    | 币种类型 | 可选             | 不传查所有       | String |
-| count       | 可用数量 | 是               |                  | String |
-| frozen      | 冻结数量 | 是               |                  | String |
-| btcQuantity | btc估值  | 是               |                  | String |
-| type        | 类型     | 是               | 1=虚拟币，2=法币 |        |
+| 字段        | 说明     | 备注             | 类型   |
+| ----------- | -------- | ---------------- | ------ |
+| coinType    | 币种类型 | 不传查所有       | String |
+| count       | 可用数量 |                  | String |
+| frozen      | 冻结数量 |                  | String |
+| btcQuantity | btc估值  |                  | String |
+| type        | 类型     | 1=虚拟币，2=法币 |        |
 
 响应信息：
 
@@ -487,28 +488,28 @@ spotConfig对象：
 
 返回结果说明:
 
-| 字段 | 说明         | 必填(是/否/可选) | 备注 | 类型 |
-| ---- | ------------ | ---------------- | ---- | ---- |
-| num  | 总条数       | 是               |      | Long |
-| list | 交易明细列表 | 是               |      | List |
+| 字段 | 说明         | 备注 | 类型 |
+| ---- | ------------ | ---- | ---- |
+| num  | 总条数       |      | Long |
+| list | 交易明细列表 |      | List |
 
 返回结果说明 (List):
 
-| 字段          | 说明             | 必填(是/否/可选) | 备注                   | 类型   |
-| ------------- | ---------------- | ---------------- | ---------------------- | ------ |
-| orderId       | 订单号           | 是               |                        | String |
-| orderSign     | 当前订单当前状态 |                  | 当前make还是taker 成交 | String |
-| getCount      | 获得数量         | 是               |                        | String |
-| getCountUnit  | 获得数量单位     | 是               | 币种                   | String |
-| loseCount     | 失去数量         | 是               |                        | String |
-| loseCountUnit | 失去数量         | 是               | 币种                   | String |
-| price         | 成交价格         | 是               |                        | String |
-| priceUnit     | 成交价格单位     | 是               | 币种                   | String |
-| fee           | 手续费           | 是               | 手续费                 | String |
-| feeUnit       | 手续费单位       | 是               | 币种                   | String |
-| time          | 时间             | 是               |                        | Long   |
-| fsymbol       | 交易币对         | 是               | BTC-USDT               | String |
-| side          | 方向             | 是               | 买 or 卖               | String |
+| 字段          | 说明             | 备注                   | 类型   |
+| ------------- | ---------------- | ---------------------- | ------ |
+| orderId       | 订单号           |                        | String |
+| orderSign     | 当前订单当前状态 | 当前make还是taker 成交 | String |
+| getCount      | 获得数量         |                        | String |
+| getCountUnit  | 获得数量单位     | 币种                   | String |
+| loseCount     | 失去数量         |                        | String |
+| loseCountUnit | 失去数量         | 币种                   | String |
+| price         | 成交价格         |                        | String |
+| priceUnit     | 成交价格单位     | 币种                   | String |
+| fee           | 手续费           | 手续费                 | String |
+| feeUnit       | 手续费单位       | 币种                   | String |
+| time          | 时间             |                        | Long   |
+| fsymbol       | 交易币对         | BTC-USDT               | String |
+| side          | 方向             | 买 or 卖               | String |
 
 响应示例：
 	
@@ -559,26 +560,26 @@ spotConfig对象：
 
 返回结果说明:
 
-| 字段 | 说明     | 必填(是/否/可选) | 备注 | 类型 |
-| ---- | -------- | ---------------- | ---- | ---- |
-| num  | 总条数   | 是               |      | Long |
-| list | 订单列表 | 是               |      | List |
+| 字段 | 说明     | 备注 | 类型 |
+| ---- | -------- | ---- | ---- |
+| num  | 总条数   |      | Long |
+| list | 订单列表 |      | List |
 
 list说明：
 
-| 字段       | 说明         | 必填(是/否/可选) | 备注                           | 类型    |
-| ---------- | ------------ | ---------------- | ------------------------------ | ------- |
-| orderId    | 订单id       | 是               |                                | String  |
-| symbol     |              | 是               |                                | String  |
-| price      | 挂单价格     | 是               |                                | decimal |
-| tradedNum  | 已成交数量   | 是               |                                | Decimal |
-| quantity   | 挂单数量     | 是               |                                | Decimal |
-| avgPrice   | 平均成交价格 | 是               |                                | Decimal |
-| status     | 订单状态     | 是               | send，pending，success，cancel | String  |
-| type       | 订单类型     | 是               | market，limit                  | String  |
-| side       | 订单方向     | 是               | buy，sell                      | String  |
-| createTime | 挂单时间     | 是               |                                | Date    |
-| tradeTotal | 委托总额     | 是               |                                | Decimal |
+| 字段       | 说明         | 备注                           | 类型    |
+| ---------- | ------------ | ------------------------------ | ------- |
+| orderId    | 订单id       |                                | String  |
+| symbol     |              |                                | String  |
+| price      | 挂单价格     |                                | decimal |
+| tradedNum  | 已成交数量   |                                | Decimal |
+| quantity   | 挂单数量     |                                | Decimal |
+| avgPrice   | 平均成交价格 |                                | Decimal |
+| status     | 订单状态     | send，pending，success，cancel | String  |
+| type       | 订单类型     | market，limit                  | String  |
+| side       | 订单方向     | buy，sell                      | String  |
+| createTime | 挂单时间     |                                | Date    |
+| tradeTotal | 委托总额     |                                | Decimal |
 
 响应示例：
 
@@ -623,19 +624,19 @@ list说明：
 
 返回结果说明：
 
-| 字段       | 说明         | 必填(是/否/可选) | 备注                           | 类型    |
-| ---------- | ------------ | ---------------- | ------------------------------ | ------- |
-| orderId    | 订单id       | 是               |                                | String  |
-| symbol     |              | 是               |                                | String  |
-| price      | 挂单价格     | 是               |                                | decimal |
-| tradedNum  | 已成交数量   | 是               |                                | Decimal |
-| quantity   | 挂单数量     | 是               |                                | Decimal |
-| avgPrice   | 平均成交价格 | 是               |                                | Decimal |
-| status     | 订单状态     | 是               | send，pending，success，cancel | String  |
-| type       | 订单类型     | 是               | market，limit                  | String  |
-| side       | 订单方向     | 是               | buy，sell                      | String  |
-| createTime | 挂单时间     | 是               |                                | Date    |
-| tradeTotal | 委托总额     | 是               |                                | Decimal |
+| 字段       | 说明         | 备注                           | 类型    |
+| ---------- | ------------ | ------------------------------ | ------- |
+| orderId    | 订单id       |                                | String  |
+| symbol     |              |                                | String  |
+| price      | 挂单价格     |                                | decimal |
+| tradedNum  | 已成交数量   |                                | Decimal |
+| quantity   | 挂单数量     |                                | Decimal |
+| avgPrice   | 平均成交价格 |                                | Decimal |
+| status     | 订单状态     | send，pending，success，cancel | String  |
+| type       | 订单类型     | market，limit                  | String  |
+| side       | 订单方向     | buy，sell                      | String  |
+| createTime | 挂单时间     |                                | Date    |
+| tradeTotal | 委托总额     |                                | Decimal |
 
 响应示例：
 
@@ -676,26 +677,26 @@ list说明：
 
 返回结果说明:
 
-| 字段 | 说明     | 必填(是/否/可选) | 备注 | 类型 |
-| ---- | -------- | ---------------- | ---- | ---- |
-| num  | 总条数   | 是               |      | Long |
-| list | 订单列表 | 是               |      | List |
+| 字段 | 说明     | 备注 | 类型 |
+| ---- | -------- | ---- | ---- |
+| num  | 总条数   |      | Long |
+| list | 订单列表 |      | List |
 
 list说明：
 
-| 字段       | 说明         | 必填(是/否/可选) | 备注                           | 类型    |
-| ---------- | ------------ | ---------------- | ------------------------------ | ------- |
-| orderId    | 订单id       | 是               |                                | String  |
-| symbol     | 市场类型     | 是               |                                | String  |
-| price      | 挂单价格     | 是               |                                | decimal |
-| tradedNum  | 已成交数量   | 是               |                                | Decimal |
-| quantity   | 挂单数量     | 是               |                                | Decimal |
-| avgPrice   | 平均成交价格 | 是               |                                | Decimal |
-| status     | 订单状态     | 是               | send，pending，success，cancel | String  |
-| type       | 订单类型     | 是               | market，limit                  | String  |
-| side       | 订单方向     | 是               | buy，sell                      | String  |
-| createTime | 挂单时间     | 是               |                                | Date    |
-| tradeTotal | 委托总额     | 是               |                                | Decimal |
+| 字段       | 说明         | 备注                           | 类型    |
+| ---------- | ------------ | ------------------------------ | ------- |
+| orderId    | 订单id       |                                | String  |
+| symbol     | 市场类型     |                                | String  |
+| price      | 挂单价格     |                                | decimal |
+| tradedNum  | 已成交数量   |                                | Decimal |
+| quantity   | 挂单数量     |                                | Decimal |
+| avgPrice   | 平均成交价格 |                                | Decimal |
+| status     | 订单状态     | send，pending，success，cancel | String  |
+| type       | 订单类型     | market，limit                  | String  |
+| side       | 订单方向     | buy，sell                      | String  |
+| createTime | 挂单时间     |                                | Date    |
+| tradeTotal | 委托总额     |                                | Decimal |
 
 响应示例：
 
@@ -741,14 +742,14 @@ list说明：
 
 返回结果说明:
 
-| 字段      | 说明                       | 必填(是/否/可选) | 备注 | 类型       |
-| --------- | -------------------------- | ---------------- | ---- | ---------- |
-| id        |                            | 是               |      | Long       |
-| price     | 成交价格                   | 是               |      | BigDecimal |
-| amount    | 成交量                     | 是               |      | BigDecimal |
-| side      | 成交类型（buy or sell）    | 是               |      | String     |
-| direction | 成交角色（taker or maker） | 是               |      | String     |
-| time      | 成交时间                   | 是               |      | Date       |
+| 字段      | 说明                       | 备注 | 类型       |
+| --------- | -------------------------- | ---- | ---------- |
+| id        |                            |      | Long       |
+| price     | 成交价格                   |      | BigDecimal |
+| amount    | 成交量                     |      | BigDecimal |
+| side      | 成交类型（buy or sell）    |      | String     |
+| direction | 成交角色（taker or maker） |      | String     |
+| time      | 成交时间                   |      | Date       |
 
 响应示例：
 
@@ -786,11 +787,11 @@ list说明：
 
 返回结果说明:
 
-| 字段 | 说明               | 必填(是/否/可选) | 备注                                    | 类型   |
-| ---- | ------------------ | ---------------- | --------------------------------------- | ------ |
-| b    | 买方向订单薄(bids) | 是               | （以:分割，第一个为价格，第二个为数量） | String |
-| s    | 卖方向订单薄(asks) | 是               | （以:分割，第一个为价格，第二个为数量） | String |
-| type | 类型               |                  |                                         |        |
+| 字段 | 说明               | 备注                                    | 类型   |
+| ---- | ------------------ | --------------------------------------- | ------ |
+| b    | 买方向订单薄(bids) | （以:分割，第一个为价格，第二个为数量） | String |
+| s    | 卖方向订单薄(asks) | （以:分割，第一个为价格，第二个为数量） | String |
+| type | 类型               |                                         |        |
 
 响应示例：
 
@@ -821,22 +822,22 @@ list说明：
 
 返回结果说明:
 
-| 字段         | 说明                             | 必填(是/否/可选) | 备注 | 类型   |
-| ------------ | -------------------------------- | ---------------- | ---- | ------ |
-| symbol       | 合约符号                         | 是               |      | String |
-| type         | 类型                             | 是               |      | String |
-| lastPrice    | 最新成交价                       | 是               |      | String |
-| high         | 24小时最高                       | 是               |      | String |
-| low          | 24小时最低                       | 是               |      | String |
-| volume       | 24小时成交量                     | 是               |      | String |
-| change       | 需要*100才是百分数               | 是               |      | String |
-| openValue    | 未平仓数量                       | 是               |      | String |
-| fundRate0    | 下次合约费率交换值               | 是               |      | String |
-| fundTime0    | 下次费率交换的时间(时间戳到毫秒) | 是               |      | String |
-| adlRanker    | ADL排位区间                      | 是               |      | String |
-| ver          | 版本号                           | 是               |      | String |
-| openInterest |                                  | 是               |      | String |
-| turnover     |                                  | 是               |      | String |
+| 字段         | 说明                             | 备注 | 类型   |
+| ------------ | -------------------------------- | ---- | ------ |
+| symbol       | 合约符号                         |      | String |
+| type         | 类型                             |      | String |
+| lastPrice    | 最新成交价                       |      | String |
+| high         | 24小时最高                       |      | String |
+| low          | 24小时最低                       |      | String |
+| volume       | 24小时成交量                     |      | String |
+| change       | 需要*100才是百分数               |      | String |
+| openValue    | 未平仓数量                       |      | String |
+| fundRate0    | 下次合约费率交换值               |      | String |
+| fundTime0    | 下次费率交换的时间(时间戳到毫秒) |      | String |
+| adlRanker    | ADL排位区间                      |      | String |
+| ver          | 版本号                           |      | String |
+| openInterest |                                  |      | String |
+| turnover     |                                  |      | String |
 
 响应示例：
 
@@ -893,9 +894,9 @@ list说明：
 
 返回结果说明:
 
-| 字段    | 说明           | 必填(是/否/可选) | 备注                        | 类型   |
-| ------- | -------------- | ---------------- | --------------------------- | ------ |
-| orderId | 返回平台订单号 | 是               | 供撤单查询使用 不支持 msgNo | String |
+| 字段    | 说明           | 备注                        | 类型   |
+| ------- | -------------- | --------------------------- | ------ |
+| orderId | 返回平台订单号 | 供撤单查询使用 不支持 msgNo | String |
 
 响应示例：
 
@@ -953,21 +954,21 @@ list说明：
 
 返回参数说明：
 
-| 字段             | 说明             | 必填(是/否/可选) | 备注 | 类型   |
-| ---------------- | ---------------- | ---------------- | ---- | ------ |
-| positionId       | 仓位ID           | 是               |      | String |
-| symbol           | 合约符号         | 是               |      | String |
-| amount           | 仓位数量         | 是               |      | String |
-| margin           | 仓位保证金       | 是               |      | String |
-| positionValue    | 仓位价值         | 是               |      | String |
-| leverage         | 杠杆             | 是               |      | String |
-| status           | 仓位状态         | 是               |      | String |
-| openPositionTime | 开仓时间的时间戳 | 是               |      | String |
-| flatPositionTime | 平仓时间的时间戳 | 是               |      | String |
-| realProfit       | 已实现盈亏       | 是               |      | String |
-| liquidation      | 强平价           | 否               |      | String |
-| side             | 仓位方向         | 是               |      | String |
-| frozen           | 仓位冻结金       | 是               |      | String |
+| 字段             | 说明             | 备注 | 类型   |
+| ---------------- | ---------------- | ---- | ------ |
+| positionId       | 仓位ID           |      | String |
+| symbol           | 合约符号         |      | String |
+| amount           | 仓位数量         |      | String |
+| margin           | 仓位保证金       |      | String |
+| positionValue    | 仓位价值         |      | String |
+| leverage         | 杠杆             |      | String |
+| status           | 仓位状态         |      | String |
+| openPositionTime | 开仓时间的时间戳 |      | String |
+| flatPositionTime | 平仓时间的时间戳 |      | String |
+| realProfit       | 已实现盈亏       |      | String |
+| liquidation      | 强平价           |      | String |
+| side             | 仓位方向         |      | String |
+| frozen           | 仓位冻结金       |      | String |
 
 #### 5.调整保证金
 
@@ -1000,21 +1001,21 @@ list说明：
 
 返回参数说明：
 
-| 字段     | 说明           | 必填(是/否/可选) | 备注 | 类型 |
-| -------- | -------------- | ---------------- | ---- | ---- |
-| pageInfo | 返回的分页信息 | 是               |      | 对象 |
-| records  | 返回的记录数组 | 是               |      | 数组 |
+| 字段     | 说明           | 备注 | 类型 |
+| -------- | -------------- | ---- | ---- |
+| pageInfo | 返回的分页信息 |      | 对象 |
+| records  | 返回的记录数组 |      | 数组 |
 
 pageInfo:通用分页参数（见orderList）
 
 records数组中的元素参数：
 
-| 字段     | 说明         | 必填(是/否/可选) | 备注 | 类型   |
-| -------- | ------------ | ---------------- | ---- | ------ |
-| btcValue | BTC估值      | 是               |      | String |
-| coinId   | 币种类型     | 是               |      | String |
-| count    | 资产数量     | 是               |      | String |
-| frozen   | 冻结资产数量 | 是               |      | String |
+| 字段     | 说明         | 备注 | 类型   |
+| -------- | ------------ | ---- | ------ |
+| btcValue | BTC估值      |      | String |
+| coinId   | 币种类型     |      | String |
+| count    | 资产数量     |      | String |
+| frozen   | 冻结资产数量 |      | String |
 
 #### 7.查询用户私有合约信息 
 
@@ -1030,12 +1031,12 @@ records数组中的元素参数：
 
 返回参数说明：
 
-| 字段      | 说明               | 必填(是/否/可选) | 备注 | 类型   |
-| --------- | ------------------ | ---------------- | ---- | ------ |
-| symbol    | 合约符号           | 是               |      | String |
-| leverage  | 杠杆值的字符串形式 | 是               |      | String |
-| fundRate0 | 资金费用           | 是               |      | String |
-| riskLimit | 风险限额           | 是               |      | String |
+| 字段      | 说明               | 备注 | 类型   |
+| --------- | ------------------ | ---- | ------ |
+| symbol    | 合约符号           |      | String |
+| leverage  | 杠杆值的字符串形式 |      | String |
+| fundRate0 | 资金费用           |      | String |
+| riskLimit | 风险限额           |      | String |
 
 #### 8.查询用户合约账户信息 
 
@@ -1051,14 +1052,14 @@ records数组中的元素参数：
 
 返回参数说明：
 
-| 字段                 | 说明               | 必填(是/否/可选) | 备注 | 类型   |
-| -------------------- | ------------------ | ---------------- | ---- | ------ |
-| coin                 | 币种符号           | 是               |      | String |
-| totalAmount          | 总资产             | 是               |      | String |
-| remainMargin         | 剩余保证金         | 是               |      | String |
-| openPositionMargin   | 仓位保证金         | 是               |      | String |
-| openOrderMarginTotal | 活动委托订单保证金 | 是               |      | String |
-| availableAmount      | 可用数量           | 是               |      | String |
+| 字段                 | 说明               | 备注 | 类型   |
+| -------------------- | ------------------ | ---- | ------ |
+| coin                 | 币种符号           |      | String |
+| totalAmount          | 总资产             |      | String |
+| remainMargin         | 剩余保证金         |      | String |
+| openPositionMargin   | 仓位保证金         |      | String |
+| openOrderMarginTotal | 活动委托订单保证金 |      | String |
+| availableAmount      | 可用数量           |      | String |
 
 #### 9.订单列表查询（活动委托和历史委托）
 
@@ -1077,34 +1078,34 @@ records数组中的元素参数：
 
 返回参数说明:
 
-| 字段     | 说明     | 必填(是/否/可选) | 备注 | 类型 |
-| -------- | -------- | ---------------- | ---- | ---- |
-| pageInfo | 分页信息 | 是               |      | 对象 |
-| records  | 记录数组 | 是               |      | 数组 |
+| 字段     | 说明     | 备注 | 类型 |
+| -------- | -------- | ---- | ---- |
+| pageInfo | 分页信息 |      | 对象 |
+| records  | 记录数组 |      | 数组 |
 
 pageInfo：
 
-| 字段        | 说明         | 必填(是/否/可选) | 备注 | 类型 |
-| ----------- | ------------ | ---------------- | ---- | ---- |
-| page        | 分页当前页数 | 是               |      | int  |
-| count       | 每页记录数   | 是               |      | int  |
-| pageTotal   | 总页数       | 是               |      | int  |
-| recordTotal | 总记录数     | 是               |      | int  |
+| 字段        | 说明         | 备注 | 类型 |
+| ----------- | ------------ | ---- | ---- |
+| page        | 分页当前页数 |      | int  |
+| count       | 每页记录数   |      | int  |
+| pageTotal   | 总页数       |      | int  |
+| recordTotal | 总记录数     |      | int  |
 
 records数组中的元素参数：
 
-| 字段       | 说明              | 必填(是/否/可选) | 备注                                      | 类型   |
-| ---------- | ----------------- | ---------------- | ----------------------------------------- | ------ |
-| orderId    | 订单ID            | 是               |                                           | String |
-| symbol     | 合约符号          | 是               |                                           | String |
-| type       | 下单类型          | 是               | limit or market                           | String |
-| side       | 下单方向          | 是               | buy or sell                               | String |
-| price      | 价格，market单为0 | 是               |                                           | String |
-| amountReal | 真实数量          | 是               |                                           | String |
-| amountFill | 成交数量          | 是               |                                           | String |
-| status     | 订单状态          | 是               | open、cancel、filled、rejected、untrigger | String |
-| avgPrice   | 平均成交价        | 是               |                                           | String |
-| time       | 下单的时间戳      | 是               |                                           | Long   |
+| 字段       | 说明              | 备注                                      | 类型   |
+| ---------- | ----------------- | ----------------------------------------- | ------ |
+| orderId    | 订单ID            |                                           | String |
+| symbol     | 合约符号          |                                           | String |
+| type       | 下单类型          | limit or market                           | String |
+| side       | 下单方向          | buy or sell                               | String |
+| price      | 价格，market单为0 |                                           | String |
+| amountReal | 真实数量          |                                           | String |
+| amountFill | 成交数量          |                                           | String |
+| status     | 订单状态          | open、cancel、filled、rejected、untrigger | String |
+| avgPrice   | 平均成交价        |                                           | String |
+| time       | 下单的时间戳      |                                           | Long   |
 
 
 

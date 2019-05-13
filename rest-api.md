@@ -90,7 +90,7 @@ if need page, like:
 
 ### [Normal]
 
-#### 1.query server time
+#### 1. query server time
 
 request uri：{requestUrl}/serverTime
 
@@ -119,39 +119,40 @@ request parameter infomation：null
 
 response description:
 
-| Field          | Description     | Required(Y or N) | Mark | Type   |
-| -------------- | --------------- | ---------------- | ---- | ------ |
-| spotConfig     | spot config     | Y                |      | Object |
-| coinConfig     | coin config     | Y                |      | Object |
-| contractConfig | contract config | Y                |      | Object |
+| Field          | Description     | Mark | Type   |
+| -------------- | --------------- | ---- | ------ |
+| spotConfig     | spot config     |      | Object |
+| coinConfig     | coin config     |      | Object |
+| contractConfig | contract config |      | Object |
 
 coinConfig：
 
-| Field          | Description           | Required(Y or N) | Mark | Type   |
-| -------------- | --------------------- | ---------------- | ---- | ------ |
-| name           | coin name             | Y                |      | String |
-| fullName       | full name             | Y                |      | String |
-| depositStatus  | can deposit           | Y                |      | String |
-| withdrawStatus | can withdraw          | Y                |      | String |
-| minWithdraw    | min withdraw amount   | Y                |      | String |
-| withdrawFee    | withdraw fee          | Y                |      | String |
-| makerFeeRate   | maker transaction fee | Y                |      | String |
-| takerFeeRate   | taker transaction fee | Y                |      | String |
+| Field          | Description           | Mark | Type   |
+| -------------- | --------------------- | ---- | ------ |
+| name           | coin name             |      | String |
+| fullName       | full name             |      | String |
+| depositStatus  | can deposit           |      | String |
+| withdrawStatus | can withdraw          |      | String |
+| minWithdraw    | min withdraw amount   |      | String |
+| withdrawFee    | withdraw fee          |      | String |
+| makerFeeRate   | maker transaction fee |      | String |
+| takerFeeRate   | taker transaction fee |      | String |
+| minTxAmt       |                       |      | String |
 
 contractConfig：
 
-| Field        | Description           | Required(Y or N) | Mark | Type   |
-| ------------ | --------------------- | ---------------- | ---- | ------ |
-| symbol       |                       | Y                |      | String |
-| makerFeeRate | maker transaction fee | Y                |      | String |
-| takerFeeRate | taker transaction fee | Y                |      | String |
+| Field        | Description           | Mark | Type   |
+| ------------ | --------------------- | ---- | ------ |
+| symbol       |                       |      | String |
+| makerFeeRate | maker transaction fee |      | String |
+| takerFeeRate | taker transaction fee |      | String |
 
 spotConfig：
 
-| Field    | Description | Required(Y or N) | Mark | Type     |
-| -------- | ----------- | ---------------- | ---- | -------- |
-| symbol   |             | Y                |      | String   |
-| accuracy |             | Y                |      | String[] |
+| Field    | Description | Mark | Type     |
+| -------- | ----------- | ---- | -------- |
+| symbol   |             |      | String   |
+| accuracy |             |      | String[] |
 
 response example：
 
@@ -211,14 +212,14 @@ request parameter infomation：
 
 response:
 
-| Field | Description                        | Required(Y or N) | Mark | Type   |
-| ----- | ---------------------------------- | ---------------- | ---- | ------ |
-| c     | last price in the past of 24 hours | Y                |      | String |
-| h     | high price in the past of 24 hours | Y                |      | String |
-| l     | low price in the past of 24 hours  | Y                |      | String |
-| p     | price change in the past of hours  | Y                |      | String |
-| v     | deal quantity in the past of hours | Y                |      | String |
-| s     | symbol                             | Y                |      | String |
+| Field | Description                        | Mark | Type   |
+| ----- | ---------------------------------- | ---- | ------ |
+| c     | last price in the past of 24 hours |      | String |
+| h     | high price in the past of 24 hours |      | String |
+| l     | low price in the past of 24 hours  |      | String |
+| p     | price change in the past of hours  |      | String |
+| v     | deal quantity in the past of hours |      | String |
+| s     | symbol                             |      | String |
 
 response example：
 
@@ -253,12 +254,12 @@ request parameter infomation：
 
 response:
 
-| Field  | Description    | Required(Y or N) | Mark | Type                                      |
-| ------ | -------------- | ---------------- | ---- | ----------------------------------------- |
-| b      | Bids           | Y                |      | String[2]（first:price, second:quantity） |
-| s      | Asks           | Y                |      | String[2]（first:price, second:quantity） |
-| ver    | version number | Y                |      | String                                    |
-| symbol |                | Y                |      | String                                    |
+| Field  | Description    | Mark | Type                                      |
+| ------ | -------------- | ---- | ----------------------------------------- |
+| b      | Bids           |      | String[2]（first:price, second:quantity） |
+| s      | Asks           |      | String[2]（first:price, second:quantity） |
+| ver    | version number |      | String                                    |
+| symbol |                |      | String                                    |
 
 response example：
 
@@ -307,13 +308,13 @@ request parameter infomation：
 
 response:
 
-| Field | Description   | Required(Y or N) | Mark        | Type   |
-| ----- | ------------- | ---------------- | ----------- | ------ |
-| p     | deal price    | Y                |             | String |
-| s     | trade type    | Y                | buy or sell | String |
-| v     | deal quantity | Y                |             | String |
-| t     | timestamp     | Y                |             | String |
-| ver   |               | Y                |             | String |
+| Field | Description   | Mark        | Type   |
+| ----- | ------------- | ----------- | ------ |
+| p     | deal price    |             | String |
+| s     | trade type    | buy or sell | String |
+| v     | deal quantity |             | String |
+| t     | timestamp     |             | String |
+| ver   |               |             | String |
 
 response example：
 	
@@ -349,16 +350,16 @@ request parameter infomation：
 
 response:
 
-| Field | Description         | Required(Y or N) | Mark | Type   |
-| ----- | ------------------- | ---------------- | ---- | ------ |
-| c     | close price         | Y                |      | String |
-| h     | hign price          | Y                |      | String |
-| l     | low price           | Y                |      | String |
-| o     | open price          | Y                |      | String |
-| s     | total deal money    | Y                |      | String |
-| t     | total deal times    | Y                |      | String |
-| time  | timestamp           | Y                |      | String |
-| v     | total deal quantity | Y                |      | String |
+| Field | Description         | Mark | Type   |
+| ----- | ------------------- | ---- | ------ |
+| c     | close price         |      | String |
+| h     | hign price          |      | String |
+| l     | low price           |      | String |
+| o     | open price          |      | String |
+| s     | total deal money    |      | String |
+| t     | total deal times    |      | String |
+| time  | timestamp           |      | String |
+| v     | total deal quantity |      | String |
 
 response example：
 	
@@ -402,10 +403,10 @@ request parameter infomation：
 
 response description:
 
-| Field   | Description | Required(Y or N) | Mark | Type   |
-| ------- | ----------- | ---------------- | ---- | ------ |
-| orderId |             | Y                |      | String |
-| symbol  |             | Y                |      | String |
+| Field   | Description | Mark | Type   |
+| ------- | ----------- | ---- | ------ |
+| orderId |             |      | String |
+| symbol  |             |      | String |
 
 response example：
 
@@ -448,13 +449,13 @@ request parameter infomation:
 
 response description:
 
-| Field       | Description        | Required(Y or N) | Mark                    | Type   |
-| ----------- | ------------------ | ---------------- | ----------------------- | ------ |
-| coinType    | coin type          | Y                |                         | String |
-| count       | usable amount      | Y                |                         | String |
-| frozen      | frozen amount      | Y                |                         | String |
-| btcQuantity | probably equal BTC | Y                |                         | String |
-| type        | type               | Y                | 1=virtual coin，2=legal |        |
+| Field       | Description        | Mark                    | Type   |
+| ----------- | ------------------ | ----------------------- | ------ |
+| coinType    | coin type          |                         | String |
+| count       | usable amount      |                         | String |
+| frozen      | frozen amount      |                         | String |
+| btcQuantity | probably equal BTC |                         | String |
+| type        | type               | 1=virtual coin，2=legal |        |
 
 response example：
 
@@ -491,28 +492,28 @@ request parameter infomation:
 
 response description:
 
-| Field | Description   | Required(Y or N) | Mark | Type |
-| ----- | ------------- | ---------------- | ---- | ---- |
-| num   | total numbers | Y                |      | Long |
-| list  | trade detail  | Y                |      | List |
+| Field | Description   | Mark | Type |
+| ----- | ------------- | ---- | ---- |
+| num   | total numbers |      | Long |
+| list  | trade detail  |      | List |
 
 response description (List):
 
-| Field         | Description  | Required(Y or N) | Mark                    | Type   |
-| ------------- | ------------ | ---------------- | ----------------------- | ------ |
-| orderId       |              | Y                |                         | String |
-| orderSign     | order status | Y                | deal by taker or maker? | String |
-| getCount      | get          | Y                |                         | String |
-| getCountUnit  | coin type    | Y                |                         | String |
-| loseCount     | lose         | Y                |                         | String |
-| loseCountUnit | coin type    | Y                |                         | String |
-| price         | deal price   | Y                |                         | String |
-| priceUnit     | coin type    | Y                |                         | String |
-| fee           | deal fee     | Y                | fee                     | String |
-| feeUnit       | coin type    | Y                |                         | String |
-| time          | time         | Y                |                         | Long   |
-| fsymbol       | symbol       | Y                | BTC-USDT                | String |
-| side          | order side   | Y                | buy or sell             | String |
+| Field         | Description  | Mark                    | Type   |
+| ------------- | ------------ | ----------------------- | ------ |
+| orderId       |              |                         | String |
+| orderSign     | order status | deal by taker or maker? | String |
+| getCount      | get          |                         | String |
+| getCountUnit  | coin type    |                         | String |
+| loseCount     | lose         |                         | String |
+| loseCountUnit | coin type    |                         | String |
+| price         | deal price   |                         | String |
+| priceUnit     | coin type    |                         | String |
+| fee           | deal fee     | fee                     | String |
+| feeUnit       | coin type    |                         | String |
+| time          | time         |                         | Long   |
+| fsymbol       | symbol       | BTC-USDT                | String |
+| side          | order side   | buy or sell             | String |
 
 response example：
 	
@@ -564,26 +565,26 @@ request parameter information:
 
 response description:
 
-| Field | Description   | Required(Y or N) | Mark | Type |
-| ----- | ------------- | ---------------- | ---- | ---- |
-| num   | total numbers | Y                |      | Long |
-| list  | orde list     | Y                |      | List |
+| Field | Description   | Mark | Type |
+| ----- | ------------- | ---- | ---- |
+| num   | total numbers |      | Long |
+| list  | orde list     |      | List |
 
 list description：
 
-| Field      | Description        | Required(Y or N) | Mark                           | Type    |
-| ---------- | ------------------ | ---------------- | ------------------------------ | ------- |
-| orderId    |                    | Y                |                                | String  |
-| symbol     |                    | Y                |                                | String  |
-| price      | order price        | Y                |                                | decimal |
-| tradedNum  | completed quantity | Y                |                                | Decimal |
-| quantity   | total quantity     | Y                |                                | Decimal |
-| avgPrice   | average price      | Y                |                                | Decimal |
-| status     | order status       | Y                | send，pending，success，cancel | String  |
-| type       | order type         | Y                | market，limit                  | String  |
-| side       | order side         | Y                | buy，sell                      | String  |
-| createTime | order create time  | Y                |                                | Date    |
-| tradeTotal |                    | Y                |                                | Decimal |
+| Field      | Description        | Mark                           | Type    |
+| ---------- | ------------------ | ------------------------------ | ------- |
+| orderId    |                    |                                | String  |
+| symbol     |                    |                                | String  |
+| price      | order price        |                                | decimal |
+| tradedNum  | completed quantity |                                | Decimal |
+| quantity   | total quantity     |                                | Decimal |
+| avgPrice   | average price      |                                | Decimal |
+| status     | order status       | send，pending，success，cancel | String  |
+| type       | order type         | market，limit                  | String  |
+| side       | order side         | buy，sell                      | String  |
+| createTime | order create time  |                                | Date    |
+| tradeTotal |                    |                                | Decimal |
 
 response example：
 
@@ -629,19 +630,19 @@ request parameter infomation:
 
 response description：
 
-| Field      | Description        | Required(Y or N) | Mark                           | Type    |
-| ---------- | ------------------ | ---------------- | ------------------------------ | ------- |
-| orderId    |                    | Y                |                                | String  |
-| symbol     |                    | Y                |                                | String  |
-| price      | order price        | Y                |                                | decimal |
-| tradedNum  | completed quantity | Y                |                                | Decimal |
-| quantity   | total quantity     | Y                |                                | Decimal |
-| avgPrice   | average price      | Y                |                                | Decimal |
-| status     | order status       | Y                | send，pending，success，cancel | String  |
-| type       | order type         | Y                | market，limit                  | String  |
-| side       | order side         | Y                | buy，sell                      | String  |
-| createTime | create time        | Y                |                                | Date    |
-| tradeTotal |                    | Y                |                                | Decimal |
+| Field      | Description        | Mark                           | Type    |
+| ---------- | ------------------ | ------------------------------ | ------- |
+| orderId    |                    |                                | String  |
+| symbol     |                    |                                | String  |
+| price      | order price        |                                | decimal |
+| tradedNum  | completed quantity |                                | Decimal |
+| quantity   | total quantity     |                                | Decimal |
+| avgPrice   | average price      |                                | Decimal |
+| status     | order status       | send，pending，success，cancel | String  |
+| type       | order type         | market，limit                  | String  |
+| side       | order side         | buy，sell                      | String  |
+| createTime | create time        |                                | Date    |
+| tradeTotal |                    |                                | Decimal |
 
 response example：
 
@@ -682,26 +683,26 @@ request parameter information:
 
 response description:
 
-| Field | Description   | Required(Y or N) | Mark | Type |
-| ----- | ------------- | ---------------- | ---- | ---- |
-| num   | total numbers | Y                |      | Long |
-| list  | orde list     | Y                |      | List |
+| Field | Description   | Mark | Type |
+| ----- | ------------- | ---- | ---- |
+| num   | total numbers |      | Long |
+| list  | orde list     |      | List |
 
 list description：
 
-| Field      | Description        | Required(Y or N) | Mark                           | Type    |
-| ---------- | ------------------ | ---------------- | ------------------------------ | ------- |
-| orderId    |                    | Y                |                                | String  |
-| symbol     |                    | Y                |                                | String  |
-| price      | order price        | Y                |                                | decimal |
-| tradedNum  | completed quantity | Y                |                                | Decimal |
-| quantity   | total quantity     | Y                |                                | Decimal |
-| avgPrice   | average price      | Y                |                                | Decimal |
-| status     | order status       | Y                | send，pending，success，cancel | String  |
-| type       | order type         | Y                | market，limit                  | String  |
-| side       | order side         | Y                | buy，sell                      | String  |
-| createTime | order create time  | Y                |                                | Date    |
-| tradeTotal |                    | Y                |                                | Decimal |
+| Field      | Description        | Mark                           | Type    |
+| ---------- | ------------------ | ------------------------------ | ------- |
+| orderId    |                    |                                | String  |
+| symbol     |                    |                                | String  |
+| price      | order price        |                                | decimal |
+| tradedNum  | completed quantity |                                | Decimal |
+| quantity   | total quantity     |                                | Decimal |
+| avgPrice   | average price      |                                | Decimal |
+| status     | order status       | send，pending，success，cancel | String  |
+| type       | order type         | market，limit                  | String  |
+| side       | order side         | buy，sell                      | String  |
+| createTime | order create time  |                                | Date    |
+| tradeTotal |                    |                                | Decimal |
 
 response example：
 
@@ -748,14 +749,14 @@ request parameter information:
 
 response description:
 
-| Field     | Description | Required(Y or N) | Mark | Type       |
-| --------- | ----------- | ---------------- | ---- | ---------- |
-| id        |             | Y                |      | Long       |
-| price     |             | Y                |      | BigDecimal |
-| amount    |             | Y                |      | BigDecimal |
-| side      |             | Y                |      | String     |
-| direction |             | Y                |      | String     |
-| time      |             | Y                |      | Date       |
+| Field     | Description | Mark | Type       |
+| --------- | ----------- | ---- | ---------- |
+| id        |             |      | Long       |
+| price     |             |      | BigDecimal |
+| amount    |             |      | BigDecimal |
+| side      |             |      | String     |
+| direction |             |      | String     |
+| time      |             |      | Date       |
 
 response example：
 
@@ -791,11 +792,11 @@ request parameter infomation：
 
 response description:
 
-| Field | Description | Required(Y or N) | Mark                                            | Type   |
-| ----- | ----------- | ---------------- | ----------------------------------------------- | ------ |
-| b     | Bids        | Y                | split by ":",first is price, second is quantity | String |
-| s     | Asks        | Y                | split by ":",first is price, second is quantity | String |
-| type  | type        | Y                |                                                 | String |
+| Field | Description | Mark                                            | Type   |
+| ----- | ----------- | ----------------------------------------------- | ------ |
+| b     | Bids        | split by ":",first is price, second is quantity | String |
+| s     | Asks        | split by ":",first is price, second is quantity | String |
+| type  | type        |                                                 | String |
 
 response example：
 
@@ -826,22 +827,22 @@ request parameter infomation：
 
 response description:
 
-| Field        | Description                                               | Required(Y or N) | Mark | Type   |
-| ------------ | --------------------------------------------------------- | ---------------- | ---- | ------ |
-| symbol       | contract symbol                                           | Y                |      | String |
-| type         | Type                                                      | Y                |      | String |
-| lastPrice    | last price                                                | Y                |      | String |
-| high         | high price in the past of 24 hours                        | Y                |      | String |
-| low          | low price in the past of 24 hours                         | Y                |      | String |
-| volume       | completed quantity in the past of 24 hours                | Y                |      | String |
-| change       | need * 100                                                | Y                |      | String |
-| openValue    | not completed value                                       | Y                |      | String |
-| fundRate0    | contract fee change value in the next time                | Y                |      | String |
-| fundTime0    | contract fee change time(million second) in the next time | Y                |      | String |
-| adlRanker    | ADL range                                                 | Y                |      | String |
-| ver          | version number                                            | Y                |      | String |
-| openInterest |                                                           | Y                |      | String |
-| turnover     |                                                           | Y                |      | String |
+| Field        | Description                                               | Mark | Type   |
+| ------------ | --------------------------------------------------------- | ---- | ------ |
+| symbol       | contract symbol                                           |      | String |
+| type         | Type                                                      |      | String |
+| lastPrice    | last price                                                |      | String |
+| high         | high price in the past of 24 hours                        |      | String |
+| low          | low price in the past of 24 hours                         |      | String |
+| volume       | completed quantity in the past of 24 hours                |      | String |
+| change       | need * 100                                                |      | String |
+| openValue    | not completed value                                       |      | String |
+| fundRate0    | contract fee change value in the next time                |      | String |
+| fundTime0    | contract fee change time(million second) in the next time |      | String |
+| adlRanker    | ADL range                                                 |      | String |
+| ver          | version number                                            |      | String |
+| openInterest |                                                           |      | String |
+| turnover     |                                                           |      | String |
 
 response example：
 
@@ -898,9 +899,9 @@ request parameter infomation：
 
 response description:
 
-| Field   | Description | Required(Y or N) | Mark | Type   |
-| ------- | ----------- | ---------------- | ---- | ------ |
-| orderId |             | Y                |      | String |
+| Field   | Description | Mark | Type   |
+| ------- | ----------- | ---- | ------ |
+| orderId |             |      | String |
 
 response example：
 
@@ -958,21 +959,21 @@ request parameter infomation：
 
 response description：
 
-| Field            | Description           | Required(Y or N) | Mark | Type   |
-| ---------------- | --------------------- | ---------------- | ---- | ------ |
-| positionId       |                       | Y                |      | String |
-| symbol           |                       | Y                |      | String |
-| amount           | position amount       | Y                |      | String |
-| margin           | position margin       | Y                |      | String |
-| positionValue    | position value        | Y                |      | String |
-| leverage         |                       | Y                |      | String |
-| status           | position status       | Y                |      | String |
-| openPositionTime | open position time    | Y                |      | String |
-| flatPositionTime | flat position time    | Y                |      | String |
-| realProfit       | completed profit      | Y                |      | String |
-| liquidation      | force completed price | N                |      | String |
-| side             | position side         | Y                |      | String |
-| frozen           | position frozen       | Y                |      | String |
+| Field            | Description           | Mark | Type   |
+| ---------------- | --------------------- | ---- | ------ |
+| positionId       |                       |      | String |
+| symbol           |                       |      | String |
+| amount           | position amount       |      | String |
+| margin           | position margin       |      | String |
+| positionValue    | position value        |      | String |
+| leverage         |                       |      | String |
+| status           | position status       |      | String |
+| openPositionTime | open position time    |      | String |
+| flatPositionTime | flat position time    |      | String |
+| realProfit       | completed profit      |      | String |
+| liquidation      | force completed price |      | String |
+| side             | position side         |      | String |
+| frozen           | position frozen       |      | String |
 
 #### 5.adjust margin
 
@@ -1005,21 +1006,21 @@ request parameter infomation：
 
 response description：
 
-| Field    | Description | Required(Y or N) | Mark | Type   |
-| -------- | ----------- | ---------------- | ---- | ------ |
-| pageInfo |             | Y                |      | Object |
-| records  |             | Y                |      | Array  |
+| Field    | Description | Mark | Type   |
+| -------- | ----------- | ---- | ------ |
+| pageInfo |             |      | Object |
+| records  |             |      | Array  |
 
 pageInfo:（refer to orderList）
 
 records：
 
-| Field    | Description        | Required(Y or N) | Mark | Type   |
-| -------- | ------------------ | ---------------- | ---- | ------ |
-| btcValue | probably equal BTC | Y                |      | String |
-| coinId   | coin type          | Y                |      | String |
-| count    | usable amount      | Y                |      | String |
-| frozen   | frozen amount      | Y                |      | String |
+| Field    | Description        | Mark | Type   |
+| -------- | ------------------ | ---- | ------ |
+| btcValue | probably equal BTC |      | String |
+| coinId   | coin type          |      | String |
+| count    | usable amount      |      | String |
+| frozen   | frozen amount      |      | String |
 
 #### 7.query user contract info
 
@@ -1035,12 +1036,12 @@ request parameter infomation：
 
 response description:
 
-| Field     | Description     | Required(Y or N) | Mark | Type   |
-| --------- | --------------- | ---------------- | ---- | ------ |
-| symbol    |                 | Y                |      | String |
-| leverage  | leverage number | Y                |      | String |
-| fundRate0 |                 | Y                |      | String |
-| riskLimit | risk limit      | Ys               |      | String |
+| Field     | Description     | Mark | Type   |
+| --------- | --------------- | ---- | ------ |
+| symbol    |                 |      | String |
+| leverage  | leverage number |      | String |
+| fundRate0 |                 |      | String |
+| riskLimit | risk limit      |      | String |
 
 #### 8.query user contract account info 
 
@@ -1056,14 +1057,14 @@ request parameter information：
 
 response description:
 
-| Field                | Description      | Required(Y or N) | Mark | Type   |
-| -------------------- | ---------------- | ---------------- | ---- | ------ |
-| coin                 | coin symbol      | Y                |      | String |
-| totalAmount          | total amount     | Y                |      | String |
-| remainMargin         | remain margin    | Y                |      | String |
-| openPositionMargin   |                  | Y                |      | String |
-| openOrderMarginTotal |                  | Y                |      | String |
-| availableAmount      | available amount | Y                |      | String |
+| Field                | Description      | Mark | Type   |
+| -------------------- | ---------------- | ---- | ------ |
+| coin                 | coin symbol      |      | String |
+| totalAmount          | total amount     |      | String |
+| remainMargin         | remain margin    |      | String |
+| openPositionMargin   |                  |      | String |
+| openOrderMarginTotal |                  |      | String |
+| availableAmount      | available amount |      | String |
 
 #### 9.query order list (open order or history order list)
 
@@ -1082,34 +1083,34 @@ request parameter information：
 
 response description:
 
-| Field    | Description | Required(Y or N) | Mark | Type   |
-| -------- | ----------- | ---------------- | ---- | ------ |
-| pageInfo |             | Y                |      | Object |
-| records  |             | Y                |      | Array  |
+| Field    | Description | Mark | Type   |
+| -------- | ----------- | ---- | ------ |
+| pageInfo |             |      | Object |
+| records  |             |      | Array  |
 
 pageInfo：
 
-| Field       | Description | Required(Y or N) | Mark | Type    |
-| ----------- | ----------- | ---------------- | ---- | ------- |
-| page        |             | Y                |      | Integer |
-| count       |             | Y                |      | Integer |
-| pageTotal   |             | Y                |      | Integer |
-| recordTotal |             | Y                |      | Integer |
+| Field       | Description | Mark | Type    |
+| ----------- | ----------- | ---- | ------- |
+| page        |             |      | Integer |
+| count       |             |      | Integer |
+| pageTotal   |             |      | Integer |
+| recordTotal |             |      | Integer |
 
 records：
 
-| Field      | Description      | Required(Y or N) | Mark                                      | Type   |
-| ---------- | ---------------- | ---------------- | ----------------------------------------- | ------ |
-| orderId    |                  | Y                |                                           | String |
-| symbol     |                  | Y                |                                           | String |
-| type       | order type       | Y                | limit or market                           | String |
-| side       | order side       | Y                | buy or sell                               | String |
-| price      | price            | Y                | when type=market is 0                     | String |
-| amountReal | real amount      | Y                |                                           | String |
-| amountFill | completed amount | Y                |                                           | String |
-| status     | order status     | Y                | open、cancel、filled、rejected、untrigger | String |
-| avgPrice   | average price    | Y                |                                           | String |
-| time       | create time      | Y                |                                           | Long   |
+| Field      | Description      | Mark                                      | Type   |
+| ---------- | ---------------- | ----------------------------------------- | ------ |
+| orderId    |                  |                                           | String |
+| symbol     |                  |                                           | String |
+| type       | order type       | limit or market                           | String |
+| side       | order side       | buy or sell                               | String |
+| price      | price            | when type=market is 0                     | String |
+| amountReal | real amount      |                                           | String |
+| amountFill | completed amount |                                           | String |
+| status     | order status     | open、cancel、filled、rejected、untrigger | String |
+| avgPrice   | average price    |                                           | String |
+| time       | create time      |                                           | Long   |
 
 
 
