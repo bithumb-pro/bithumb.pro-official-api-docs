@@ -1110,21 +1110,21 @@ records数组中的元素参数：
 
 ## [应答码对照表]
 
-| code | msg                    | 说明         | 备注     |
-| ---- | ---------------------- | ------------ | -------- |
-| 0    | success                | 成功         | 请求成功 |
-| 9000 | missing parameter      | 缺少参数     |          |
-| 9001 | version not matched    | 版本号不对   |          |
-| 9002 | verifySignature failed | 验证签名失败 |          |
-| 9004 | access denied          | 请求不允许   |          |
-| 9005 | key expired            | apiKey过期   |          |
-| 9006 | no server              | 无服务       |          |
-| 9999 | system error           | 系统异常     |          |
-|      |                        |              |          |
-|      |                        |              |          |
-|      |                        |              |          |
-|      |                        |              |          |
-|      |                        |              |          |
-|      |                        |              |          |
-|      |                        |              |          |
-|      |                        |              |          |
+| code  | msg                    | 说明             | 备注     |
+| ----- | ---------------------- | ---------------- | -------- |
+| 0     | success                | 成功             | 请求成功 |
+| 9000  | missing parameter      | 缺少参数         |          |
+| 9001  | version not matched    | 版本号不对       |          |
+| 9002  | verifySignature failed | 验证签名失败     |          |
+| 9004  | access denied          | 请求不允许       |          |
+| 9005  | key expired            | apiKey过期       |          |
+| 9006  | no server              | 无服务           |          |
+| 9999  | system error           | 系统异常         |          |
+|       |                        |                  |          |
+|       |                        |                  |          |
+| 20043 |                        | 挂单价格精度错误 |          |
+| 20044 |                        | 挂单数量精度错误 |          |
+|       |                        |                  |          |
+|       |                        |                  |          |
+|       |                        |                  |          |
+|       |                        |                  |          |

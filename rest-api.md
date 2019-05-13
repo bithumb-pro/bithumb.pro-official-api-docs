@@ -1115,21 +1115,21 @@ records：
 
 ## [code list]
 
-| code | msg                    | Description | Mark |
-| ---- | ---------------------- | ----------- | ---- |
-| 0    | success                |             |      |
-| 9000 | missing parameter      |             |      |
-| 9001 | version not matched    |             |      |
-| 9002 | verifySignature failed |             |      |
-| 9004 | access denied          |             |      |
-| 9005 | key expired            |             |      |
-| 9006 | no server              |             |      |
-| 9999 | system error           |             |      |
-|      |                        |             |      |
-|      |                        |             |      |
-|      |                        |             |      |
-|      |                        |             |      |
-|      |                        |             |      |
-|      |                        |             |      |
-|      |                        |             |      |
-|      |                        |             |      |
+| code  | msg                                          | Description | Mark |
+| ----- | -------------------------------------------- | ----------- | ---- |
+| 0     | success                                      |             |      |
+| 9000  | missing parameter                            |             |      |
+| 9001  | version not matched                          |             |      |
+| 9002  | verifySignature failed                       |             |      |
+| 9004  | access denied                                |             |      |
+| 9005  | key expired                                  |             |      |
+| 9006  | no server                                    |             |      |
+| 9999  | system error                                 |             |      |
+|       |                                              |             |      |
+|       |                                              |             |      |
+| 20043 | price accuracy is wrong for placing order    |             |      |
+| 20044 | quantity accuracy is wrong for placing order |             |      |
+|       |                                              |             |      |
+|       |                                              |             |      |
+|       |                                              |             |      |
+|       |                                              |             |      |
