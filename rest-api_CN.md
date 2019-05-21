@@ -7,7 +7,7 @@
 - 本篇列出REST接口的baseurl **https://global-openapi.bithumb.pro/openapi/v1/**
 - 所有接口的响应都是JSON格式
 - GET`方法的接口, 参数必须在`query string中发送
-- POST方法的接口，参数必须在request body中发送(application/json)
+- POST方法的接口，参数必须在request body中发送(header里需添加content-type:application/json)
 - 对参数的顺序不做要求。
 
 | 版本号 | 说明                               | 时间        | 备注 |
