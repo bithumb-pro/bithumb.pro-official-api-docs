@@ -1107,7 +1107,44 @@ records数组中的元素参数：
 | avgPrice   | 平均成交价        |                                           | String |
 | time       | 下单的时间戳      |                                           | Long   |
 
+#### 10.查询用户合约的交易记录 
 
+请求路径：{requestUrl}/contract/trades
+
+请求方式：POST
+
+请求参数说明：
+
+| 字段   | 说明     | 必填(是/否/可选) | 备注       | 类型    |
+| ------ | -------- | ---------------- | ---------- | ------- |
+| symbol | 合约符号 | 是               |            | String  |
+| page   |          | 否               | default=1  | Integer |
+| count  |          | 否               | default=10 | Integer |
+
+返回参数说明：
+
+| 字段     | 说明           | 备注 | 类型 |
+| -------- | -------------- | ---- | ---- |
+| pageInfo | 返回的分页信息 |      | 对象 |
+| records  | 返回的记录数组 |      | 数组 |
+
+pageInfo:通用分页参数（见orderList）
+
+records返回参数说明：
+
+| 字段    | 说明                    | 备注 | 类型    |
+| ------- | ----------------------- | ---- | ------- |
+| symbol  | 合约符号                |      | String  |
+| orderId | 订单id                  |      | String  |
+| isTaker | 是否为taker             |      | Boolean |
+| side    | 订单方向（buy or sell） |      | String  |
+| fee     | 手续费                  |      | String  |
+| price   | 成交价格                |      | String  |
+| amount  | 成交数量                |      | String  |
+| time    | 成交时间                |      | String  |
+| version | 版本号                  |      | Long    |
+
+#### 
 
 ## [应答码对照表]
 

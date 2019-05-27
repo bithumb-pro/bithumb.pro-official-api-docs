@@ -1112,6 +1112,43 @@ records：
 | avgPrice   | average price    |                                           | String |
 | time       | create time      |                                           | Long   |
 
+#### 10.query user contract trades
+
+request url：{requestUrl}/contract/trades
+
+request method：POST
+
+request parameter information：
+
+| Field  | Description | Required(Y or N) | Mark       | Type    |
+| ------ | ----------- | ---------------- | ---------- | ------- |
+| symbol |             | Y                |            | String  |
+| page   |             | N                | default=1  | Integer |
+| count  |             | N                | default=10 | Integer |
+
+response description:
+
+| Field    | Description | Mark | Type   |
+| -------- | ----------- | ---- | ------ |
+| pageInfo |             |      | Object |
+| records  |             |      | Array  |
+
+pageInfo:(refer to orderList)
+
+records：
+
+| Field   | Description | Mark | Type    |
+| ------- | ----------- | ---- | ------- |
+| symbol  |             |      | String  |
+| orderId |             |      | String  |
+| isTaker |             |      | Boolean |
+| side    | buy or sell |      | String  |
+| fee     |             |      | String  |
+| price   |             |      | String  |
+| amount  |             |      | String  |
+| time    |             |      | String  |
+| version |             |      | Long    |
+
 
 
 ## [code list]
