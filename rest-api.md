@@ -196,9 +196,42 @@ response example：
 }
 ```
 
+### [Normal Authentication api]
+
+#### 1. withdraw   (**need withdraw authentication**)
+
+request uri: {requestUrl}/withdraw
+
+request method: POST
+
+request parameter infomation:
+
+| Filed       | Description           | Required(Y or N) | Mark                     | Type   |
+| ----------- | --------------------- | ---------------- | ------------------------ | ------ |
+| coinType    |                       | Y                | e.g BTC                  | String |
+| address     | target wallet address | Y                |                          | String |
+| extendParam | memo or tag           | N                |                          | String |
+| quantity    |                       | Y                |                          | String |
+| mark        |                       | Y                | max support for 250 char | String |
+
+#### 2. transfer asset for inner account   (**need withdraw authentication**)
+
+request uri: {requestUrl}/transfer
+
+request method: POST
+
+request parameter infomation:
+
+| Field    | Description                                 | Required(Y or N) | Mark    | Type   |
+| -------- | ------------------------------------------- | ---------------- | ------- | ------ |
+| coinType |                                             | Y                | e.g BTC | String |
+| quantity |                                             | Y                |         | String |
+| from     | from account type（WALLET,SPOT,CONTRACT）   | Y                |         | String |
+| to       | target account type（WALLET,SPOT,CONTRACT） | Y                |         | String |
+
 ### [Normal api for spot]
 
-#### 1.ticker
+#### 1. ticker
 
 request uri：{requestUrl}/spot/ticker
 
@@ -240,7 +273,7 @@ response example：
 	"params": []
 	}
 
-#### 2.orderbook
+#### 2. orderbook
 
 request uri：{requestUrl}/spot/orderBook
 
@@ -294,7 +327,7 @@ response example：
 	"params": []
 	}
 
-#### 3.trade records（last 100）
+#### 3. trade records（last 100）
 
 request uri：{requestUrl}/spot/trades
 
@@ -333,7 +366,7 @@ response example：
 	 "params": []
 	}
 
-#### 4.kline
+#### 4. kline
 
 request uri：{requestUrl}/spot/kline
 
@@ -384,7 +417,7 @@ response example：
 
 ### [Authentication api for spot]
 
-#### 1. create order for virtual coin
+#### 1. create order for virtual coin (**need transaction authentication**)
 
 request uri：{requestUrl}/spot/placeOrder
 
@@ -423,7 +456,7 @@ response example：
 
 #### 2. cancel order for virtual coin
 
-request uri：{requestUrl}/spot/cancelOrder
+request uri：{requestUrl}/spot/cancelOrder  (**need transaction authentication**)
 
 request method：POST
 
@@ -778,7 +811,7 @@ response example：
 
 ### [Normal api for contract]
 
-#### 1.orderBook
+#### 1. orderBook
 
 request uri：{requestUrl}/contract/orderBook
 
@@ -813,7 +846,7 @@ response example：
 }
 ```
 
-#### 2.ticker
+#### 2. ticker
 
 request uri：{requestUrl}/contract/ticker
 
@@ -872,7 +905,7 @@ response example：
 
 ### [Authentication api for contract]
 
-#### 1.create order for contract
+#### 1. create order for contract
 
 request uri：{requestUrl}/contract/order/create
 
@@ -916,7 +949,7 @@ response example：
 }
 ```
 
-#### 2.cancel order for contract
+#### 2. cancel order for contract
 
 request uri：{requestUrl}/contract/order/cancel
 
@@ -930,7 +963,7 @@ request parameter infomation：
 
 response description：when code = "0" is success
 
-#### 3.edit leverage
+#### 3. edit leverage
 
 request uri：{requestUrl}/contract/leverageEdit
 
@@ -945,7 +978,7 @@ request parameter infomation：
 
 request description：when code="0" is success
 
-#### 4.position info
+#### 4. position info
 
 request uri：{requestUrl}/contract/position
 
@@ -975,7 +1008,7 @@ response description：
 | side             | position side         |      | String |
 | frozen           | position frozen       |      | String |
 
-#### 5.adjust margin
+#### 5. adjust margin
 
 request uri：{requestUrl}/contract/margin/update
 
@@ -990,7 +1023,7 @@ request parameter infomation：
 
 response description：when code="0" is success
 
-#### 6.query asset account for contract
+#### 6. query asset account for contract
 
 request uri：{requestUrl}/contract/asset/info
 
@@ -1022,7 +1055,7 @@ records：
 | count    | usable amount      |      | String |
 | frozen   | frozen amount      |      | String |
 
-#### 7.query user contract info
+#### 7. query user contract info
 
 request url：{requestUrl}/contract/info
 
@@ -1043,7 +1076,7 @@ response description:
 | fundRate0 |                 |      | String |
 | riskLimit | risk limit      |      | String |
 
-#### 8.query user contract account info 
+#### 8. query user contract account info 
 
 request url：{requestUrl}/contract/account/info
 
@@ -1066,7 +1099,7 @@ response description:
 | openOrderMarginTotal |                  |      | String |
 | availableAmount      | available amount |      | String |
 
-#### 9.query order list (open order or history order list)
+#### 9. query order list (open order or history order list)
 
 request url：{requestUrl}/contract/orders
 
@@ -1112,7 +1145,7 @@ records：
 | avgPrice   | average price    |                                           | String |
 | time       | create time      |                                           | Long   |
 
-#### 10.query user contract trades
+#### 10. query user contract trades
 
 request url：{requestUrl}/contract/trades
 

@@ -89,7 +89,7 @@
 
 ### [普通接口]
 
-#### 1.系统时间
+#### 1. 系统时间
 
 请求路径：{requestUrl}/serverTime
 
@@ -108,7 +108,7 @@
 }
 ```
 
-#### 2.配置详情
+#### 2. 配置详情
 
 请求路径：{requestUrl}/spot/config
 
@@ -195,9 +195,42 @@ spotConfig对象：
 }
 ```
 
+### [普通认证接口]
+
+#### 1. 提币（**需要提币权限**）
+
+请求路径：{requestUrl}/withdraw
+
+请求方式：POST
+
+请求参数说明：
+
+| 字段        | 说明        | 必填(是/否/可选) | 备注                 | 类型   |
+| ----------- | ----------- | ---------------- | -------------------- | ------ |
+| coinType    | 币种类型    | 是               | 例如:BTC             | String |
+| address     | 提币地址    | 是               | 外部的虚拟币钱包地址 | String |
+| extendParam | memo或者tag | 否               |                      | String |
+| quantity    | 数量        | 是               |                      | String |
+| mark        | 备注        | 是               | 最多支持250个字符    | String |
+
+#### 2. 内部账户资产划转（**需要提币权限**）
+
+请求路径：{requestUrl}/transfer
+
+请求方式：POST
+
+请求参数说明：
+
+| 字段     | 说明                                                         | 必填(是/否/可选) | 备注     | 类型   |
+| -------- | ------------------------------------------------------------ | ---------------- | -------- | ------ |
+| coinType | 币种类型                                                     | 是               | 例如:BTC | String |
+| quantity | 数量                                                         | 是               |          | String |
+| from     | 来源类型（WALLET=钱包账户，SPOT=币币账户，CONTRACT=合约账户） | 是               |          | String |
+| to       | 目标类型（WALLET=钱包账户，SPOT=币币账户，CONTRACT=合约账户） | 是               |          | String |
+
 ### [现货普通接口]
 
-#### 1.行情
+#### 1. 行情
 
 请求路径：{requestUrl}/spot/ticker
 
@@ -239,7 +272,7 @@ spotConfig对象：
 	"params": []
 	}
 
-#### 2.订单薄
+#### 2. 订单薄
 
 请求路径：{requestUrl}/spot/orderBook
 
@@ -291,7 +324,7 @@ spotConfig对象：
 	"params": []
 	}
 
-#### 3.交易记录（最新100条）
+#### 3. 交易记录（最新100条）
 
 请求路径：{requestUrl}/spot/trades
 
@@ -330,7 +363,7 @@ spotConfig对象：
 	 "params": []
 	}
 
-#### 4.k线
+#### 4. k线
 
 请求路径：{requestUrl}/spot/kline
 
@@ -381,7 +414,7 @@ spotConfig对象：
 
 ### [现货认证接口]
 
-#### 1. 币币下单
+#### 1. 币币下单 （**需要交易权限**）
 
 请求路径：{requestUrl}/spot/placeOrder
 
@@ -418,7 +451,7 @@ spotConfig对象：
 	"params": []
 	}
 
-#### 2. 币币订单撤销
+#### 2. 币币订单撤销（**需要交易权限**）
 
 请求路径：{requestUrl}/spot/cancelOrder
 
@@ -773,7 +806,7 @@ list说明：
 
 ### [合约普通接口]
 
-#### 1.订单薄
+#### 1. 订单薄
 
 请求路径：{requestUrl}/contract/orderBook
 
@@ -808,7 +841,7 @@ list说明：
 }
 ```
 
-#### 2.行情
+#### 2. 行情
 
 请求路径：{requestUrl}/contract/ticker
 
@@ -867,7 +900,7 @@ list说明：
 
 ### [合约认证接口]
 
-#### 1.合约下单
+#### 1. 合约下单
 
 请求路径：{requestUrl}/contract/order/create
 
@@ -911,7 +944,7 @@ list说明：
 }
 ```
 
-#### 2.合约取消订单
+#### 2. 合约取消订单
 
 请求路径：{requestUrl}/contract/order/cancel
 
@@ -925,7 +958,7 @@ list说明：
 
 返回参数说明：code = "0"为成功
 
-#### 3.修改杠杆
+#### 3. 修改杠杆
 
 请求路径：{requestUrl}/contract/leverage/update
 
@@ -940,7 +973,7 @@ list说明：
 
 返回参数说明：code="0"为成功
 
-#### 4.仓位信息
+#### 4. 仓位信息
 
 请求路径：{requestUrl}/contract/position
 
@@ -970,7 +1003,7 @@ list说明：
 | side             | 仓位方向         |      | String |
 | frozen           | 仓位冻结金       |      | String |
 
-#### 5.调整保证金
+#### 5. 调整保证金
 
 请求路径：{requestUrl}/contract/margin/update
 
@@ -985,7 +1018,7 @@ list说明：
 
 返回参数说明：code="0"为成功
 
-#### 6.合约资产查询
+#### 6. 合约资产查询
 
 请求路径：{requestUrl}/contract/asset/info
 
@@ -1017,7 +1050,7 @@ records数组中的元素参数：
 | count    | 资产数量     |      | String |
 | frozen   | 冻结资产数量 |      | String |
 
-#### 7.查询用户私有合约信息 
+#### 7. 查询用户私有合约信息 
 
 请求路径：{requestUrl}/contract/info
 
@@ -1038,7 +1071,7 @@ records数组中的元素参数：
 | fundRate0 | 资金费用           |      | String |
 | riskLimit | 风险限额           |      | String |
 
-#### 8.查询用户合约账户信息 
+#### 8. 查询用户合约账户信息 
 
 请求路径：{requestUrl}/contract/account/info
 
@@ -1061,7 +1094,7 @@ records数组中的元素参数：
 | openOrderMarginTotal | 活动委托订单保证金 |      | String |
 | availableAmount      | 可用数量           |      | String |
 
-#### 9.订单列表查询（活动委托和历史委托）
+#### 9. 订单列表查询（活动委托和历史委托）
 
 请求路径：{requestUrl}/contract/orders
 
@@ -1107,7 +1140,7 @@ records数组中的元素参数：
 | avgPrice   | 平均成交价        |                                           | String |
 | time       | 下单的时间戳      |                                           | Long   |
 
-#### 10.查询用户合约的交易记录 
+#### 10. 查询用户合约的交易记录 
 
 请求路径：{requestUrl}/contract/trades
 
