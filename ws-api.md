@@ -64,7 +64,7 @@ topic for certain type msg,the style such as "topic" or "topic:symbol", example:
 
 #### public topic：
 
-TICKER: the last new ticker msg
+TICKER: the last new spot ticker msg
 
 response data：
 
@@ -97,7 +97,7 @@ example：
 }
 ```
 
-ORDERBOOK: the last order book changed data
+ORDERBOOK: the last spot order book changed data
 
 response data：
 
@@ -124,7 +124,7 @@ example：
 }
 ```
 
-TRADE：the last trade msg
+TRADE：the last spot trade msg
 
 response data：
 
