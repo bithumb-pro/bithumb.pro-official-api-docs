@@ -11,7 +11,7 @@ specially, some topic response include field "ver",the field mark this message's
 
 ### Access：
 
-The websocket server endpoint is wss(ws)://{server address}/message/realtime or wss(ws)://{server address}/message/realtime?subscribe=CONTRACT_ORDERBOOK:BTCUSD,CONTRACT_TICKER:BTCUSD,it's mean that client can subscribe topics when  create connection to server, and with encrypted msg in header for private identity authentication which can subscribe private topic.if authenticate failed,the connection will be closed by server.
+The websocket server endpoint is wss(ws)://{server address}/message/realtime or wss(ws)://{server address}/message/realtime?subscribe=ORDERBOOK:BTC-USDT,TICKER:BTC-USDT,it's mean that client can subscribe topics when  create connection to server, and with encrypted msg in header for private identity authentication which can subscribe private topic.if authenticate failed,the connection will be closed by server.
 
 encrypted msg in header：
 
@@ -49,7 +49,7 @@ ping: for heart cmd, client can send this cmd with a fixed time period(30 senond
 
 args requests：
 
-- subscribe cmd：support multi topics, such as:["CONTRACT_TICKER:BTCUSD","CONTRAC_ORDERBOOK10:BTCUSD"]
+- subscribe cmd：support multi topics, such as:["TICKER:BTC-USDT","ORDERBOOK10:BTC-USDT"]
 - unSubscribe cmd: remove topic, as same as subscribe.
 - authKey cmd：args is fixed,["apiKey",timestamp(millionsecond),"apiSignature"]
 - ping cmd：no args
@@ -60,7 +60,7 @@ example:
 
 ### topic：
 
-topic for certain type msg,the style such as "topic" or "topic:symbol", example: CONTRACT_TICKER:BTCUSD, support public and private.
+topic for certain type msg,the style such as "topic" or "topic:symbol", example: TICKER:BTC-USDT, support public and private.
 
 #### public topic：
 
