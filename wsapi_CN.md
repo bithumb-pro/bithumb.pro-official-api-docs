@@ -12,7 +12,7 @@
 
 ws的请求方式可以为：wss(ws)://{域名}/message/realtime
 或者以如下的方式：
-wss(ws)://{域名}/message/realtime?subscribe=CONTRACT_ORDERBOOK:BTCUSD,CONTRACT_TICKER:BTCUSD
+wss(ws)://{域名}/message/realtime?subscribe=ORDERBOOK:BTC-USDT,TICKER:BTC-USDT
 
 用户可以在创建连接的时候，订阅主题信息，并完成身份认证，通过header传递加密后的身份信息，服务端对传上来的信息进行校验，一旦验证通过，即可订阅私有主题，否则会立马关闭通道.
 
@@ -63,7 +63,7 @@ ping: 心跳指令,客户端可设置为30s发送一次。客户端用来维持�
 
 args参数数组：
 
-subscribe指令：支持多个主题，例如:["CONTRACT_TICKER:BTCUSD","CONTRAC_ORDERBOOK10:BTCUSD"]
+subscribe指令：支持多个主题，例如:["TICKER:BTC-USDT","ORDERBOOK10:BTC-USDT"]
 
 authKey指令：args数组是固定的,["apiKey",timestamp(毫秒),"apiSignature"]
 
@@ -75,7 +75,7 @@ apiSignature = sha256_HMAC(signatureString,secretKey)
 
 ### topic：
 
-用户订阅某个交易对或合约的主题时，格式为：topic:symbol.例如：CONTRACT_TICKER:BTCUSD
+用户订阅某个交易对或合约的主题时，格式为：topic:symbol.例如：TICKER:BTC-USDT
 
 目前支持的主题有如下几种,包含公共主题和私有主题：
 
