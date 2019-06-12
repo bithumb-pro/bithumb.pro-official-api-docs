@@ -1177,7 +1177,35 @@ records返回参数说明：
 | time    | 成交时间                |      | String  |
 | version | 版本号                  |      | Long    |
 
-#### 
+#### 11. 查询用户合约单个订单接口
+
+请求路径：{requestUrl}/contract/queryOrder
+
+请求方式：POST
+
+请求参数说明：
+
+| 字段    | 说明 | 必填(是/否/可选) | 备注       | 类型   |
+| ------- | ---- | ---------------- | ---------- | ------ |
+| orderId |      | 否               | 内部订单号 | String |
+| msgNo   |      | 否               | 外部订单号 | String |
+
+返回参数说明：
+
+| 字段       | 说明                    | 备注                    | 类型   |
+| ---------- | ----------------------- | ----------------------- | ------ |
+| symbol     | 合约符号                |                         | String |
+| orderId    | 订单id                  |                         | String |
+| type       | 订单类型                |                         | String |
+| status     | 订单状态                |                         | String |
+| side       | 订单方向（buy or sell） |                         | String |
+| avgPrice   | 平均成交价              |                         | String |
+| price      | 成交价格                |                         | String |
+| amountFill | 成交数量                |                         | String |
+| amountReal | 委托数量                |                         | String |
+| time       | 成交时间                |                         | Long   |
+| msgNo      | 外部订单号              | 通过API发送保存的订单号 | String |
+| version    | 版本号                  |                         | Long   |
 
 ## [应答码对照表]
 
