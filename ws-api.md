@@ -229,11 +229,42 @@ response data refer to CONTRACT_ORDERBOOK
 
 #### private topic：
 
+ORDER: the last new private spot order msg, if client subscribe the topic,once user order changed, server will send msg to channel.
+
+response data：
+
+| Field          | Description            | Mark                                          | Type   |
+| -------------- | ---------------------- | --------------------------------------------- | ------ |
+| oId            | order id               |                                               | String |
+| price          | order price            | if type is "market", the value is "-1"        | String |
+| quantity       | order quantity         |                                               | String |
+| side           |                        | buy or sell                                   | String |
+| symbol         |                        |                                               | String |
+| type           |                        | limit or market                               | String |
+| status         |                        | created，partDealt，fullDealt，canceled       | String |
+| dealPrice      | Last executed price    | if status = canceled, the value is "0"        | String |
+| dealQuantity   | Last executed quantity | if status = canceled, the value is "0"        | String |
+| dealVolume     | Last executed volume   | if status = canceled, the value is "0"        | String |
+| fee            |                        | if status = canceled, the value is "0"        | String |
+| feeType        |                        | if status = canceled, the value is ""         | String |
+| cancelQuantity |                        | if status is not "canceled", the value is "0" | String |
+| time           | order update time      |                                               | Long   |
+
+example：
+
+```
+{
+"code":"00007",
+"data":{"cancelQuantity":"10060.7","dealPrice":"0","dealQuantity":"0","dealVolume":"0","fee":"0","feeType":"","oId":"69663509668139008","price":"100.607","quantity":"100","side":"buy","status":"canceled","symbol":"BTC-USDT","time":1560758352705,"type":"limit"},
+"topic":"ORDER",
+"timestamp":1560758352743}
+```
+
 CONTRACT_ORDER:  the last new private contract order msg, if client subscribe the topic,once user order changed, server will send msg to channel.
 
 response data：
 
-| 字段       | 说明               | 备注                          | 类型                                         |
+| Field  | Description    | Mark                  | Type                                     |
 | ---------- | ------------------ | ----------------------------- | -------------------------------------------- |
 | amountFill | filled amount   |                               | String |
 | amountReal | total amount       |                               | String |

@@ -79,7 +79,7 @@ apiSignature = sha256_HMAC(signatureString,secretKey)
 
 目前支持的主题有如下几种,包含公共主题和私有主题：
 
-公共主题：
+#### 公共主题：
 
 TICKER: 推送最新的虚拟币行情消息
 
@@ -244,9 +244,40 @@ CONTRACT_ORDERBOOK10:推送最新的合约订单薄消息，包含最新的买�
 
 消息体参考CONTRACT_ORDERBOOK
 
-私有主题：
+#### 私有主题：
 
-CONTRACT_ORDER: 推送用户私有订单的消息，当其订单发生变化时，如果用户订阅了此主题，则立即会向订阅的channel里发送消息
+ORDER: 实时推送用户现货订单的消息，当其订单发生变化时，如果用户订阅了此主题，则立即会向订阅的channel里发送消息
+
+消息体如下：
+
+| 字段           | 说明             | 备注                                                         | 类型   |
+| -------------- | ---------------- | ------------------------------------------------------------ | ------ |
+| oId            | 订单id           |                                                              | String |
+| price          | 订单委托价格     | 当为“-1”时，表示市价                                         | String |
+| quantity       | 订单委托数量     |                                                              | String |
+| side           | 订单方向         | buy or sell                                                  | String |
+| symbol         |                  |                                                              | String |
+| type           | 订单类型         | limit or market                                              | String |
+| status         | 订单状态         | created(已创建)，partDealt(部分成交)，fullDealt(完全成交)，canceled(已撤单) | String |
+| dealPrice      | 成交价格         | 撤单时为0                                                    | String |
+| dealQuantity   | 成交数量         | 撤单时为0                                                    | String |
+| dealVolume     | 成交额           | 撤单时为0                                                    | String |
+| fee            | 手续费           | 撤单时为0                                                    | String |
+| feeType        | 手续费的单位     | 撤单时为""                                                   | String |
+| cancelQuantity | 撤单的数量       |                                                              | String |
+| time           | 订单变化发生时间 |                                                              | Long   |
+
+示例：
+
+```
+{
+"code":"00007",
+"data":{"cancelQuantity":"10060.7","dealPrice":"0","dealQuantity":"0","dealVolume":"0","fee":"0","feeType":"","oId":"69663509668139008","price":"100.607","quantity":"100","side":"buy","status":"canceled","symbol":"BTC-USDT","time":1560758352705,"type":"limit"},
+"topic":"ORDER",
+"timestamp":1560758352743}
+```
+
+CONTRACT_ORDER: 推送用户私有合约订单的消息，当其订单发生变化时，如果用户订阅了此主题，则立即会向订阅的channel里发送消息
 
 消息体如下：
 
