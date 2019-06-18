@@ -21,7 +21,7 @@ header的信息如下：
 ```
 {
 	"apiKey":"",(从网页上获取)
-	"apiTimestamp":1551848831,(连接发起的时间戳（秒）)
+	"apiTimestamp":"1551848831",(连接发起的时间戳（毫秒）,类型为string)
 	"apiSignature":""(签名数据)
 }
 ```
@@ -65,11 +65,11 @@ args参数数组：
 
 subscribe指令：支持多个主题，例如:["TICKER:BTC-USDT","ORDERBOOK10:BTC-USDT"]
 
-authKey指令：args数组是固定的,["apiKey",timestamp(毫秒),"apiSignature"]
+authKey指令：args数组是固定的,["apiKey","timestamp(毫秒)","apiSignature"]
 
 ping指令：不需要args
 
-签名串signatureString="请求路径"+当前的时间戳(毫秒)+apiKey
+签名串signatureString="请求路径"+当前的时间戳(毫秒,类型为String)+apiKey
 
 apiSignature = sha256_HMAC(signatureString,secretKey)
 
