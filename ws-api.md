@@ -17,9 +17,12 @@ encrypted msg in header：
 
 	{
 		"apiKey":"",(from website)
-		"apiTimestamp":1551848831,(the connect time（second）)
+		"apiTimestamp":"1551848831",(the connect time（millisecond,type is string）)
 		"apiSignature":""(the signature data)
 	}
+**sign example**:
+ signatureString=request path+current timestamp(millisecond)+apiKey
+ apiSignature = sha256_HMAC(signatureString,secretKey)
 
 response msg style：
 
@@ -51,11 +54,11 @@ args requests：
 
 - subscribe cmd：support multi topics, such as:["TICKER:BTC-USDT","ORDERBOOK10:BTC-USDT"]
 - unSubscribe cmd: remove topic, as same as subscribe.
-- authKey cmd：args is fixed,["apiKey",timestamp(millionsecond),"apiSignature"]
+- authKey cmd：args is fixed,["apiKey","timestamp"(millionsecond,type is string),"apiSignature"]
 - ping cmd：no args
 
-example:
- signatureString=request path+current timestamp(millionsecond)+apiKey
+**sign example**:
+ signatureString=request path+current timestamp(millisecond)+apiKey
  apiSignature = sha256_HMAC(signatureString,secretKey)
 
 ### topic：
