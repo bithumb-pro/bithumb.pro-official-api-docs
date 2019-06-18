@@ -26,8 +26,11 @@ header的信息如下：
 }
 ```
 **签名串**：
+
 请求路径="/message/realtime"
+
 signatureString="请求路径"+当前的时间戳(毫秒)+apiKey
+
 apiSignature = sha256_HMAC(signatureString,secretKey)
 
 响应的消息格式如下：
@@ -74,8 +77,11 @@ authKey指令：args数组是固定的,["apiKey","timestamp(毫秒,类型为stri
 ping指令：不需要args
 
 **签名串**：
+
 请求路径="/message/realtime"
+
 signatureString="请求路径"+当前的时间戳(毫秒)+apiKey
+
 apiSignature = sha256_HMAC(signatureString,secretKey)
 
 ### topic：
