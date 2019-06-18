@@ -21,9 +21,12 @@ encrypted msg in header：
 		"apiSignature":""(the signature data)
 	}
 **sign example**:
- request path="/message/realtime"
- signatureString=request path + current timestamp(millisecond, type is string) + apiKey
- apiSignature = sha256_HMAC(signatureString,secretKey)
+
+request path="/message/realtime"
+
+signatureString=request path + current timestamp(millisecond, type is string) + apiKey
+
+apiSignature = sha256_HMAC(signatureString,secretKey)
 
 response msg style：
 
@@ -60,7 +63,9 @@ args requests：
 
 **sign example**:
  request path="/message/realtime"
+ 
  signatureString=request path + current timestamp(millisecond, type is string) + apiKey
+ 
  apiSignature = sha256_HMAC(signatureString,secretKey)
 
 ### topic：
