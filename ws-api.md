@@ -17,14 +17,14 @@ encrypted msg in header：
 
 	{
 		"apiKey":"",(from website)
-		"apiTimestamp":"1551848831",(the connect time（millisecond,type is string）)
+		"apiTimestamp":"1551848831",(the connect time（millisecond）)
 		"apiSignature":""(the signature data)
 	}
 **sign example**:
 
 request path="/message/realtime"
 
-signatureString=request path + current timestamp(millisecond, type is string) + apiKey
+signatureString=request path + current timestamp(millisecond) + apiKey
 
 apiSignature = sha256_HMAC(signatureString,secretKey)
 
@@ -65,7 +65,7 @@ args requests：
 
  request path="/message/realtime"
  
- signatureString=request path + current timestamp(millisecond, type is string) + apiKey
+ signatureString=request path + current timestamp(millisecond) + apiKey
  
  apiSignature = sha256_HMAC(signatureString,secretKey)
 
