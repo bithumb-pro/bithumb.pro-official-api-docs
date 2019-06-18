@@ -62,6 +62,7 @@ args requests：
 - ping cmd：no args
 
 **sign example**:
+
  request path="/message/realtime"
  
  signatureString=request path + current timestamp(millisecond, type is string) + apiKey
