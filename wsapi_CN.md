@@ -69,7 +69,7 @@ authKey指令：args数组是固定的,["apiKey","timestamp(毫秒)","apiSignatu
 
 ping指令：不需要args
 
-签名串signatureString="请求路径"+当前的时间戳(毫秒,类型为String)+apiKey
+'''签名串signatureString'''="请求路径"+当前的时间戳(毫秒,类型为String)+apiKey
 
 apiSignature = sha256_HMAC(signatureString,secretKey)
 
