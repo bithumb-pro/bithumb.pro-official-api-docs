@@ -21,13 +21,13 @@ header的信息如下：
 ```
 {
 	"apiKey":"",(从网页上获取)
-	"apiTimestamp":"1551848831",(连接发起的时间戳（毫秒）,类型为string)
+	"apiTimestamp":"1551848831",(连接发起的时间戳（毫秒）)
 	"apiSignature":""(签名数据，签名方式见下)
 }
 ```
 **签名串**：
 请求路径="/message/realtime"
-signatureString="请求路径"+当前的时间戳(毫秒,类型为String)+apiKey
+signatureString="请求路径"+当前的时间戳(毫秒)+apiKey
 apiSignature = sha256_HMAC(signatureString,secretKey)
 
 响应的消息格式如下：
@@ -69,13 +69,13 @@ args参数数组：
 
 subscribe指令：支持多个主题，例如:["TICKER:BTC-USDT","ORDERBOOK10:BTC-USDT"]
 
-authKey指令：args数组是固定的,["apiKey","timestamp(毫秒)","apiSignature"]
+authKey指令：args数组是固定的,["apiKey","timestamp(毫秒,类型为string)","apiSignature"]
 
 ping指令：不需要args
 
 **签名串**：
 请求路径="/message/realtime"
-signatureString="请求路径"+当前的时间戳(毫秒,类型为String)+apiKey
+signatureString="请求路径"+当前的时间戳(毫秒)+apiKey
 apiSignature = sha256_HMAC(signatureString,secretKey)
 
 ### topic：
