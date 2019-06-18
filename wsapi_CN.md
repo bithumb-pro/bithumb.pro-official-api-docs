@@ -22,9 +22,12 @@ header的信息如下：
 {
 	"apiKey":"",(从网页上获取)
 	"apiTimestamp":"1551848831",(连接发起的时间戳（毫秒）,类型为string)
-	"apiSignature":""(签名数据)
+	"apiSignature":""(签名数据，签名方式见下)
 }
 ```
+**签名串**：signatureString="请求路径"+当前的时间戳(毫秒,类型为String)+apiKey
+
+apiSignature = sha256_HMAC(signatureString,secretKey)
 
 响应的消息格式如下：
 
@@ -69,7 +72,7 @@ authKey指令：args数组是固定的,["apiKey","timestamp(毫秒)","apiSignatu
 
 ping指令：不需要args
 
-'''签名串signatureString'''="请求路径"+当前的时间戳(毫秒,类型为String)+apiKey
+**签名串**：signatureString="请求路径"+当前的时间戳(毫秒,类型为String)+apiKey
 
 apiSignature = sha256_HMAC(signatureString,secretKey)
 
