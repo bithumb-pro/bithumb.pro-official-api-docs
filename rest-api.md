@@ -378,8 +378,8 @@ request parameter infomation：
 | ------ | ----------- | ---------------- | ------------------------------------------------------------ | ------ |
 | symbol |             | Y                |                                                              | String |
 | type   | kline type  | Y                | m1,m3,m5,m15,m30,h1,h2,h4,h6,h8,h12,d1,d3,w1,M1(m=minute，h=hour,d=day,w=week,M=month) | String |
-| start  | start time  | Y                | 10 number(second)                                            | Long   |
-| end    | end time    | Y                | 10 number(second)                                            | Long   |
+| start  | start time  | Y                | unit: second                                            | Long   |
+| end    | end time    | Y                | unit: second                                            | Long   |
 
 response:
 
