@@ -137,7 +137,7 @@ coinConfig：
 | withdrawFee    | withdraw fee          |      | String |
 | makerFeeRate   | maker transaction fee |      | String |
 | takerFeeRate   | taker transaction fee |      | String |
-| minTxAmt       |                       |      | String |
+| minTxAmt       | min transaction amount|      | String |
 
 contractConfig：
 
