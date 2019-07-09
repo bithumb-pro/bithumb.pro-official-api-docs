@@ -17,7 +17,7 @@ encrypted msg in header：
 
 	{
 		"apiKey":"",(from website)
-		"apiTimestamp":"1551848831",(the connect time（millisecond）)
+		"apiTimestamp":"1551848831",(the connect time（millisecond), type is string)
 		"apiSignature":""(the signature data)
 	}
 **sign example**:
