@@ -57,8 +57,9 @@
   ​	"timestamp":15348923323343,
 
   }   
-  待签名字符串(signString): apiKey=XXXXXXX&msgNo=123456789&timestamp=1455323333332
-  然后通过HmacSHA256 使用secretKey生成 signature,并将signature加到请求参数中.
+  待签名字符串(signString)： apiKey=XXXXXXX&msgNo=123456789&timestamp=1455323333332
+  
+  在获得signString后，通过HmacSHA256 使用secretKey生成signature,并将signature加到请求参数中.
 
 ## [请求与应答] (重要)
 
@@ -69,7 +70,6 @@
   {
   ​	"timestamp":"1455323333332",
   ​	"apiKey":"XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX", //(用户申请页面获取)
-  ​        "version":"v1.0.0"，
   ​	"signature":"1EF13F23D123A3123GXXXXXXXXXXXXXXXXXXXXXXXXX"	//参考[数据签名]
   }
 
