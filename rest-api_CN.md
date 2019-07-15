@@ -44,7 +44,7 @@
 
   String signature = HmacSHA256.encode ( signString , secretKey )
 
-- 待签名字符串(signString) :签名数据由公共请求参数按照key的字典顺序来组成，具体示例如下
+- 待签名字符串(signString) :签名数据由客户端的所有请求参数按照key的字典顺序来组成，具体示例如下
 
 - 签名示例:
 
