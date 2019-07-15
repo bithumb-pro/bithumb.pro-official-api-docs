@@ -42,9 +42,9 @@
 
 - 用户计算签名的基于哈希的协议，此处使用 HmacSHA256  (签名参数 , secretKey(用户申请页面获取))
 
-  String signature = HmacSHA256 . encode ( jsonStringData , secretKey );
+  String signature = HmacSHA256.encode ( jsonStringData , secretKey );
 
-- 签名数据(signature) :签名数据由 公共请求参数中 除signature 字段 按照key的字典顺序来排序(升序)组成jsonString 进行 签名
+- 签名数据(signature) :签名数据由公共请求参数中 除signature字段 按照key的字典顺序来排序(升序)组成jsonString进行签名
 
 - 签名事例:
 
