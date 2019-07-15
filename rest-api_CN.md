@@ -42,11 +42,11 @@
 
 - 用户计算签名的基于哈希的协议，此处使用 HmacSHA256  (签名参数 , secretKey(用户申请页面获取))
 
-  String signature = HmacSHA256.encode ( jsonStringData , secretKey );
+  String signature = HmacSHA256.encode ( signString , secretKey )
 
-- 签名数据(signature) :签名数据由公共请求参数中 除signature字段 按照key的字典顺序来排序(升序)组成jsonString进行签名
+- 待签名字符串(signString) :签名数据由公共请求参数按照key的字典顺序来组成，具体示例如下
 
-- 签名事例:
+- 签名示例:
 
   {
 
@@ -56,12 +56,8 @@
 
   ​	"timestamp":15348923323343,
 
-  ​	"version":"V1.0.0"	 // 参考  [REST API简介] ]
-
-  }   字典顺序排序(升序)    生成 源串:
-
-  apiKey=XXXXXXX&msgNo=123456789&timestamp=1455323333332&version=v1.0.0
-
+  }   
+  待签名字符串(signString): apiKey=XXXXXXX&msgNo=123456789&timestamp=1455323333332
   然后通过HmacSHA256 使用secretKey生成 signature,并将signature加到请求参数中.
 
 ## [请求与应答] (重要)
