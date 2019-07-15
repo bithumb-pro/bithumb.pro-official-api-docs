@@ -40,11 +40,11 @@
 
 ## [数据签名] (重要)
 
-- 用户计算签名的基于哈希的协议，此处使用 HmacSHA256  (签名参数 , secretKey(用户申请页面获取))
+- 用户计算签名的基于哈希的协议，此处使用 HmacSHA256(签名参数, secretKey(用户申请页面获取))
 
-  String signature = HmacSHA256.encode ( signString , secretKey )
+  String signature = HmacSHA256.encode(signString, secretKey)
 
-- 待签名字符串(signString) :签名数据由客户端的所有请求参数按照key的字典顺序来组成，具体示例如下
+- 待签名字符串(signString)：签名数据由客户端的所有请求参数(不为空)按照key的字典顺序来组成，具体示例如下
 
 - 签名示例:
 
