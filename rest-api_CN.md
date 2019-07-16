@@ -423,8 +423,8 @@ spotConfig对象：
 | symbol    | 币对符号，格式是 token-market | 是               | 前面交易币种 后面是交易市场     (BTC-USDT) | String |
 | type      | 交易类型 (limit or market)    | 是               | limit 限价  market 市价                    | String |
 | side      | 交易方向 (buy or sell)        | 是               | buy 买入  sell 卖出                        | String |
-| price     | 价格                          | 是               | type为 市价(market)交易时 固定值 "-1"（**该字段类型为String**）      | String |
-| quantity  | 数量                          | 是               | 交易数量（**该字段类型为String**）                                   | String |
+| price     | 价格                          | 是               | type为市价(market)交易时 固定值 "-1"（**该字段类型为String**）      | String |
+| quantity  | 数量                          | 是               | 交易数量（**该字段类型为String**），当type=market，side=buy时，该字段为计价货币数量，其余均为token                                   | String |
 | timestamp | 时间戳                        | 是               |                                            | String |
 
 返回结果说明:
