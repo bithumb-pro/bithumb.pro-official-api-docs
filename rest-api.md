@@ -428,10 +428,10 @@ request parameter infomation：
 | Field     | Description | Required(Y or N) | Mark                                          | Type   |
 | --------- | ----------- | ---------------- | --------------------------------------------- | ------ |
 | symbol    |             | Y                |                                               | String |
-| type      | order type  | Y                | limit (limit price) or  market (market price) | String |
+| type      | order type  | Y                | limit(limit price) or market(market price) | String |
 | side      | order side  | Y                | buy or sell                                   | String |
 | price     |             | Y                | when type is market, the value = -1           | String |
-| quantity  |             | Y                | deal quantity                                 | String |
+| quantity  |             | Y                | eg.BTC-USDT,normally point at the amount of BTC,when type=market,side=buy,point at the amount of USDT, and the amount should greater than or equal to the amount of min trade volume                                | String |
 | timestamp |             | Y                |                                               | String |
 
 response description:
