@@ -431,7 +431,7 @@ request parameter infomation：
 | type      | order type  | Y                | limit(limit price) or market(market price) | String |
 | side      | order side  | Y                | buy or sell                                   | String |
 | price     |             | Y                | when type is market, the value = -1           | String |
-| quantity  |             | Y                | eg.BTC-USDT,normally point at the quantity of BTC,when type=market,side=buy,point at the quantity of USDT, and the quantity should greater than or equal to the quantity of BTC min trade volume                                | String |
+| quantity  |             | Y                | eg.BTC-USDT,normally point at the quantity of BTC,when type=market,side=buy,point at the quantity of USDT, and the quantity should greater than or equal to the minimum trading volume of BTC                                | String |
 | timestamp |             | Y                |                                               | String |
 
 response description:
