@@ -424,7 +424,7 @@ spotConfig对象：
 | type      | 交易类型 (limit or market)    | 是               | limit=限价，market=市价                    | String |
 | side      | 交易方向 (buy or sell)        | 是               | buy=买入，sell=卖出                        | String |
 | price     | 价格                          | 是               | type为市价(market)交易时，固定值 "-1"（**该字段类型为String**）      | String |
-| quantity  | 数量                          | 是               | 交易数量（**该字段类型为String**），当type=market，side=buy时，该字段为计价货币数量，其余均为token                                   | String |
+| quantity  | 数量                          | 是               | 交易数量（**该字段类型为String**），当type=market，side=buy时，该字段为计价货币数量，其余均为token,并且数量必须大于等于token的最小交易量                                   | String |
 | timestamp | 时间戳                        | 是               |                                            | String |
 
 返回结果说明:
