@@ -1203,7 +1203,7 @@ records返回参数说明：
 | msgNo      | 外部订单号              | 通过API发送保存的订单号 | String |
 | version    | 版本号                  |                         | Long   |
 
-
+### [C2C接口]
 **1、获取订单列表**
 
 - 请求类型为application/json
