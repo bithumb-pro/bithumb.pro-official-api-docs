@@ -1203,6 +1203,283 @@ records返回参数说明：
 | msgNo      | 外部订单号              | 通过API发送保存的订单号 | String |
 | version    | 版本号                  |                         | Long   |
 
+
+**1、获取订单列表**
+
+- 请求类型为application/json
+
+**请求URL：** 
+
+- ` http://{api_url}/c2c/api/order/getlist`
+
+**请求方式：**
+
+- GET 
+
+**请求参数** 
+
+| 参数名 | 必选 | 类型   | 说明   |
+| :----- | :--- | :----- | ------ |
+|memberId|是|String|会员id|
+|pageNum|是|String|当前页|
+|pageSize|是|String|页面总数|
+|isAppeal|是|String|是否申诉|
+|status|是|String|订单状态(1:处理中2:待付款3:待收款4:已完成5:已取消)|
+
+ **请求示例**
+
+```json
+{
+  "memberId": "1230",
+  "isAppeal": "0",
+  "status": "1,2,3",
+  "pageNum": "1",
+  "pageSize": "10"
+}
+```
+
+**返回参数** 
+
+| 参数名 | 必选 | 类型   | 说明                            |
+| :----- | :--- | :----- | ------------------------------- |
+|amount|是|String|数量|
+|coinId|是|String|币种类型|
+|name|是|String|对方姓名|
+|fphone|是|String|电话|
+|isAppeal|是|String|是否申诉|
+|orderNum|是|String|订单号|
+|price|是|String|单价|
+|priceUnit|是|String|价格单位|
+|status|是|String|订单状态|
+|totalMoney|是|String|总额|
+|tradeType|是|String|交易类型|
+|createdTime|是|String|创建时间|
+|dealTime|是|String|处理时间|
+**返回示例**
+
+```json
+{
+  "amount": 0,
+  "coinId": "string",
+  "createdTime": "2019-06-24T07:15:12.319Z",
+  "dealTime": "2019-06-24T07:15:12.319Z",
+  "name": "string",
+  "fphone": "string",
+  "isAppeal": true,
+  "orderNum": "string",
+  "price": 0,
+  "priceUnit": "string",
+  "status": 0,
+  "totalMoney": 0,
+  "tradeType": 0
+}
+```
+
+**2、根据orderNum获取订单**
+
+- 请求类型为application/json
+
+**请求URL：** 
+
+- ` http://{api_url}/c2c/api/order/getorderdetail`
+
+**请求方式：**
+
+- GET 
+
+**请求参数** 
+
+| 参数名 | 必选 | 类型   | 说明   |
+| :----- | :--- | :----- | ------ |
+|memberId|是|String|会员id|
+|orderNum|是|String|原订单号|
+
+ **请求示例**
+
+```json
+{
+  "memberId": "1230",
+  "orderNum": "string"
+}
+```
+
+**返回参数** 
+
+| 参数名 | 必选 | 类型   | 说明                            |
+| :----- | :--- | :----- | ------------------------------- |
+|advertisementId|是|String|广告id|
+|amount|是|String|数量|
+|coinId|是|String|币种类型|
+|name|是|String|对方姓名|
+|fphone|是|String|对方手机|
+|isAppeal|是|String|是否申诉|
+|orderNum|是|String|订单号|
+|payType|是|String|支付类型(1银行卡2支付宝3微信)|
+|price|是|String|单价|
+|priceUnit|是|String|价格单位|
+|status|是|String|订单状态|
+|totalMoney|是|String|总额|
+|tradeType|是|String|买卖类型(1:买2:卖)|
+|userId|是|String|用户id|
+|nickName|是|String|付款昵称|
+|enclosure1|是|String|附件1|
+|enclosure2|是|String|附件2|
+|enclosure3|是|String|附件3|
+|enclosure1url|是|String|附件1访问地址|
+|enclosure2url|是|String|附件2访问地址|
+|enclosure3url|是|String|附件3访问地址|
+|advertisementUserId|是|String|广告方id|
+**返回示例**
+
+```json
+{
+  "advertisementId": "string",
+  "amount": 0,
+  "coinId": "string",
+  "createdTime": "2019-06-24T07:23:48.708Z",
+  "name": "string",
+  "fphone": "string",
+  "isAppeal": true,
+  "orderNum": "string",
+  "payType": "string",
+  "price": 0,
+  "priceUnit": "string",
+  "status": 0,
+  "totalMoney": 0,
+  "tradeType": 0,
+  "userId": "string",
+  "nickName": "string",
+  "enclosure1": "string",
+  "enclosure2": "string",
+  "enclosure3": "string",
+  "enclosure1url": "string",
+  "enclosure2url": "string",
+  "enclosure3url": "string",
+  "advertisementUserId": "string",
+  "orderPaytypeSnapshot": [{
+            "id": null,
+            "orderNum": null,
+            "userId": null,
+            "name": "姓名",
+            "idNumber": "身份证号",
+            "account": "银行卡(支付宝，微信)账户",
+            "branchOrNickname": ”支行或者昵称“,
+            "wayKey": “二维码地址”,
+            "url": “访问地址”,
+            "type": "支付类型",
+            "status": null,
+            "createdTime": null
+        }]
+}
+```
+**3、确认付款**
+
+- 请求类型为application/json
+
+**请求URL：** 
+
+- ` http://{api_url}/c2c/order/payment`
+
+**请求方式：**
+
+- POST 
+
+**请求参数** 
+
+| 参数名 | 必选 | 类型   | 说明   |
+| :----- | :--- | :----- | ------ |
+|orderNum|是|String|订单号|
+|type|是|String|支付类型(1银行卡2支付宝3微信)|
+|nickName|否|String|昵称|
+|enclosure1|否|String|附件1|
+|enclosure2|否|String|附件2|
+|enclosure3|否|String|附件3|
+
+ **请求示例**
+
+```json
+{
+  "orderNum": "string",
+  "type": "string",
+  "nickName": "string",
+  "enclosure1": "string",
+  "enclosure2": "string",
+  "enclosure3": "string"
+}
+```
+**返回参数** 
+
+| 参数名 | 必选 | 类型   | 说明                            |
+| :----- | :--- | :----- | ------------------------------- |
+|info|是|String|订单编号|
+
+**返回示例**
+
+```json
+{
+  "code": "0",
+  "info": {},
+  "msg": "success",
+  "params": [
+    "123456"
+  ]
+}
+```
+
+**4、新增订单**
+
+- 请求类型为application/json
+
+**请求URL：** 
+
+- ` http://{api_url}/c2c/api/order/savebymatchcondition`
+
+**请求方式：**
+
+- POST 
+
+**请求参数** 
+
+| 参数名 | 必选 | 类型   | 说明   |
+| :----- | :--- | :----- | ------ |
+|coinId|是|String|购买币种(USDT、BTC)|
+|totalMoney|是|String|交易金额|
+|payType|是|String|支付方式(1银行卡2支付宝3微信)|
+|memberId|是|String|会员id|
+|phone|是|String|会员手机号|
+|callBack|是|String|交易成功后回调接口地址(请求方式为post请求，并且会带订单编号orderNum和会员idmemberId作为参数)|
+
+ **请求示例**
+
+```json
+{
+  "coinId": "USDT",
+  "totalMoney": "10000",
+  "payType": "1",
+  "memberId": "123",
+  "phone": "12345678",
+  "callBack": "https://www.baidu.com"
+}
+```
+**返回参数** 
+
+| 参数名 | 必选 | 类型   | 说明                            |
+| :----- | :--- | :----- | ------------------------------- |
+|info|是|String|订单编号|
+
+**返回示例**
+
+```json
+{
+  "code": "0",
+  "info": {},
+  "msg": "success",
+  "params": [
+    "12345"
+  ]
+}
+```
+
 ## [应答码对照表]
 
 | code  | msg                    | 说明             | 备注     |
