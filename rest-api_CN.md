@@ -1243,6 +1243,7 @@ records返回参数说明：
 | 参数名 | 必选 | 类型   | 说明                            |
 | :----- | :--- | :----- | ------------------------------- |
 |amount|是|String|数量|
+|serviceCharge|是|String|手续费|
 |coinId|是|String|币种类型|
 |name|是|String|对方姓名|
 |fphone|是|String|电话|
@@ -1259,7 +1260,8 @@ records返回参数说明：
 
 ```json
 {
-  "amount": 0,
+  "amount": "10",
+  "serviceCharge": "0.1",
   "coinId": "string",
   "createdTime": "2019-06-24T07:15:12.319Z",
   "dealTime": "2019-06-24T07:15:12.319Z",
@@ -1267,10 +1269,10 @@ records返回参数说明：
   "fphone": "string",
   "isAppeal": true,
   "orderNum": "string",
-  "price": 0,
+  "price": "0",
   "priceUnit": "string",
   "status": 0,
-  "totalMoney": 0,
+  "totalMoney": "0",
   "tradeType": 0
 }
 ```
@@ -1309,6 +1311,7 @@ records返回参数说明：
 | :----- | :--- | :----- | ------------------------------- |
 |advertisementId|是|String|广告id|
 |amount|是|String|数量|
+|serviceCharge|是|String|手续费|
 |coinId|是|String|币种类型|
 |name|是|String|对方姓名|
 |fphone|是|String|对方手机|
@@ -1334,7 +1337,8 @@ records返回参数说明：
 ```json
 {
   "advertisementId": "string",
-  "amount": 0,
+  "amount": "10",
+  "serviceCharge": "0.1",
   "coinId": "string",
   "createdTime": "2019-06-24T07:23:48.708Z",
   "name": "string",
@@ -1342,10 +1346,10 @@ records返回参数说明：
   "isAppeal": true,
   "orderNum": "string",
   "payType": "string",
-  "price": 0,
+  "price": "1",
   "priceUnit": "string",
   "status": 0,
-  "totalMoney": 0,
+  "totalMoney": "10",
   "tradeType": 0,
   "userId": "string",
   "nickName": "string",
