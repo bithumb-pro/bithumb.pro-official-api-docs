@@ -1210,7 +1210,7 @@ records返回参数说明：
 
 **请求URL：** 
 
-- ` http://{api_url}/c2c/api/order/getlist`
+- ` http://{requestUrl}/c2c/api/order/getlist`
 
 **请求方式：**
 
@@ -1283,7 +1283,7 @@ records返回参数说明：
 
 **请求URL：** 
 
-- ` http://{api_url}/c2c/api/order/getorderdetail`
+- ` http://{requestUrl}/c2c/api/order/getorderdetail`
 
 **请求方式：**
 
@@ -1382,7 +1382,7 @@ records返回参数说明：
 
 **请求URL：** 
 
-- ` http://{api_url}/c2c/order/payment`
+- ` http://{requestUrl}/c2c/order/payment`
 
 **请求方式：**
 
@@ -1436,7 +1436,7 @@ records返回参数说明：
 
 **请求URL：** 
 
-- ` http://{api_url}/c2c/api/order/savebymatchcondition`
+- ` http://{requestUrl}/c2c/api/order/savebymatchcondition`
 
 **请求方式：**
 
@@ -1490,7 +1490,7 @@ records返回参数说明：
 
 **请求URL：** 
 
-- ` http://{api_url}/saveKyc`
+- ` http://{requestUrl}/saveKyc`
 
 **请求方式：**
 
@@ -1552,7 +1552,7 @@ records返回参数说明：
 
 **请求URL：** 
 
-- ` http://{api_url}/countryInfo`
+- ` http://{requestUrl}/countryInfo`
 
 **请求方式：**
 
