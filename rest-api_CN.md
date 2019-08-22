@@ -1497,9 +1497,9 @@ records返回参数说明：
 | :----- | :--- | :----- | ------ |
 |nationality|是|String|国家（alpha3Code）|
 |papersType|是|String|证件类型：ID/TRANSPORT(身份证、护照)|
-|papersOne|是|String|证件正面（需base64编码）|
-|papersTwo|是|String|证件反面（需base64编码）|
-|papersThird|是|String|手持证件照（需base64编码）|
+|papersOne|是|String|证件正面（需base64编码），图片本身字节流大小需小于2M|
+|papersTwo|是|String|证件反面（需base64编码），图片本身字节流大小需小于2M|
+|papersThird|是|String|手持证件照（需base64编码），图片本身字节流大小需小于2M|
 |papersId|是|String|证件id（身份证号或护照号）|
 |gender|是|String|性别：0：女  1：男|
 |birthday|是|String|生日日期: 格式2019-08-01|
