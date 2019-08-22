@@ -1422,11 +1422,9 @@ records返回参数说明：
 ```json
 {
   "code": "0",
-  "info": {},
+  "info": "123456",
   "msg": "success",
-  "params": [
-    "123456"
-  ]
+  "params": []
 }
 ```
 
@@ -1450,7 +1448,6 @@ records返回参数说明：
 |totalMoney|是|String|交易金额|
 |payType|是|String|支付方式(1银行卡2支付宝3微信)|
 |memberId|是|String|会员id|
-|phone|是|String|会员手机号|
 |callBack|是|String|交易成功后回调接口地址(请求方式为post请求，并且会带订单编号orderNum和会员idmemberId作为参数)|
 
  **请求示例**
@@ -1476,11 +1473,9 @@ records返回参数说明：
 ```json
 {
   "code": "0",
-  "info": {},
+  "data": "12345",
   "msg": "success",
-  "params": [
-    "12345"
-  ]
+  "params": []
 }
 ```
 
