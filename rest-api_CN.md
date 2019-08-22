@@ -1484,6 +1484,105 @@ records返回参数说明：
 }
 ```
 
+**5、保存kyc**
+
+- 请求类型为application/json
+
+**请求URL：** 
+
+- ` http://{api_url}/saveKyc`
+
+**请求方式：**
+
+- POST 
+
+**请求参数** 
+
+| 参数名 | 必选 | 类型   | 说明   |
+| :----- | :--- | :----- | ------ |
+|nationality|是|String|国家（alpha3Code）|
+|papersType|是|String|证件类型：ID/TRANSPORT(身份证、护照)|
+|papersOne|是|String|证件正面（需base64编码）|
+|papersTwo|是|String|证件反面（需base64编码）|
+|papersThird|是|String|手持证件照（需base64编码）|
+|papersId|是|String|证件id（身份证号或护照号）|
+|gender|是|String|性别：0：女  1：男|
+|birthday|是|String|生日日期: 格式2019-08-01|
+|name|是|String|名字(身份证真实名字)|
+|memberId|是|String|第三方唯一用户ID|
+|phone|是|String|第三方用户手机号|
+|areaCode|是|String|绑定国家区号(和手机绑定的)|
+
+ **请求示例**
+
+```json
+{
+  "nationality": "CHN",
+  "papersType": "ID",
+  "papersOne": "string",
+  "papersTwo": "string",
+  "papersThird": "string",
+  "papersId": "1111",
+  "gender": "1",
+  "birthday": "2019-08-01",
+  "name": "张三",
+  "memberId": "11111",
+  "phone": "string",
+  "areaCode": "string"
+}
+```
+**返回参数** 
+
+| 参数名 | 必选 | 类型   | 说明                            |
+| :----- | :--- | :----- | ------------------------------- |
+|memberId|是|String|openApi third userId|
+
+**返回示例**
+
+```json
+{
+  "code": "0",
+  "data": {"memberId":"123456"},
+  "msg": "success",
+  "params": [
+  ]
+}
+```
+**6、获取相关国家信息**
+
+**请求URL：** 
+
+- ` http://{api_url}/countryInfo`
+
+**请求方式：**
+
+- GET
+
+**请求参数** 
+无
+
+ **请求示例**
+无
+
+**返回参数** 
+
+| 参数名 | 必选 | 类型   | 说明                            |
+| :----- | :--- | :----- | ------------------------------- |
+|alpha3Code|是|String|国家码|
+|areaCode|是|String|国家区号（和手机号连用）|
+
+**返回示例**
+
+```json
+{
+  "code": "0",
+  "data": [{"alpha3Code":"CHN","areaCode":"86"},...],
+  "msg": "success",
+  "params": [
+  ]
+}
+```
+
 ## [应答码对照表]
 
 | code  | msg                    | 说明             | 备注     |
