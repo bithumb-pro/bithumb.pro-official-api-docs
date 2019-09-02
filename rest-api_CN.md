@@ -150,7 +150,7 @@ spotConfig对象：
 | accuracy | 精度   | 包含价格精度和数量精度 | String[2](第一个为价格精度，第二个为数量精度) |
 | openTime | 开盘时间   |  | Long |
 | openPrice | 开盘价   |  | Long |
-| percentPrice | 价格振幅系数  | 表示为一个瞬时的涨跌停限制，不允许价格瞬间剧烈浮动，以当前成交价格为基准 | Object |
+| percentPrice | 价格振幅系数  | 表示为一个瞬时的涨跌停限制，不允许价格瞬间剧烈浮动，以当前成交价格为基准，第一笔交易，以开盘价为基准 | Object |
 
 响应示例：
 
