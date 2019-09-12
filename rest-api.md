@@ -59,7 +59,7 @@ if need page, like:
 
 - For authentication of request, the request paramters need to be sign  by HmacSHA256
 
-- The prepare  signature data is a json string which make up of  all request parameters which sort by dict.
+- The prepared signature data is a json string which make up of  all request parameters which sort by dict and join with '&'.
 
   signature example:
 
