@@ -231,8 +231,8 @@ spotConfig对象：
 | -------- | ------------------------------------------------------------ | ---------------- | -------- | ------ |
 | coinType | 币种类型                                                     | 是               | 例如:BTC | String |
 | quantity | 数量                                                         | 是               |          | String |
-| from     | 来源类型（SPOT=币币账户，CONTRACT=合约账户，LEVER=杠杆账户） | 是               |          | String |
-| to       | 目标类型（SPOT=币币账户，CONTRACT=合约账户，LEVER=杠杆账户） | 是               |          | String |
+| from     | 来源类型（SPOT=币币账户，LEVER=杠杆账户） | 是               |          | String |
+| to       | 目标类型（SPOT=币币账户，LEVER=杠杆账户） | 是               |          | String |
 
 ### [现货普通接口]
 
