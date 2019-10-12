@@ -12,7 +12,7 @@ catalog
 
 | Version | Description                                                  | Time    | Mark   |
 | ------- | ------------------------------------------------------------ | ------- | ------ |
-| v1.0.0  | include some rest api(virtual coin,contracts) and error code list. | 2019-03 | usable |
+| V1.0.0  | include some rest api(virtual coin,contracts) and error code list. | 2019-03 | usable |
 |         |                                                              |         |        |
 
 ## [Request Parameter Infomation] (Important)
@@ -68,22 +68,22 @@ if need page, like:
   request parameters like:
 
     	{
-   		"apiKey" : "XXXXXXXXXXXX",
+   		"apiKey" : "XXX",
    		"msgNo":"1234567890",
-   		"timestamp":15348923323343,
+   		"timestamp":1534892332334,
    		"version":"V1.0.0"
   	}  
 
-  String json = “apiKey=XXXXXXX&msgNo=123456789&timestamp=1455323333332&version=v1.0.0”；
+  String json = “apiKey=XXX&msgNo=1234567890&timestamp=1534892332334&version=V1.0.0”；
 
   String signature = HmacSHA256.encode (json , secretKey );
 
   last,the request parameters like:
 
     	{
-   		"apiKey" : "XXXXXXXXXXXX",
+   		"apiKey" : "XXX",
    		"msgNo":"1234567890",
-   		"timestamp":15348923323343,
+   		"timestamp":1534892332334,
    		"version":"V1.0.0",
   	"signature": signature
         }  
