@@ -71,7 +71,7 @@ if need page, like:
    		"apiKey" : "XXX",
    		"msgNo":"1234567890",
    		"timestamp":1534892332334,
-   		"version":"V1.0.0"
+   		"version":"V1.0.0" //this parameter are optional.
   	}  
 
   String json = “apiKey=XXX&msgNo=1234567890&timestamp=1534892332334&version=V1.0.0”；
