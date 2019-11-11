@@ -811,7 +811,7 @@ response example：
 }
 ```
 
-### [Normal api for contract](Deprecated)
+### [Normal api for contract] (Deprecated)
 
 #### 1. orderBook
 
@@ -905,7 +905,7 @@ response example：
 }
 ```
 
-### [Authentication api for contract](Deprecated)
+### [Authentication api for contract] (Deprecated)
 
 #### 1. create order for contract
 
