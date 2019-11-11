@@ -7,7 +7,7 @@
 - 本篇列出REST接口的baseurl **https://global-openapi.bithumb.pro/openapi/v1/**
 - 所有接口的响应都是JSON格式
 - GET方法的接口, 参数必须在query string中发送
-- POST方法的接口，参数必须在request body中发送(header里需添加content-type:application/json)
+- POST方法的接口，参数必须在request body中发送(headers里需添加content-type:application/json)
 - 对参数的顺序不做要求。
 
 | 版本号 | 说明                               | 时间        | 备注 |
@@ -28,7 +28,7 @@
 
 ### 返回结果说明
 
-如果 查询有分页条件(page, count)接口 返回数据格式
+如果查询带有分页条件(page, count)接口 返回数据格式
 
 ​	{
 
@@ -57,13 +57,13 @@
   ​	"timestamp":15348923323343,
 
   }   
-  待签名字符串(signString)： apiKey=XXXXXXX&msgNo=123456789&timestamp=1455323333332
+  待签名字符串(signString)：apiKey=XXXXXXX&msgNo=123456789&timestamp=1455323333332
   
   在获得signString后，通过HmacSHA256 使用secretKey生成signature,并将signature加到请求参数中.
 
 ## [请求与应答] (重要)
 
-- POST 请求 Content-Type:application/json
+- 对于POST请求，请求headers里需要有Content-Type:application/json
 
 - 请求参数事例:
 
