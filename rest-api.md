@@ -7,7 +7,7 @@ catalog
 - The base endpoint is: **https://global-openapi.bithumb.pro/openapi/v1/**
 - All endpoints return either a JSON object or array.
 - For `GET` endpoints, parameters must be sent as a `query string`.
-- For POST endpoints, parameters must be send in the request body, with content type by JSON(application/json)
+- For POST endpoints, parameters must be send in the request body, with content-type(application/json) in headers.
 - Parameters may be sent in any order.
 
 | Version | Description                                                  | Time    | Mark   |
