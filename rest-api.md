@@ -21,7 +21,7 @@ catalog
 
 | Field     | Description         | Required(Y or N) | Mark                                                         | Type   |
 | --------- | ------------------- | ---------------- | ------------------------------------------------------------ | ------ |
-| apiKey    | unique tag for user | N                | apply for the key in website.                        | String |
+| apiKey    | unique tag for user | N                | required by authentication of request，apply for the key in website.                        | String |
 | timestamp | request timestamp   | N                | the paramter will be need in request which need to authenticate, if space of time too long between current and request will be reject. | Long  |
 | signature | signature data      | N                | required by authentication of request.                       | String |
 | msgNo     | request id          | N                | just for some api(place order),max length is 50 chars        | String |
