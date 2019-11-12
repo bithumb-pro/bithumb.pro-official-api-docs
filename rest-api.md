@@ -4,7 +4,7 @@ catalog
 
 ## [General Rest Api Information]
 
-- The base endpoint is: **https://global-openapi.bithumb.pro/openapi/v1/**
+- The base-endpoint is: **https://global-openapi.bithumb.pro/openapi/v1**
 - All endpoints return either a JSON object or array.
 - For `GET` endpoints, parameters must be sent as a `query string`.
 - For POST endpoints, parameters must be send in the request body, with content-type(application/json) in headers.
@@ -94,7 +94,7 @@ if need page, like:
 
 #### 1. query server time
 
-request uri：{requestUrl}/serverTime
+request url：{base-endpoint}/serverTime
 
 request method：GET
 
@@ -113,7 +113,7 @@ response example：
 
 #### 2. config detail
 
-request uri：{requestUrl}/spot/config
+request url：{base-endpoint}/spot/config
 
 request method：GET
 
@@ -202,7 +202,7 @@ response example：
 
 #### 1. withdraw   (**need withdraw authentication**)
 
-request uri: {requestUrl}/withdraw
+request url: {base-endpoint}/withdraw
 
 request method: POST
 
@@ -218,7 +218,7 @@ request parameter infomation:
 
 #### 2. transfer asset for inner account   (**need withdraw authentication**)
 
-request uri: {requestUrl}/transfer
+request url: {base-endpoint}/transfer
 
 request method: POST
 
@@ -235,7 +235,7 @@ request parameter infomation:
 
 #### 1. ticker
 
-request uri：{requestUrl}/spot/ticker
+request url：{base-endpoint}/spot/ticker
 
 request method：GET
 
@@ -277,7 +277,7 @@ response example：
 
 #### 2. orderbook
 
-request uri：{requestUrl}/spot/orderBook
+request url：{base-endpoint}/spot/orderBook
 
 request method：GET
 
@@ -331,7 +331,7 @@ response example：
 
 #### 3. trade records（last 100）
 
-request uri：{requestUrl}/spot/trades
+request url：{base-endpoint}/spot/trades
 
 request method：GET
 
@@ -370,7 +370,7 @@ response example：
 
 #### 4. kline
 
-request uri：{requestUrl}/spot/kline
+request url：{base-endpoint}/spot/kline
 
 request method：GET
 
@@ -421,7 +421,7 @@ response example：
 
 #### 1. create order for virtual coin (**need transaction authentication**)
 
-request uri：{requestUrl}/spot/placeOrder
+request url：{base-endpoint}/spot/placeOrder
 
 request method：POST
 
@@ -458,7 +458,7 @@ response example：
 
 #### 2. cancel order for virtual coin
 
-request uri：{requestUrl}/spot/cancelOrder  (**need transaction authentication**)
+request url：{base-endpoint}/spot/cancelOrder  (**need transaction authentication**)
 
 request method：POST
 
@@ -471,7 +471,7 @@ request parameter infomation:
 
 #### 3. query virtual coin asset account
 
-request uri：{requestUrl}/spot/assetList
+request url：{base-endpoint}/spot/assetList
 
 request method：POST
 
@@ -512,7 +512,7 @@ response example：
 
 #### 4. trade for order detail
 
-request uri：{requestUrl}/spot/orderDetail
+request url：{base-endpoint}/spot/orderDetail
 
 request method：POST
 
@@ -583,7 +583,7 @@ response example：
 
 #### 5. query history order list
 
-request uri：{requestUrl}/spot/orderList
+request url：{base-endpoint}/spot/orderList
 
 request method：POST
 
@@ -652,7 +652,7 @@ response example：
 
 #### 6. query single order
 
-request uri：{requestUrl}/spot/singleOrder
+request url：{base-endpoint}/spot/singleOrder
 
 request method：POST
 
@@ -704,7 +704,7 @@ response example：
 
 #### 7. query open order list
 
-request uri：{requestUrl}/spot/openOrders
+request url：{base-endpoint}/spot/openOrders
 
 request method：POST
 
@@ -770,7 +770,7 @@ response example：
 
 #### 8. query my trades
 
-request uri：{requestUrl}/spot/myTrades
+request url：{base-endpoint}/spot/myTrades
 
 request method：POST
 
@@ -815,7 +815,7 @@ response example：
 
 #### 1. orderBook
 
-request uri：{requestUrl}/contract/orderBook
+request url：{base-endpoint}/contract/orderBook
 
 request method：GET
 
@@ -850,7 +850,7 @@ response example：
 
 #### 2. ticker
 
-request uri：{requestUrl}/contract/ticker
+request url：{base-endpoint}/contract/ticker
 
 request method：GET
 
@@ -909,7 +909,7 @@ response example：
 
 #### 1. create order for contract
 
-request uri：{requestUrl}/contract/order/create
+request url：{base-endpoint}/contract/order/create
 
 request method：POST
 
@@ -953,7 +953,7 @@ response example：
 
 #### 2. cancel order for contract
 
-request uri：{requestUrl}/contract/order/cancel
+request url：{base-endpoint}/contract/order/cancel
 
 request method：POST
 
@@ -967,7 +967,7 @@ response description：when code = "0" is success
 
 #### 3. edit leverage
 
-request uri：{requestUrl}/contract/leverageEdit
+request url：{base-endpoint}/contract/leverageEdit
 
 request method：POST
 
@@ -982,7 +982,7 @@ request description：when code="0" is success
 
 #### 4. position info
 
-request uri：{requestUrl}/contract/position
+request url：{base-endpoint}/contract/position
 
 request method：POST
 
@@ -1012,7 +1012,7 @@ response description：
 
 #### 5. adjust margin
 
-request uri：{requestUrl}/contract/margin/update
+request url：{base-endpoint}/contract/margin/update
 
 request method：POST
 
@@ -1027,7 +1027,7 @@ response description：when code="0" is success
 
 #### 6. query asset account for contract
 
-request uri：{requestUrl}/contract/asset/info
+request url：{base-endpoint}/contract/asset/info
 
 request method：POST
 
@@ -1059,7 +1059,7 @@ records：
 
 #### 7. query user contract info
 
-request url：{requestUrl}/contract/info
+request url：{base-endpoint}/contract/info
 
 request method：POST
 
@@ -1080,7 +1080,7 @@ response description:
 
 #### 8. query user contract account info 
 
-request url：{requestUrl}/contract/account/info
+request url：{base-endpoint}/contract/account/info
 
 request method：POST
 
@@ -1103,7 +1103,7 @@ response description:
 
 #### 9. query order list (open order or history order list)
 
-request url：{requestUrl}/contract/orders
+request url：{base-endpoint}/contract/orders
 
 request method：POST
 
@@ -1149,7 +1149,7 @@ records：
 
 #### 10. query user contract trades
 
-request url：{requestUrl}/contract/trades
+request url：{base-endpoint}/contract/trades
 
 request method：POST
 
