@@ -94,13 +94,13 @@ if need page, like:
 
 #### 1. query server time
 
-request url：{base-endpoint}/serverTime
+request url: {base-endpoint}/serverTime
 
-request method：GET
+request method: GET
 
-request parameter infomation：none
+request parameter infomation: none
 
-response example：
+response example: 
 
 ```
 {
@@ -113,13 +113,13 @@ response example：
 
 #### 2. config detail
 
-request url：{base-endpoint}/spot/config
+request url: {base-endpoint}/spot/config
 
-request method：GET
+request method: GET
 
-request parameter infomation：null
+request parameter infomation: null
 
-response description:
+response description: 
 
 | Field          | Description     | Mark | Type   |
 | -------------- | --------------- | ---- | ------ |
@@ -127,7 +127,7 @@ response description:
 | coinConfig     | coin config     |      | Object |
 | contractConfig | contract config |      | Object |
 
-coinConfig：
+coinConfig: 
 
 | Field          | Description           | Mark | Type   |
 | -------------- | --------------------- | ---- | ------ |
@@ -141,7 +141,7 @@ coinConfig：
 | takerFeeRate   | taker transaction fee |      | String |
 | minTxAmt       | min transaction amount|      | String |
 
-contractConfig：
+contractConfig: 
 
 | Field        | Description           | Mark | Type   |
 | ------------ | --------------------- | ---- | ------ |
@@ -149,14 +149,14 @@ contractConfig：
 | makerFeeRate | maker transaction fee |      | String |
 | takerFeeRate | taker transaction fee |      | String |
 
-spotConfig：
+spotConfig: 
 
 | Field    | Description | Mark | Type     |
 | -------- | ----------- | ---- | -------- |
 | symbol   |             |      | String   |
 | accuracy |             |      | String[] |
 
-response example：
+response example: 
 
 ```
 {
@@ -206,7 +206,7 @@ request url: {base-endpoint}/withdraw
 
 request method: POST
 
-request parameter infomation:
+request parameter infomation: 
 
 | Filed       | Description           | Required(Y or N) | Mark                     | Type   |
 | ----------- | --------------------- | ---------------- | ------------------------ | ------ |
@@ -222,7 +222,7 @@ request url: {base-endpoint}/transfer
 
 request method: POST
 
-request parameter infomation:
+request parameter infomation: 
 
 | Field    | Description                                 | Required(Y or N) | Mark    | Type   |
 | -------- | ------------------------------------------- | ---------------- | ------- | ------ |
@@ -235,17 +235,17 @@ request parameter infomation:
 
 #### 1. ticker
 
-request url：{base-endpoint}/spot/ticker
+request url: {base-endpoint}/spot/ticker
 
-request method：GET
+request method: GET
 
-request parameter infomation：
+request parameter infomation: 
 
 | Field  | Description             | Required(Y or N) | Mark                        | Type   |
 | ------ | ----------------------- | ---------------- | --------------------------- | ------ |
 | symbol | Unique tag(ex:ETH-USDT) | Y                | =ALL,get all symbol tickers | String |
 
-response:
+response: 
 
 | Field | Description                        | Mark | Type   |
 | ----- | ---------------------------------- | ---- | ------ |
@@ -256,7 +256,7 @@ response:
 | v     | deal quantity in the past of hours |      | String |
 | s     | symbol                             |      | String |
 
-response example：
+response example: 
 
 	{
 	"data": [
@@ -277,17 +277,17 @@ response example：
 
 #### 2. orderbook
 
-request url：{base-endpoint}/spot/orderBook
+request url: {base-endpoint}/spot/orderBook
 
-request method：GET
+request method: GET
 
-request parameter infomation：
+request parameter infomation: 
 
 | Field  | Description             | Required(Y or N) | Mark | Type   |
 | ------ | ----------------------- | ---------------- | ---- | ------ |
 | symbol | Unique tag(ex:ETH-USDT) | Y                |      | String |
 
-response:
+response: 
 
 | Field  | Description    | Mark | Type                                      |
 | ------ | -------------- | ---- | ----------------------------------------- |
@@ -296,7 +296,7 @@ response:
 | ver    | version number |      | String                                    |
 | symbol |                |      | String                                    |
 
-response example：
+response example: 
 
 	{
 	"data": {
@@ -331,17 +331,17 @@ response example：
 
 #### 3. trade records（last 100）
 
-request url：{base-endpoint}/spot/trades
+request url: {base-endpoint}/spot/trades
 
-request method：GET
+request method: GET
 
-request parameter infomation：
+request parameter infomation: 
 
 | Field  | Description | Required(Y or N) | Mark | Type   |
 | ------ | ----------- | ---------------- | ---- | ------ |
 | symbol |             | Y                |      | String |
 
-response:
+response: 
 
 | Field | Description   | Mark        | Type   |
 | ----- | ------------- | ----------- | ------ |
@@ -351,7 +351,7 @@ response:
 | t     | timestamp     |             | String |
 | ver   |               |             | String |
 
-response example：
+response example: 
 	
 	{
 	"data": [
@@ -370,11 +370,11 @@ response example：
 
 #### 4. kline
 
-request url：{base-endpoint}/spot/kline
+request url: {base-endpoint}/spot/kline
 
-request method：GET
+request method: GET
 
-request parameter infomation：
+request parameter infomation: 
 
 | Field  | Description | Required(Y or N) | Mark                                                         | Type   |
 | ------ | ----------- | ---------------- | ------------------------------------------------------------ | ------ |
@@ -383,7 +383,7 @@ request parameter infomation：
 | start  | start time  | Y                | unit: second                                            | Long   |
 | end    | end time    | Y                | unit: second                                            | Long   |
 
-response:
+response: 
 
 | Field | Description         | Mark | Type   |
 | ----- | ------------------- | ---- | ------ |
@@ -396,7 +396,7 @@ response:
 | time  | timestamp           |      | String |
 | v     | total deal quantity |      | String |
 
-response example：
+response example: 
 	
 	{
 	"data": [
@@ -421,11 +421,11 @@ response example：
 
 #### 1. create order for virtual coin (**need transaction authentication**)
 
-request url：{base-endpoint}/spot/placeOrder
+request url: {base-endpoint}/spot/placeOrder
 
-request method：POST
+request method: POST
 
-request parameter infomation：
+request parameter infomation: 
 
 | Field     | Description | Required(Y or N) | Mark                                          | Type   |
 | --------- | ----------- | ---------------- | --------------------------------------------- | ------ |
@@ -436,14 +436,14 @@ request parameter infomation：
 | quantity  |             | Y                | eg.BTC-USDT,normally point at the quantity of BTC,when type=market,side=buy,point at the quantity of USDT, and the quantity should greater than or equal to the minimum trading volume of BTC                                | String |
 | timestamp |             | Y                |                                               | String |
 
-response description:
+response description: 
 
 | Field   | Description | Mark | Type   |
 | ------- | ----------- | ---- | ------ |
 | orderId |             |      | String |
 | symbol  |             |      | String |
 
-response example：
+response example: 
 
 	{
 	"data": {
@@ -458,11 +458,11 @@ response example：
 
 #### 2. cancel order for virtual coin
 
-request url：{base-endpoint}/spot/cancelOrder  (**need transaction authentication**)
+request url: {base-endpoint}/spot/cancelOrder  (**need transaction authentication**)
 
-request method：POST
+request method: POST
 
-request parameter infomation:
+request parameter infomation: 
 
 | Field   | Description | Required(Y or N) | Mark | Type   |
 | ------- | ----------- | ---------------- | ---- | ------ |
@@ -471,18 +471,18 @@ request parameter infomation:
 
 #### 3. query virtual coin asset account
 
-request url：{base-endpoint}/spot/assetList
+request url: {base-endpoint}/spot/assetList
 
-request method：POST
+request method: POST
 
-request parameter infomation:
+request parameter infomation: 
 
 | Field     | Description              | Required(Y or N) | Mark                                | Type   |
 | --------- | ------------------------ | ---------------- | ----------------------------------- | ------ |
 | coinType  | coin type                | N                | if null, response ALL virtual asset | String |
 | assetType | asset type (spot,wallet) | Y                | spot for virtual                    | String |
 
-response description:
+response description: 
 
 | Field       | Description        | Mark                    | Type   |
 | ----------- | ------------------ | ----------------------- | ------ |
@@ -492,7 +492,7 @@ response description:
 | btcQuantity | probably equal BTC |                         | String |
 | type        | type               | 1=virtual coin，2=legal |        |
 
-response example：
+response example: 
 
 	{
 	"data": [
@@ -512,11 +512,11 @@ response example：
 
 #### 4. trade for order detail
 
-request url：{base-endpoint}/spot/orderDetail
+request url: {base-endpoint}/spot/orderDetail
 
-request method：POST
+request method: POST
 
-request parameter infomation:
+request parameter infomation: 
 
 | Field   | Description        | Required(Y or N) | Mark         | Type   |
 | ------- | ------------------ | ---------------- | ------------ | ------ |
@@ -525,14 +525,14 @@ request parameter infomation:
 | page    | current page       | N                | default = 1  | String |
 | count   | current page count | N                | default = 10 | String |
 
-response description:
+response description: 
 
 | Field | Description   | Mark | Type |
 | ----- | ------------- | ---- | ---- |
 | num   | total numbers |      | Long |
 | list  | trade detail  |      | List |
 
-response description (List):
+response description (List): 
 
 | Field         | Description  | Mark                    | Type   |
 | ------------- | ------------ | ----------------------- | ------ |
@@ -550,7 +550,7 @@ response description (List):
 | fsymbol       | symbol       | BTC-USDT                | String |
 | side          | order side   | buy or sell             | String |
 
-response example：
+response example: 
 	
 	{
 	"data":{
@@ -583,11 +583,11 @@ response example：
 
 #### 5. query history order list
 
-request url：{base-endpoint}/spot/orderList
+request url: {base-endpoint}/spot/orderList
 
-request method：POST
+request method: POST
 
-request parameter information:
+request parameter information: 
 
 | Field      | Description                                                  | Required(Y or N) | Mark | Type   |
 | ---------- | ------------------------------------------------------------ | ---------------- | ---- | ------ |
@@ -605,7 +605,7 @@ response description:
 | num   | total numbers |      | Long |
 | list  | orde list     |      | List |
 
-list description：
+list description: 
 
 | Field      | Description        | Mark                           | Type    |
 | ---------- | ------------------ | ------------------------------ | ------- |
@@ -621,7 +621,7 @@ list description：
 | createTime | order create time  |                                | Date    |
 | tradeTotal |                    |                                | Decimal |
 
-response example：
+response example: 
 
 ```
 "data":{
@@ -652,18 +652,18 @@ response example：
 
 #### 6. query single order
 
-request url：{base-endpoint}/spot/singleOrder
+request url: {base-endpoint}/spot/singleOrder
 
-request method：POST
+request method: POST
 
-request parameter infomation:
+request parameter infomation: 
 
 | Field   | Description | Required(Y or N) | Mark | Type   |
 | ------- | ----------- | ---------------- | ---- | ------ |
 | orderId |             | Y                |      | String |
 | symbol  |             | Y                |      | String |
 
-response description：
+response description: 
 
 | Field      | Description        | Mark                           | Type    |
 | ---------- | ------------------ | ------------------------------ | ------- |
@@ -679,7 +679,7 @@ response description：
 | createTime | create time        |                                | Date    |
 | tradeTotal |                    |                                | Decimal |
 
-response example：
+response example: 
 
 ```
 "data":{
@@ -704,11 +704,11 @@ response example：
 
 #### 7. query open order list
 
-request url：{base-endpoint}/spot/openOrders
+request url: {base-endpoint}/spot/openOrders
 
-request method：POST
+request method: POST
 
-request parameter information:
+request parameter information: 
 
 | Field  | Description        | Required(Y or N) | Mark | Type   |
 | ------ | ------------------ | ---------------- | ---- | ------ |
@@ -716,14 +716,14 @@ request parameter information:
 | page   | current page       | N                |      | String |
 | count  | current page count | N                |      | String |
 
-response description:
+response description: 
 
 | Field | Description   | Mark | Type |
 | ----- | ------------- | ---- | ---- |
 | num   | total numbers |      | Long |
 | list  | orde list     |      | List |
 
-list description：
+list description: 
 
 | Field      | Description        | Mark                           | Type    |
 | ---------- | ------------------ | ------------------------------ | ------- |
@@ -739,7 +739,7 @@ list description：
 | createTime | order create time  |                                | Date    |
 | tradeTotal |                    |                                | Decimal |
 
-response example：
+response example: 
 
 ```
 "data":{
@@ -770,11 +770,11 @@ response example：
 
 #### 8. query my trades
 
-request url：{base-endpoint}/spot/myTrades
+request url: {base-endpoint}/spot/myTrades
 
-request method：POST
+request method: POST
 
-request parameter information:
+request parameter information: 
 
 | Field     | Description       | Required(Y or N) | Mark | Type    |
 | --------- | ----------------- | ---------------- | ---- | ------- |
@@ -793,7 +793,7 @@ response description:
 | direction |             |      | String     |
 | time      |             |      | Date       |
 
-response example：
+response example: 
 
 ```
 "data":[
@@ -815,17 +815,17 @@ response example：
 
 #### 1. orderBook
 
-request url：{base-endpoint}/contract/orderBook
+request url: {base-endpoint}/contract/orderBook
 
-request method：GET
+request method: GET
 
-request parameter infomation：
+request parameter infomation: 
 
 | Field  | Description | Required(Y or N) | Mark | Type   |
 | ------ | ----------- | ---------------- | ---- | ------ |
 | symbol |             | Y                |      | String |
 
-response description:
+response description: 
 
 | Field | Description | Mark                                            | Type   |
 | ----- | ----------- | ----------------------------------------------- | ------ |
@@ -833,7 +833,7 @@ response description:
 | s     | Asks        | split by ":",first is price, second is quantity | String |
 | type  | type        |                                                 | String |
 
-response example：
+response example: 
 
 ```
 "data":{
@@ -850,17 +850,17 @@ response example：
 
 #### 2. ticker
 
-request url：{base-endpoint}/contract/ticker
+request url: {base-endpoint}/contract/ticker
 
-request method：GET
+request method: GET
 
-request parameter infomation：
+request parameter infomation: 
 
 | Field  | Description | Required(Y or N) | Mark | Type   |
 | ------ | ----------- | ---------------- | ---- | ------ |
 | symbol |             | Y                |      | String |
 
-response description:
+response description: 
 
 | Field        | Description                                               | Mark | Type   |
 | ------------ | --------------------------------------------------------- | ---- | ------ |
@@ -879,7 +879,7 @@ response description:
 | openInterest |                                                           |      | String |
 | turnover     |                                                           |      | String |
 
-response example：
+response example: 
 
 ```
 "data":{
@@ -909,11 +909,11 @@ response example：
 
 #### 1. create order for contract
 
-request url：{base-endpoint}/contract/order/create
+request url: {base-endpoint}/contract/order/create
 
-request method：POST
+request method: POST
 
-request parameter infomation：
+request parameter infomation: 
 
 | Field            | Description                 | Required(Y or N) | Mark                                                         | Type   |
 | ---------------- | --------------------------- | ---------------- | ------------------------------------------------------------ | ------ |
@@ -938,7 +938,7 @@ response description:
 | ------- | ----------- | ---- | ------ |
 | orderId |             |      | String |
 
-response example：
+response example: 
 
 ```
 "data":{
@@ -953,46 +953,46 @@ response example：
 
 #### 2. cancel order for contract
 
-request url：{base-endpoint}/contract/order/cancel
+request url: {base-endpoint}/contract/order/cancel
 
-request method：POST
+request method: POST
 
-request parameter infomation：
+request parameter infomation: 
 
 | Field   | Description | Required(Y or N) | Mark | Type   |
 | ------- | ----------- | ---------------- | ---- | ------ |
 | orderId |             | Y                |      | String |
 
-response description：when code = "0" is success
+response description: when code = "0" is success
 
 #### 3. edit leverage
 
-request url：{base-endpoint}/contract/leverageEdit
+request url: {base-endpoint}/contract/leverageEdit
 
-request method：POST
+request method: POST
 
-request parameter infomation：
+request parameter infomation: 
 
 | Field    | Description       | Required(Y or N) | Mark | Type   |
 | -------- | ----------------- | ---------------- | ---- | ------ |
 | symbol   |                   | Y                |      | String |
 | leverage | new leverage info | Y                |      | String |
 
-request description：when code="0" is success
+request description: when code="0" is success
 
 #### 4. position info
 
-request url：{base-endpoint}/contract/position
+request url: {base-endpoint}/contract/position
 
-request method：POST
+request method: POST
 
-request parameter infomation：
+request parameter infomation: 
 
 | Field  | Description | Required(Y or N) | Mark | Type   |
 | ------ | ----------- | ---------------- | ---- | ------ |
 | symbol |             | Y                |      | String |
 
-response description：
+response description: 
 
 | Field            | Description           | Mark | Type   |
 | ---------------- | --------------------- | ---- | ------ |
@@ -1012,11 +1012,11 @@ response description：
 
 #### 5. adjust margin
 
-request url：{base-endpoint}/contract/margin/update
+request url: {base-endpoint}/contract/margin/update
 
-request method：POST
+request method: POST
 
-request parameter infomation：
+request parameter infomation: 
 
 | Field        | Description                              | Required(Y or N) | Mark | Type   |
 | ------------ | ---------------------------------------- | ---------------- | ---- | ------ |
@@ -1027,11 +1027,11 @@ response description：when code="0" is success
 
 #### 6. query asset account for contract
 
-request url：{base-endpoint}/contract/asset/info
+request url: {base-endpoint}/contract/asset/info
 
-request method：POST
+request method: POST
 
-request parameter infomation：
+request parameter infomation: 
 
 | Field      | Description | Required(Y or N) | Mark | Type   |
 | ---------- | ----------- | ---------------- | ---- | ------ |
@@ -1039,7 +1039,7 @@ request parameter infomation：
 | count      |             | Y                |      | Int    |
 | coinIdLike | coin type   | N                |      | String |
 
-response description：
+response description: 
 
 | Field    | Description | Mark | Type   |
 | -------- | ----------- | ---- | ------ |
@@ -1048,7 +1048,7 @@ response description：
 
 pageInfo:（refer to orderList）
 
-records：
+records: 
 
 | Field    | Description        | Mark | Type   |
 | -------- | ------------------ | ---- | ------ |
@@ -1059,17 +1059,17 @@ records：
 
 #### 7. query user contract info
 
-request url：{base-endpoint}/contract/info
+request url: {base-endpoint}/contract/info
 
-request method：POST
+request method: POST
 
-request parameter infomation：
+request parameter infomation: 
 
 | Field  | Description | Required(Y or N) | Mark | Type   |
 | ------ | ----------- | ---------------- | ---- | ------ |
 | symbol |             | Y                |      | String |
 
-response description:
+response description: 
 
 | Field     | Description     | Mark | Type   |
 | --------- | --------------- | ---- | ------ |
@@ -1080,17 +1080,17 @@ response description:
 
 #### 8. query user contract account info 
 
-request url：{base-endpoint}/contract/account/info
+request url: {base-endpoint}/contract/account/info
 
-request method：POST
+request method: POST
 
-request parameter information：
+request parameter information: 
 
 | Field | Description | Required(Y or N) | Mark | Type   |
 | ----- | ----------- | ---------------- | ---- | ------ |
 | coin  | coin symbol | Y                |      | String |
 
-response description:
+response description: 
 
 | Field                | Description      | Mark | Type   |
 | -------------------- | ---------------- | ---- | ------ |
@@ -1103,11 +1103,11 @@ response description:
 
 #### 9. query order list (open order or history order list)
 
-request url：{base-endpoint}/contract/orders
+request url: {base-endpoint}/contract/orders
 
-request method：POST
+request method: POST
 
-request parameter information：
+request parameter information: 
 
 | Field  | Description                   | Required(Y or N) | Mark       | Type    |
 | ------ | ----------------------------- | ---------------- | ---------- | ------- |
@@ -1116,14 +1116,14 @@ request parameter information：
 | page   |                               | N                | default 1  | Integer |
 | count  |                               | N                | default 10 | Integer |
 
-response description:
+response description: 
 
 | Field    | Description | Mark | Type   |
 | -------- | ----------- | ---- | ------ |
 | pageInfo |             |      | Object |
 | records  |             |      | Array  |
 
-pageInfo：
+pageInfo: 
 
 | Field       | Description | Mark | Type    |
 | ----------- | ----------- | ---- | ------- |
@@ -1132,7 +1132,7 @@ pageInfo：
 | pageTotal   |             |      | Integer |
 | recordTotal |             |      | Integer |
 
-records：
+records: 
 
 | Field      | Description      | Mark                                      | Type   |
 | ---------- | ---------------- | ----------------------------------------- | ------ |
@@ -1149,11 +1149,11 @@ records：
 
 #### 10. query user contract trades
 
-request url：{base-endpoint}/contract/trades
+request url: {base-endpoint}/contract/trades
 
-request method：POST
+request method: POST
 
-request parameter information：
+request parameter information: 
 
 | Field  | Description | Required(Y or N) | Mark       | Type    |
 | ------ | ----------- | ---------------- | ---------- | ------- |
@@ -1161,7 +1161,7 @@ request parameter information：
 | page   |             | N                | default=1  | Integer |
 | count  |             | N                | default=10 | Integer |
 
-response description:
+response description: 
 
 | Field    | Description | Mark | Type   |
 | -------- | ----------- | ---- | ------ |
@@ -1170,7 +1170,7 @@ response description:
 
 pageInfo:(refer to orderList)
 
-records：
+records: 
 
 | Field   | Description | Mark | Type    |
 | ------- | ----------- | ---- | ------- |
