@@ -59,7 +59,7 @@ if need page, like:
 
 - For authentication of request, the request paramters need to be sign  by HmacSHA256
 
-- The prepared signature data is a string which make up of  all request parameters which sort by dict and join with '&'
+- The prepared signature data is a string which make up of  all request parameters which in alphabetic order and join with '&'
 
 - The signature needs to be in lowercase
 
