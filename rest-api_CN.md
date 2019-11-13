@@ -2265,3 +2265,5 @@ records返回参数说明：
 |       |                        |                  |          |
 |       |                        |                  |          |
 |       |                        |                  |          |
+
+[base-endpoint]: [**https://global-openapi.bithumb.pro/openapi/v1**]
