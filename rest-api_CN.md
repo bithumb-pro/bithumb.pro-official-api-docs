@@ -4,7 +4,7 @@
 
 ## [REST API简介]
 
-- 本篇列出REST接口的baseurl **https://global-openapi.bithumb.pro/openapi/v1/**
+- 本篇列出REST接口的base-endpoint： **https://global-openapi.bithumb.pro/openapi/v1**
 - 所有接口的响应都是JSON格式
 - GET方法的接口, 参数必须在query string中发送
 - POST方法的接口，参数必须在request body中发送(headers里需添加content-type:application/json)
@@ -87,7 +87,7 @@
 
 #### 1. 系统时间
 
-请求路径：{requestUrl}/serverTime
+请求路径：{base-endpoint}/serverTime
 
 请求方式：GET
 
@@ -106,7 +106,7 @@
 
 #### 2. 配置详情
 
-请求路径：{requestUrl}/spot/config
+请求路径：{base-endpoint}/spot/config
 
 请求方式：GET
 
@@ -205,7 +205,7 @@ spotConfig对象：
 
 #### 1. 提币（**需要提币权限**）
 
-请求路径：{requestUrl}/withdraw
+请求路径：{base-endpoint}/withdraw
 
 请求方式：POST
 
@@ -221,7 +221,7 @@ spotConfig对象：
 
 #### 2. 内部账户资产划转（**需要提币权限**）
 
-请求路径：{requestUrl}/transfer
+请求路径：{base-endpoint}/transfer
 
 请求方式：POST
 
@@ -238,7 +238,7 @@ spotConfig对象：
 
 #### 1. 行情
 
-请求路径：{requestUrl}/spot/ticker
+请求路径：{base-endpoint}/spot/ticker
 
 请求方式：GET
 
@@ -280,7 +280,7 @@ spotConfig对象：
 
 #### 2. 订单薄
 
-请求路径：{requestUrl}/spot/orderBook
+请求路径：{base-endpoint}/spot/orderBook
 
 请求方式：GET
 
@@ -332,7 +332,7 @@ spotConfig对象：
 
 #### 3. 交易记录（最新100条）
 
-请求路径：{requestUrl}/spot/trades
+请求路径：{base-endpoint}/spot/trades
 
 请求方式：GET
 
@@ -371,7 +371,7 @@ spotConfig对象：
 
 #### 4. k线
 
-请求路径：{requestUrl}/spot/kline
+请求路径：{base-endpoint}/spot/kline
 
 请求方式：GET
 
@@ -423,7 +423,7 @@ spotConfig对象：
 
 #### 1. 币币下单 （**需要交易权限**）
 
-请求路径：{requestUrl}/spot//placeOrder
+请求路径：{base-endpoint}/spot//placeOrder
 
 请求方式：POST
 
@@ -460,7 +460,7 @@ spotConfig对象：
 
 #### 2. 币币订单撤销（**需要交易权限**）
 
-请求路径：{requestUrl}/spot/cancelOrder
+请求路径：{base-endpoint}/spot/cancelOrder
 
 请求方式：POST
 
@@ -473,7 +473,7 @@ spotConfig对象：
 
 #### 3. 币币交易账户资产查询
 
-请求路径：{requestUrl}/spot/assetList
+请求路径：{base-endpoint}/spot/assetList
 
 请求方式：POST
 
@@ -513,7 +513,7 @@ spotConfig对象：
 
 #### 4. 订单交易明细
 
-请求路径：{requestUrl}/spot/orderDetail
+请求路径：{base-endpoint}/spot/orderDetail
 
 请求方式：POST
 
@@ -583,7 +583,7 @@ spotConfig对象：
 
 #### 5. 查询历史订单列表
 
-请求路径：{requestUrl}/spot/orderList
+请求路径：{base-endpoint}/spot/orderList
 
 请求方式：POST
 
@@ -611,7 +611,7 @@ list说明：
 | ---------- | ------------ | ------------------------------ | ------- |
 | orderId    | 订单id       |                                | String  |
 | symbol     |              |                                | String  |
-| price      | 挂单价格     |                                | decimal |
+| price      | 挂单价格     |                                | Decimal |
 | tradedNum  | 已成交数量   |                                | Decimal |
 | quantity   | 挂单数量     |                                | Decimal |
 | avgPrice   | 平均成交价格 |                                | Decimal |
@@ -651,7 +651,7 @@ list说明：
 
 #### 6. 单个订单查询
 
-请求路径：{requestUrl}/spot/singleOrder
+请求路径：{base-endpoint}/spot/singleOrder
 
 请求方式：POST
 
@@ -668,7 +668,7 @@ list说明：
 | ---------- | ------------ | ------------------------------ | ------- |
 | orderId    | 订单id       |                                | String  |
 | symbol     |              |                                | String  |
-| price      | 挂单价格     |                                | decimal |
+| price      | 挂单价格     |                                | Decimal |
 | tradedNum  | 已成交数量   |                                | Decimal |
 | quantity   | 挂单数量     |                                | Decimal |
 | avgPrice   | 平均成交价格 |                                | Decimal |
@@ -703,7 +703,7 @@ list说明：
 
 #### 7. 查询未成交订单列表
 
-请求路径：{requestUrl}/spot/openOrders
+请求路径：{base-endpoint}/spot/openOrders
 
 请求方式：POST
 
@@ -728,7 +728,7 @@ list说明：
 | ---------- | ------------ | ------------------------------ | ------- |
 | orderId    | 订单id       |                                | String  |
 | symbol     | 市场类型     |                                | String  |
-| price      | 挂单价格     |                                | decimal |
+| price      | 挂单价格     |                                | Decimal |
 | tradedNum  | 已成交数量   |                                | Decimal |
 | quantity   | 挂单数量     |                                | Decimal |
 | avgPrice   | 平均成交价格 |                                | Decimal |
@@ -768,7 +768,7 @@ list说明：
 
 #### 8. 查询我的成交记录
 
-请求路径：{requestUrl}/spot/myTrades
+请求路径：{base-endpoint}/spot/myTrades
 
 请求方式：POST
 
@@ -785,8 +785,8 @@ list说明：
 | 字段      | 说明                       | 备注 | 类型       |
 | --------- | -------------------------- | ---- | ---------- |
 | id        |                            |      | Long       |
-| price     | 成交价格                   |      | BigDecimal |
-| amount    | 成交量                     |      | BigDecimal |
+| price     | 成交价格                   |      | Decimal |
+| amount    | 成交量                     |      | Decimal |
 | side      | 成交类型（buy or sell）    |      | String     |
 | direction | 成交角色（taker or maker） |      | String     |
 | time      | 成交时间                   |      | Date       |
@@ -817,7 +817,7 @@ list说明：
 
 #### 1. 杠杆资产列表
 
-请求路径：{requestUrl}/lever/assetList
+请求路径：{base-endpoint}/lever/assetList
 
 请求方式： POST
 
@@ -914,7 +914,7 @@ list说明：
 ```
 
 #### 2. 杠杆账户总览
-请求路径：{requestUrl}/lever/assetInfo
+请求路径：{base-endpoint}/lever/assetInfo
 
 请求方式： POST
 
@@ -958,7 +958,7 @@ list说明：
 
 #### 3. 杠杆账户资产变更记录
 
-请求路径：{requestUrl}/lever/assetHistory
+请求路径：{base-endpoint}/lever/assetHistory
 
 请求方式： POST
 
@@ -1049,7 +1049,7 @@ list说明：
 
 #### 4. 杠杆账户借贷列表
 
-请求路径：{requestUrl}/lever/assetBorrowing
+请求路径：{base-endpoint}/lever/assetBorrowing
 
 请求方式： POST
 
@@ -1120,7 +1120,7 @@ list说明：
 
 #### 1. 杠杆下单 （**需要交易权限**）
 
-请求路径：{requestUrl}/lever/placeOrder
+请求路径：{base-endpoint}/lever/placeOrder
 
 请求方式：POST
 
@@ -1157,7 +1157,7 @@ list说明：
 
 #### 2. 杠杆订单撤销（**需要交易权限**）
 
-请求路径：{requestUrl}/lever/cancelOrder
+请求路径：{base-endpoint}/lever/cancelOrder
 
 请求方式：POST
 
@@ -1170,7 +1170,7 @@ list说明：
 
 #### 3. 查询未成交杠杆订单列表
 
-请求路径：{requestUrl}/lever/openOrders
+请求路径：{base-endpoint}/lever/openOrders
 
 请求方式：POST
 
@@ -1235,7 +1235,7 @@ list说明：
 
 #### 4. 查询历史订单列表
 
-请求路径：{requestUrl}/lever/orderList
+请求路径：{base-endpoint}/lever/orderList
 
 请求方式：POST
 
@@ -1263,7 +1263,7 @@ list说明：
 | ---------- | ------------ | ------------------------------ | ------- |
 | orderId    | 订单id       |                                | String  |
 | symbol     |              |                                | String  |
-| price      | 挂单价格     |                                | decimal |
+| price      | 挂单价格     |                                | Decimal |
 | tradedNum  | 已成交数量   |                                | Decimal |
 | quantity   | 挂单数量     |                                | Decimal |
 | avgPrice   | 平均成交价格 |                                | Decimal |
@@ -1303,7 +1303,7 @@ list说明：
 
 #### 5. 订单交易明细
 
-请求路径：{requestUrl}/lever/orderDetail
+请求路径：{base-endpoint}/lever/orderDetail
 
 请求方式：POST
 
@@ -1372,7 +1372,7 @@ list说明：
 
 #### 6. 单个订单查询
 
-请求路径：{requestUrl}/lever/singleOrder
+请求路径：{base-endpoint}/lever/singleOrder
 
 请求方式：POST
 
@@ -1389,7 +1389,7 @@ list说明：
 | ---------- | ------------ | ------------------------------ | ------- |
 | orderId    | 订单id       |                                | String  |
 | symbol     |              |                                | String  |
-| price      | 挂单价格     |                                | decimal |
+| price      | 挂单价格     |                                | Decimal |
 | tradedNum  | 已成交数量   |                                | Decimal |
 | quantity   | 挂单数量     |                                | Decimal |
 | avgPrice   | 平均成交价格 |                                | Decimal |
@@ -1424,7 +1424,7 @@ list说明：
 
 #### 7. 查询我的成交记录
 
-请求路径：{requestUrl}/lever/myTrades
+请求路径：{base-endpoint}/lever/myTrades
 
 请求方式：POST
 
@@ -1467,11 +1467,11 @@ list说明：
 }
 ```
 
-### [合约普通接口]
+### [合约普通接口] (已废弃)
 
 #### 1. 订单薄
 
-请求路径：{requestUrl}/contract/orderBook
+请求路径：{base-endpoint}/contract/orderBook
 
 请求方式：GET
 
@@ -1506,7 +1506,7 @@ list说明：
 
 #### 2. 行情
 
-请求路径：{requestUrl}/contract/ticker
+请求路径：{base-endpoint}/contract/ticker
 
 请求方式：GET
 
@@ -1561,11 +1561,11 @@ list说明：
 }
 ```
 
-### [合约认证接口]
+### [合约认证接口] （已废弃）
 
 #### 1. 合约下单
 
-请求路径：{requestUrl}/contract/order/create
+请求路径：{base-endpoint}/contract/order/create
 
 请求方式：POST
 
@@ -1609,7 +1609,7 @@ list说明：
 
 #### 2. 合约取消订单
 
-请求路径：{requestUrl}/contract/order/cancel
+请求路径：{base-endpoint}/contract/order/cancel
 
 请求方式：POST
 
@@ -1623,7 +1623,7 @@ list说明：
 
 #### 3. 修改杠杆
 
-请求路径：{requestUrl}/contract/leverage/update
+请求路径：{base-endpoint}/contract/leverage/update
 
 请求方式：POST
 
@@ -1638,7 +1638,7 @@ list说明：
 
 #### 4. 仓位信息
 
-请求路径：{requestUrl}/contract/position
+请求路径：{base-endpoint}/contract/position
 
 请求方式：POST
 
@@ -1668,7 +1668,7 @@ list说明：
 
 #### 5. 调整保证金
 
-请求路径：{requestUrl}/contract/margin/update
+请求路径：{base-endpoint}/contract/margin/update
 
 请求方式：POST
 
@@ -1683,7 +1683,7 @@ list说明：
 
 #### 6. 合约资产查询
 
-请求路径：{requestUrl}/contract/asset/info
+请求路径：{base-endpoint}/contract/asset/info
 
 请求方式：POST
 
@@ -1715,7 +1715,7 @@ records数组中的元素参数：
 
 #### 7. 查询用户私有合约信息 
 
-请求路径：{requestUrl}/contract/info
+请求路径：{base-endpoint}/contract/info
 
 请求方式：POST
 
@@ -1736,7 +1736,7 @@ records数组中的元素参数：
 
 #### 8. 查询用户合约账户信息 
 
-请求路径：{requestUrl}/contract/account/info
+请求路径：{base-endpoint}/contract/account/info
 
 请求方式：POST
 
@@ -1759,7 +1759,7 @@ records数组中的元素参数：
 
 #### 9. 订单列表查询（活动委托和历史委托）
 
-请求路径：{requestUrl}/contract/orders
+请求路径：{base-endpoint}/contract/orders
 
 请求方式：POST
 
@@ -1805,7 +1805,7 @@ records数组中的元素参数：
 
 #### 10. 查询用户合约的交易记录 
 
-请求路径：{requestUrl}/contract/trades
+请求路径：{base-endpoint}/contract/trades
 
 请求方式：POST
 
@@ -1842,7 +1842,7 @@ records返回参数说明：
 
 #### 11. 查询用户合约单个订单接口
 
-请求路径：{requestUrl}/contract/queryOrder
+请求路径：{base-endpoint}/contract/queryOrder
 
 请求方式：POST
 
@@ -1877,7 +1877,7 @@ records返回参数说明：
 
 **请求URL：** 
 
-- ` http://{requestUrl}/c2c/api/order/getlist`
+- ` http://{base-endpoint}/c2c/api/order/getlist`
 
 **请求方式：**
 
@@ -1950,7 +1950,7 @@ records返回参数说明：
 
 **请求URL：** 
 
-- ` http://{requestUrl}/c2c/api/order/getorderdetail`
+- ` http://{base-endpoint}/c2c/api/order/getorderdetail`
 
 **请求方式：**
 
@@ -2049,7 +2049,7 @@ records返回参数说明：
 
 **请求URL：** 
 
-- ` http://{requestUrl}/c2c/order/payment`
+- ` http://{base-endpoint}/c2c/order/payment`
 
 **请求方式：**
 
@@ -2101,7 +2101,7 @@ records返回参数说明：
 
 **请求URL：** 
 
-- ` http://{requestUrl}/c2c/api/order/savebymatchcondition`
+- ` http://{base-endpoint}/c2c/api/order/savebymatchcondition`
 
 **请求方式：**
 
@@ -2152,7 +2152,7 @@ records返回参数说明：
 
 **请求URL：** 
 
-- ` http://{requestUrl}/saveKyc`
+- ` http://{base-endpoint}/saveKyc`
 
 **请求方式：**
 
@@ -2214,7 +2214,7 @@ records返回参数说明：
 
 **请求URL：** 
 
-- ` http://{requestUrl}/countryInfo`
+- ` http://{base-endpoint}/countryInfo`
 
 **请求方式：**
 
