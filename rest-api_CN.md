@@ -4,10 +4,10 @@
 
 ## [REST API简介]
 
-- 本篇列出REST接口的base-endpoint：[**https://global-openapi.bithumb.pro/openapi/v1**][base-endpoint]
-- 所有接口的响应都是JSON格式
-- GET方法的接口, 参数必须在query string中发送
-- POST方法的接口，参数必须在request body中发送(headers里需添加content-type:application/json)
+- rest api的基本请求路径base-endpoint：**https://global-openapi.bithumb.pro/openapi/v1**
+- 所有api的响应都是JSON格式
+- GET方法的api, 参数必须在query string中发送
+- POST方法的api，参数必须在request body中发送(headers里需添加content-type:application/json)
 - 对参数的顺序不做要求。
 
 | 版本号 | 说明                               | 时间        | 备注 |
@@ -2265,5 +2265,3 @@ records返回参数说明：
 |       |                        |                  |          |
 |       |                        |                  |          |
 |       |                        |                  |          |
-
-[base-endpoint]: [**https://global-openapi.bithumb.pro/openapi/v1**]
