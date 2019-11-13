@@ -87,7 +87,7 @@
 
 #### 1. 系统时间
 
-请求路径：[base-endpoint]/serverTime
+请求路径：[url][base-endpoint]/serverTime
 
 请求方式：GET
 
