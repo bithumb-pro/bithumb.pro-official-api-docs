@@ -4,7 +4,7 @@
 
 ## [REST API简介]
 
-- 本篇列出REST接口的base-endpoint： **https://global-openapi.bithumb.pro/openapi/v1**
+- 本篇列出REST接口的base-endpoint：[**https://global-openapi.bithumb.pro/openapi/v1**][base-endpoint]
 - 所有接口的响应都是JSON格式
 - GET方法的接口, 参数必须在query string中发送
 - POST方法的接口，参数必须在request body中发送(headers里需添加content-type:application/json)
