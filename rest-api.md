@@ -155,7 +155,7 @@ spotConfig:
 | -------- | ----------- | ---- | -------- |
 | symbol   |             |      | String   |
 | accuracy |             |      | String[] |
-| percentPrice |     price range(multiplierDown and multiplierUp), lastPrice‘*’multiplierDown < price < lastPrice‘*’multiplierUp       |      | Object |
+| percentPrice |     price range(multiplierDown and multiplierUp), lastPrice\*multiplierDown < price < lastPrice\*multiplierUp       |      | Object |
 
 response example: 
 
