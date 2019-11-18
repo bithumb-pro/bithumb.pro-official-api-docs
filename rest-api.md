@@ -1205,10 +1205,12 @@ records:
 | 9006  | no server                                    |             |      |
 | 9999  | system error                                 |             |      |
 |       |                                              |             |      |
-|       |                                              |             |      |
+| 20003 | asset not enough                             |             |      |
 | 20043 | price accuracy is wrong for placing order    |             |      |
 | 20044 | quantity accuracy is wrong for placing order |             |      |
-|       |                                              |             |      |
+| 20053 | need sign protocol in website                |             |      |
+| 20054 | order price out of range                     |             |      |
+| 20056 | order quantity out of range                  |             |      |
 |       |                                              |             |      |
 |       |                                              |             |      |
 |       |                                              |             |      |
