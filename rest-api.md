@@ -222,7 +222,7 @@ request parameter infomation:
 | quantity    |                       | Y                |                          | String |
 | mark        |                       | Y                | max support for 250 char | String |
 
-#### 2. transfer asset for inner account   (**need withdraw authentication**)
+#### 2. transfer asset for inner account   (**need withdraw authentication**) (Deprecated)
 
 request url: {base-endpoint}/transfer
 
