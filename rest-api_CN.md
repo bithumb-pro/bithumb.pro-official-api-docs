@@ -2259,9 +2259,10 @@ records返回参数说明：
 | 9999  | system error           | 系统异常         |          |
 |       |                        |                  |          |
 |       |                        |                  |          |
-| 20043 |                        | 挂单价格精度错误 |          |
-| 20044 |                        | 挂单数量精度错误 |          |
-|       |                        |                  |          |
-|       |                        |                  |          |
-|       |                        |                  |          |
+| 20003 | asset not enough       | 资产不足                 |          |
+| 20043 | price accuracy is wrong for placing order | 挂单价格精度错误 |          |
+| 20044 | quantity accuracy is wrong for placing order| 挂单数量精度错误 |          |
+| 20053 | need sign protocol in website|  需要在网页签署协议         |          |
+| 20054 | order price out of range| 挂单价格超出范围                 |  参考config接口的percentPrice属性        |
+| 20056 | order quantity out of range| 挂单数量超出范围              |          |
 |       |                        |                  |          |
