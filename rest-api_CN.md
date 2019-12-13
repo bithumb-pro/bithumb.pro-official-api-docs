@@ -31,8 +31,8 @@
 对于分页查询接口，返回的数据格式如下：
 ```json
 {
-"num":5  // 数据总数量
-"list":[{"":""}……...]   查询数据 集合
+"num":5  //数据总数量
+"list":[{"":""}...]
 }
 ```
 
@@ -47,13 +47,13 @@
 - 签名示例:
 ```json
   {
-"apiKey" : "XXXXXXXXXXXX", 	// (用户申请页面获取)
-"msgNo":"1234567890", 参考[请求参数说明]
-"timestamp":15348923323343,
-}
+	"apiKey" : "XXXXXXXXXXXX", 	//(用户申请页面获取)
+	"msgNo":"1234567890", //参考[请求参数说明]
+	"timestamp":15348923323343,
+  }
 ```
   待签名字符串(signString)：apiKey=XXXXXXX&msgNo=123456789&timestamp=1455323333332
-  
+
   在获得signString后，通过HmacSHA256 使用secretKey生成signature,并将signature加到请求参数中.
 
 ## [请求与应答] (重要)
@@ -66,7 +66,7 @@
   	"timestamp":"1455323333332",
 	"apiKey":"XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX", //(用户申请页面获取)
 	"signature":"1EF13F23D123A3123GXXXXXXXXXXXXXXXXXXXXXXXXX"	//参考[数据签名]
-}
+  }
 ```
 
 - 应答事例:
@@ -415,6 +415,7 @@ spotConfig对象：
 	 "code": "0",
 	 "params": []
 	}
+```
 
 ### [现货认证接口]
 
@@ -444,7 +445,7 @@ spotConfig对象：
 | symbol  | 返回币对符号   |                             | String |
 
 响应示例：
-
+```json
 	{
 	"data": {
 			"orderId":"23132134242",
@@ -455,6 +456,7 @@ spotConfig对象：
 	"timestamp": 1551346473238,
 	"params": []
 	}
+```
 
 #### 2. 币币订单撤销（**需要交易权限**）
 
@@ -493,7 +495,7 @@ spotConfig对象：
 | type        | 类型     | 1=虚拟币，2=法币 |        |
 
 响应信息：
-
+```json
 	{
 	"data": [{
 	    		"coinType":"BTC",
@@ -508,6 +510,7 @@ spotConfig对象：
 	"timestamp": 1551346473238,
 	"params": []
 	}
+```
 
 #### 4. 订单交易明细
 
