@@ -834,7 +834,7 @@ request body example:
 
 ```json
 {
-"symbol":"ETH-USDT"
+"symbol":"ETH-USDT",
 "ids":"74740189190115328,74740189190115329,74740189190115330"
 }
 ```
