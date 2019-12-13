@@ -29,14 +29,12 @@
 ### 返回结果说明
 
 对于分页查询接口，返回的数据格式如下：
-
-​	{
-
-​           "num":5  // 数据总数量
-
-​	    "list":[{"":""}……...]   查询数据 集合
-
-​	}
+```json
+{
+"num":5  // 数据总数量
+"list":[{"":""}……...]   查询数据 集合
+}
+```
 
 ## [数据签名] (重要)
 
@@ -47,16 +45,13 @@
 - 待签名字符串(signString)：签名数据由客户端的所有请求参数(不为空)按照key的字典顺序来组成，具体示例如下
 
 - 签名示例:
-
+```json
   {
-
-  ​	"apiKey" : "XXXXXXXXXXXX", 	// (用户申请页面获取)
-
-  ​	"msgNo":"1234567890", 参考[请求参数说明]
-
-  ​	"timestamp":15348923323343,
-
-  }   
+"apiKey" : "XXXXXXXXXXXX", 	// (用户申请页面获取)
+"msgNo":"1234567890", 参考[请求参数说明]
+"timestamp":15348923323343,
+}
+```
   待签名字符串(signString)：apiKey=XXXXXXX&msgNo=123456789&timestamp=1455323333332
   
   在获得signString后，通过HmacSHA256 使用secretKey生成signature,并将signature加到请求参数中.
@@ -66,21 +61,23 @@
 - 对于POST请求，请求headers里需要有Content-Type:application/json
 
 - 请求参数事例:
-
+```json
   {
-  ​	"timestamp":"1455323333332",
-  ​	"apiKey":"XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX", //(用户申请页面获取)
-  ​	"signature":"1EF13F23D123A3123GXXXXXXXXXXXXXXXXXXXXXXXXX"	//参考[数据签名]
-  }
+  	"timestamp":"1455323333332",
+	"apiKey":"XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX", //(用户申请页面获取)
+	"signature":"1EF13F23D123A3123GXXXXXXXXXXXXXXXXXXXXXXXXX"	//参考[数据签名]
+}
+```
 
 - 应答事例:
 
+```json
  {
     "code": "0", //响应码，参考[api响应码]
     "msg": "success",
     "data": ""
-  }
-
+ }
+```
 ## [接口说明]
 
 ### [普通接口]
@@ -95,7 +92,7 @@
 
 响应示例：
 
-```
+```json
 {
 "data": 1557134972000,
 "success": true,
@@ -154,7 +151,7 @@ spotConfig对象：
 
 响应示例：
 
-```
+```json
 {
     "data": {
         "coinConfig": [
@@ -260,7 +257,7 @@ spotConfig对象：
 | s    | 交易对           |      | String |
 
 响应示例：
-
+```json
 	{
 	"data": [
 	    {
@@ -277,6 +274,7 @@ spotConfig对象：
 	"code": "0",
 	"params": []
 	}
+```
 
 #### 2. 订单薄
 
@@ -398,7 +396,7 @@ spotConfig对象：
 | v    | 累计成交量   |      | String |
 
 响应示例：
-	
+```json
 	{
 	"data": [
 			 {
@@ -423,7 +421,7 @@ spotConfig对象：
 
 #### 1. 币币下单 （**需要交易权限**）
 
-请求路径：{base-endpoint}/spot//placeOrder
+请求路径：{base-endpoint}/spot/placeOrder
 
 请求方式：POST
 
