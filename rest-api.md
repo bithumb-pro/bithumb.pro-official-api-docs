@@ -462,9 +462,9 @@ response example:
 	"params": []
 	}
 
-#### 2. cancel order for virtual coin
+#### 2. cancel order for virtual coin(**need transaction authentication**)
 
-request url: {base-endpoint}/spot/cancelOrder  (**need transaction authentication**)
+request url: {base-endpoint}/spot/cancelOrder
 
 request method: POST
 
@@ -816,6 +816,30 @@ response example:
 "params": []
 }
 ```
+
+#### 9.batch cancel order for virtual coin(**need transaction authentication**)
+
+request url: {base-endpoint}/spot/cancelOrder/batch
+
+request method: POST
+
+request parameter infomation: 
+
+| Field  | Description | Required(Y or N) | Mark                                                         | Type   |
+| ------ | ----------- | ---------------- | ------------------------------------------------------------ | ------ |
+| ids    |             | N                | ids split by "," batch max ids <= 100 for single request, if ids = "" or null or no ids parameter, will cancel all order for symbol. | String |
+| symbol |             | Y                |                                                              | String |
+
+request body example:
+
+```json
+{
+"symbol":"ETH-USDT"
+"ids":"74740189190115328,74740189190115329,74740189190115330"
+}
+```
+
+
 
 ### [Normal api for contract] (Deprecated)
 
