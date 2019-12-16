@@ -834,7 +834,60 @@ list说明：
 }
 ```
 
+#### 10. 批量下单（**需要交易权限**）
 
+请求路径：{base-endpoint}/spot/placeOrders
+
+请求方式：POST
+
+请求参数说明:
+
+| 字段        | 说明         | 必填(是/否/可选) | 备注                                          | 类型   |
+| ----------- | ------------ | ---------------- | --------------------------------------------- | ------ |
+| multiParams | 批量下单参数 | 是               | 单个下单参数的JSON数组字符串，0 < 订单数<= 10 | String |
+
+请求示例:
+
+```json
+{
+"multiParams":"[{\"symbol\":\"ETH-BTC\",\"type\":\"limit\",\"side\":\"buy\",\"price\":\"1.1234\",\"quantity\":\"10\",\"timestamp\":1576229333470,\"msgNo\":\"test1576229333470\"},{\"symbol\":\"ETH-BTC\",\"type\":\"limit\",\"side\":\"buy\",\"price\":\"1.1234\",\"quantity\":\"10\",\"timestamp\":1576229333470,\"msgNo\":\"test1576229333470\"}]
+"
+}
+```
+
+响应示例：
+
+```json
+{ 
+	"msg":"success",
+	"code":"0",
+	"data":[
+		{
+			"data":
+				{
+					"symbol":"ETH-BTC",
+					"orderId":"134556412346773504"
+				},
+			"code":"0",
+			"msg":"success",
+			"timestamp":1576229851850
+		},
+		{
+			"data":
+				{
+					"symbol":"ETH-BTC",
+					"orderId":"134556412699095040"
+				},
+			"code":"0",
+			"msg":"success",
+			"timestamp":1576229851934
+		}
+		],
+	"timestamp":1576229851934
+}
+```
+
+#### 
 
 ### [杠杆资产认证接口]
 

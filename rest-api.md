@@ -817,7 +817,7 @@ response example:
 }
 ```
 
-#### 9.batch cancel order for virtual coin(**need transaction authentication**)
+#### 9.batch cancel order (**need transaction authentication**)
 
 request url: {base-endpoint}/spot/cancelOrder/batch
 
@@ -836,6 +836,59 @@ request body example:
 {
 "symbol":"ETH-USDT",
 "ids":"74740189190115328,74740189190115329,74740189190115330"
+}
+```
+
+#### 10.batch place order（**need transaction authentication**）
+
+request url：{base-endpoint}/spot/placeOrders
+
+request method：POST
+
+request parameter infomation:
+
+| Field       | Description | Required(Y or N) | Mark                                                         | Type   |
+| ----------- | ----------- | ---------------- | ------------------------------------------------------------ | ------ |
+| multiParams |             | Y                | Array of single place's order parameters，0 < order's list of size <= 10 | String |
+
+request body example:
+
+```json
+{
+"multiParams":"[{\"symbol\":\"ETH-BTC\",\"type\":\"limit\",\"side\":\"buy\",\"price\":\"1.1234\",\"quantity\":\"10\",\"timestamp\":1576229333470,\"msgNo\":\"test1576229333470\"},{\"symbol\":\"ETH-BTC\",\"type\":\"limit\",\"side\":\"buy\",\"price\":\"1.1234\",\"quantity\":\"10\",\"timestamp\":1576229333470,\"msgNo\":\"test1576229333470\"}]
+"
+}
+```
+
+response example：
+
+```json
+{ 
+	"msg":"success",
+	"code":"0",
+	"data":[
+		{
+			"data":
+				{
+					"symbol":"ETH-BTC",
+					"orderId":"134556412346773504"
+				},
+			"code":"0",
+			"msg":"success",
+			"timestamp":1576229851850
+		},
+		{
+			"data":
+				{
+					"symbol":"ETH-BTC",
+					"orderId":"134556412699095040"
+				},
+			"code":"0",
+			"msg":"success",
+			"timestamp":1576229851934
+		}
+		],
+	"timestamp":1576229851934
 }
 ```
 
