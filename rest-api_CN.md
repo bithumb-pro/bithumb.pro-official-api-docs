@@ -893,7 +893,7 @@ list说明：
 
 #### 1. 杠杆资产列表
 
-请求路径：{base-endpoint}/lever/assetList
+请求路径：{base-endpoint}/lever/asset/list
 
 请求方式： POST
 
@@ -901,88 +901,55 @@ list说明：
 
 | 字段       | 类型   | 是否必填 | 说明                                                       |
 | ---------- | ------ | -------- | ---------------------------------------------------------- |
-| page       | 整数型 | 否       | 分页页数，默认1                                            |
-| count      | 整数型 | 否       | 分页每页记录数，默认10                                     |
-| coinIdLike | 字符串 | 否       | 币种模糊查询字符，不传默认查询当前柜台全部杠杆配置币种情况 |
+| coin | 字符串 | 否       | 不传默认查询当前柜台全部杠杆配置币种情况 |
 
 返回结果说明：
 
 | 字段     | 类型 | 是否必填 | 说明           |
 | -------- | ---- | -------- | -------------- |
-|  pandect     | 对象 | 是 | 账户总览 |
-| pageInfo | 对象 | 是       | 返回的分页信息 |
-| records  | 数组 | 是       | 返回的记录数组 |
-
-**pandect**
-
-| 字段         | 类型   | 是否必填 | 说明          |
-| ------------ | ------ | -------- | ------------- |
-| assetsBTC    | 字符串 | 是       | 总资产折合BTC |
-| liabilityBTC | 字符串 | 是       | 负债折合BTC   |
-| netBTC       | 字符串 | 是       | 净资产折合BTC |
-
-**pageInfo**
-
-| 字段        | 类型   | 是否必填 | 说明       |
-| ----------- | ------ | -------- | ---------- |
-| page        | 数字型 | 是       | 分页当前页 |
-| count       | 数字型 | 是       | 每页记录数 |
-| pageTotal   | 数字型 | 是       | 总页数     |
-| recordTotal | 数字型 | 是       | 总记录数   |
-
-**records数组中元素参数**
-
-| 字段              | 类型 | 是否必填 | 说明 |
-| ----------------- | ---- | -------- | ---- |
-| coinId | 字符串 | 是 | 币种ID |
-| totalAmount | 字符串 | 是 | 账户资产 |
-| availableAmount | 字符串 | 是 | 可用资产 |
-| borrowedAmount | 字符串 | 是 | 借入资产 |
-| interestAmount | 字符串 | 是 | 应付利息 |
-| inetrestRate | 字符串 | 是 | 日利率(返回为百分后的数字，即返回1代表1%) |
-| maxAmountBeTransfer | 字符串 | 是 | 最大可转出额度 |
-| totalBTC | 字符串 | 是 | 账户资产的BTC估值 |
+|  coin | String | 是 | 币种 |
+| coinFull | String | 是       | 全称 |
+| total | String | 是       | 总资产 |
+| available | String | 是 | 可用资产 |
+| borrowed | String | 是 | 借入资产 |
+| interest | String | 是 | 应付利息 |
+| rate | String | 是 | 日利率 |
+| maxTransferAvailable | String | 是 | 最大可转出 |
+| markPrice | String | 是 | 查询时的mp |
+| frozen | String | 是 | 冻结 |
+| btcAvailable | String | 是 | 可用资产的BTC价值 |
 
 响应示例：
 ```json
 {
     "code":"0",
     "msg":"success",
-    "info":{
-        "pandect":{
-            "assetsBTC":"1.213",
-            "liabilityBTC":"2131",
-            "netBTC":"1211"
+    "info":[
+        {
+            "coin":"USDT",
+            "coinFull":"XXX XXX XXX",
+            "total":"12311231",
+            "available":"312",
+            "borrowed":"23.12312",
+            "interest":"31.23131",
+            "rate":"0.05",
+            "maxTransferAvailable":"100.231",
+            "frozen":"0",
+            "btcAvailable":"0"
         },
-        "pageInfo":{
-            "page":1,
-            "count":10,
-            "pageTotal":1,
-            "recordTotal":2
-        },
-        "records":[
-            {
-                "coinId":"BTC",
-                "totalAmount":"123",
-                "availableAmount":"0",
-                "borrowedAmount":"0",
-                "interestAmount":"123",
-                "inetrestRate":"10",
-                "maxAmountBeTransfer":"1231",
-                "totalBTC":"123"
-            },
-            {
-                "coinId":"TBTC",
-                "totalAmount":"101.99274098",
-                "availableAmount":"0",
-                "borrowedAmount":"0",
-                "interestAmount":"123",
-                "inetrestRate":"10",
-                "maxAmountBeTransfer":"1231",
-                "totalBTC":"0"
-            }
-        ]
-    },
+        {
+            "coin":"BTC",
+            "coinFull":"XXX XXX XXX",
+            "total":"12311231",
+            "available":"312",
+            "borrowed":"23.12312",
+            "interest":"31.23131",
+            "rate":"0.05",
+            "maxTransferAvailable":"100.231",
+            "frozen":"3.1415",
+            "btcAvailable":"12"
+        }
+    ],
     "params":[
 
     ]
@@ -990,7 +957,7 @@ list说明：
 ```
 
 #### 2. 杠杆账户总览
-请求路径：{base-endpoint}/lever/assetInfo
+请求路径：{base-endpoint}/lever/asset/info
 
 请求方式： POST
 
@@ -1010,6 +977,8 @@ list说明：
 | maintainMargin | 字符串 | 是       | 维持保证金(临界强制平仓对应的保证金)                         |
 | leverage       | 字符串 | 是       | 当前币对的杠杆值                                             |
 | cushionRate    | 字符串 | 是       | 维持担保比例=缓冲率(缓冲率 = 净资产/最低保证金，区间为0 - 10000%。缓冲率到达120%发送爆仓预警邮件，到达100%平台可随时强制平仓) |
+| interest | 字符串 | 是 | 应付利息 |
+| borrowed | 字符串 | 是 | 借贷资产 |
 
 
 响应示例：
@@ -1018,12 +987,14 @@ list说明：
     "code":"0",
     "msg":"success",
     "info":{
-        "totalAmount":"123",
-        "netAmount":"123",
-        "fullMargin":"123",
-        "maintainMargin":"231",
-        "leverage":"2.0",
-        "cushionRate":"10"
+        "totalAmount":"123.456",
+        "netAmount":"121.123",
+        "fullMargin":"32",
+        "maintainMargin":"32",
+        "leverage":"2.1",
+        "cushionRate":"1.3",
+        "interest":"123",
+        "borrowed":"0"
     },
     "params":[
 
@@ -1031,163 +1002,159 @@ list说明：
 }
 ```
 
+#### 3. 借贷资产
 
-#### 3. 杠杆账户资产变更记录
-
-请求路径：{base-endpoint}/lever/assetHistory
-
-请求方式： POST
-
-请求参数说明：
-
-| 字段       | 类型   | 是否必填 | 说明                                                       |
-| ---------- | ------ | -------- | ---------------------------------------------------------- |
-| page       | 整数型 | 否       | 分页页数，默认1                                            |
-| count      | 整数型 | 否       | 分页每页记录数，默认10                                     |
-| type | 字符串 | 否 | 变更类型 |
-| coinIdLike | 字符串 | 否       | 币种模糊查询字符，不传默认查询当前柜台全部杠杆配置币种情况 |
-
-返回结果说明：
-
-| 字段     | 类型 | 是否必填 | 说明           |
-| -------- | ---- | -------- | -------------- |
-| pageInfo | 对象 | 是       | 返回的分页信息 |
-| records  | 数组 | 是       | 返回的记录数组 |
-
-**pageInfo**
-
-| 字段        | 类型   | 是否必填 | 说明       |
-| ----------- | ------ | -------- | ---------- |
-| page        | 数字型 | 是       | 分页当前页 |
-| count       | 数字型 | 是       | 每页记录数 |
-| pageTotal   | 数字型 | 是       | 总页数     |
-| recordTotal | 数字型 | 是       | 总记录数   |
-
-**records数组中元素参数**
-
-| 字段              | 类型 | 是否必填 | 说明 |
-| ----------------- | ---- | -------- | ---- |
-| coinId | 字符串 | 是 | 币种ID |
-| totalAmountChange | 字符串 | 是 | 账户资产变化 |
-| availableAmountChange | 字符串 | 是 | 可用资产变化 |
-| borrowedAmountChange | 字符串 | 是 | 借入资产变化 |
-| interestAmountChange | 字符串 | 是 | 应付利息变化 |
-| maxAmountBeBorrowedChange | 字符串 | 是 | 最大可借数量变化 |
-| maxAmountTransferChange | 字符串 | 是 | 最大可转出数量变化 |
-| type | 字符串 | 是 | 变更类型 |
-| time | 整数型 | 是 | 变更时间的时间戳 |
-| state | 字符串 | 是 | 状态 |
-
-响应示例：
-```json
-{
-    "code":"0",
-    "msg":"success",
-    "info":{
-        "pageInfo":{
-            "page":1,
-            "count":10,
-            "pageTotal":1,
-            "recordTotal":2
-        },
-        "records":[
-            {
-                "coinId":"BTC",
-                "totalAmountChange":"123",
-                "availableAmountChange":"0",
-                "borrowedAmountChange":"0",
-                "interestAmountChange":"123",
-                "maxAmountBeBorrowedChange":"10",
-                "maxAmountTransferChange":"1231",
-                "type":"123",
-                "time":31231312312313,
-                "state":"1"
-            },
-            {
-                "coinId":"BTC",
-                "totalAmountChange":"123",
-                "availableAmountChange":"0",
-                "borrowedAmountChange":"0",
-                "interestAmountChange":"123",
-                "maxAmountBeBorrowedChange":"10",
-                "maxAmountTransferChange":"1231",
-                "type":"123",
-                "time":31231312312313,
-                "state":"1"
-            }
-        ]
-    },
-    "params":[
-
-    ]
-}
-```
-
-#### 4. 杠杆账户借贷列表
-
-请求路径：{base-endpoint}/lever/assetBorrowing
+请求路径：{base-endpoint}/lever/asset/borrowed
 
 请求方式： POST
 
 请求参数说明：
 
-| 字段       | 类型   | 是否必填 | 说明                                                       |
-| ---------- | ------ | -------- | ---------------------------------------------------------- |
-| page       | 整数型 | 否       | 分页页数，默认1                                            |
-| count      | 整数型 | 否       | 分页每页记录数，默认10                                     |
-| coinIdLike | 字符串 | 否       | 币种模糊查询字符，不传默认查询当前柜台全部杠杆配置币种情况 |
-
 返回结果说明：
 
 | 字段     | 类型 | 是否必填 | 说明           |
 | -------- | ---- | -------- | -------------- |
-| pageInfo | 对象 | 是       | 返回的分页信息 |
-| records  | 数组 | 是       | 返回的记录数组 |
-
-**pageInfo**
-
-| 字段        | 类型   | 是否必填 | 说明       |
-| ----------- | ------ | -------- | ---------- |
-| page        | 数字型 | 是       | 分页当前页 |
-| count       | 数字型 | 是       | 每页记录数 |
-| pageTotal   | 数字型 | 是       | 总页数     |
-| recordTotal | 数字型 | 是       | 总记录数   |
-
-**records数组中元素参数**
-
-| 字段              | 类型 | 是否必填 | 说明 |
-| ----------------- | ---- | -------- | ---- |
-| coinId | 字符串 | 是 | 币种ID |
-| totalAmount | 字符串 | 是 | 总资产 |
+| coinId | 字符串 | 是       | 币种ID |
+| availableAmount  | 字符串 | 是       | 资产余额 |
 | borrowedAmount | 字符串 | 是 | 已借贷资产 |
 
+
+响应示例：
+```json
+{
+    "code":"0",
+    "msg":"success",
+    "info":[
+        {
+            "coinId": "BTC",
+            "availableAmount": "0.5000000000000000",
+            "borrowedAmount": "0.0000000000000000"
+        },
+        {
+            "coinId": "USDT",
+            "availableAmount": "0.0000000000000000",
+            "borrowedAmount": "0.0000000000000000"
+        }
+    ],
+    "params":[
+
+    ]
+}
+```
+
+#### 4. 杠杆账户资产汇总
+
+请求路径：{base-endpoint}/lever/asset/collect
+
+请求方式： POST
+
+请求参数说明：
+
+返回结果说明：
+
+| 字段  | 类型   | 是否必填 | 说明       |
+| ----- | ------ | -------- | ---------- |
+| total | 字符串 | 是       | 总资产折合 |
+| debt  | 字符串 | 是       | 负债折合   |
+| net   | 字符串 | 是       | 净资产折合 |
+
+
 响应示例：
 ```json
 {
     "code":"0",
     "msg":"success",
     "info":{
-        "pageInfo":{
-            "page":1,
-            "count":10,
-            "pageTotal":1,
-            "recordTotal":2
+        "total":"123123",
+        "debt":"123123",
+        "net":"3321"
+    },
+    "params":[
+
+    ]
+}
+```
+
+#### 5. 杠杆资产变更记录
+
+请求路径：{base-endpoint}/lever/asset/change/list
+
+请求方式： POST
+
+请求参数说明：
+
+| 字段  | 类型   | 是否必填 | 说明       |
+| ---- | ---- | ---- | ---- |
+| type | 整数型 | 否 | 类型 |
+| coin | 字符串 | 否 | 币种 |
+| timeStart | 整数型 | 否 | 查询时间限制起始时间戳 |
+| timeEnd | 整数型 | 否 | 查询时间限制结束时间戳 |
+| count | 整数型 | 否 | 每页数 |
+| page | 整数型 | 否 | 当前页 |
+| label | 字符串 | 是 | 类型，all为查询全部，transaction为查询交易变动 |
+
+返回结果说明：
+
+| 字段     | 类型 | 是否必填 | 说明           |
+| -------- | ---- | -------- | -------------- |
+| pageInfo | 对象 | 是       | 返回的分页信息 |
+| records  | 数组 | 是       | 返回的记录数组 |
+
+**pageInfo**
+
+| 字段        | 类型   | 是否必填 | 说明       |
+| ----------- | ------ | -------- | ---------- |
+| page        | 数字型 | 是       | 分页当前页 |
+| count       | 数字型 | 是       | 每页记录数 |
+| pageTotal   | 数字型 | 是       | 总页数     |
+| recordTotal | 数字型 | 是       | 总记录数   |
+
+**records数组中元素参数**
+
+| 字段  | 类型   | 是否必填 | 说明       |
+| ---- | ---- | ---- | ---- |
+| time | 整数型 | 是 | 变更时间的毫秒时间戳 |
+| type | 整数型 | 是 | 变更类型枚举(TODO: 待完善枚举) |
+| coin | 字符串 | 是 | 币种 |
+| amount | 字符串 | 是 | 变更数量 |
+| interestRemain | 字符串 | 是 | 剩余利息 |
+| borrowedRemain | 字符串 | 是 | 剩余借贷 |
+| status | 字符串 | 是 | 状态,枚举值Completed,Processing |
+
+响应示例：
+```json
+{
+    "code":"0",
+    "msg":"success",
+    "info":{
+        "pageInfo": {
+            "totalCount": 1,
+            "totalPage": 10,
+            "pageIndex": 1,
+            "pageSize": 2
         },
-        "records":[
+        "records": [
             {
-                "coinId":"BTC",
-                "totalAmount":"123",
-                "borrowedAmount":"0"
+                "time": 1576029158937,
+                "type": 1,
+                "coin": "BTC",
+                "amount": "0.5000000000000000",
+                "interestRemain": "0.0006349415030000",
+                "borrowedRemain": "2.4498050100000000",
+                "status": "Completed"
             },
             {
-                "coinId":"BTC",
-                "totalAmount":"123",
-                "borrowedAmount":"0"
+                "time": 1575963173224,
+                "type": 1,
+                "coin": "BTC",
+                "amount": "1.9498050100000000",
+                "interestRemain": "0.0001949805010000",
+                "borrowedRemain": "1.9498050100000000",
+                "status": "Completed"
             }
         ]
     },
     "params":[
-
     ]
 }
 ```
@@ -1196,7 +1163,7 @@ list说明：
 
 #### 1. 杠杆下单 （**需要交易权限**）
 
-请求路径：{base-endpoint}/lever/placeOrder
+请求路径：{base-endpoint}/lever/order/create
 
 请求方式：POST
 
@@ -1233,7 +1200,7 @@ list说明：
 
 #### 2. 杠杆订单撤销（**需要交易权限**）
 
-请求路径：{base-endpoint}/lever/cancelOrder
+请求路径：{base-endpoint}/lever/order/cancel
 
 请求方式：POST
 
@@ -1242,21 +1209,21 @@ list说明：
 | 字段    | 说明     | 必填(是/否/可选) | 备注       | 类型   |
 | ------- | -------- | ---------------- | ---------- | ------ |
 | orderId | 订单号   | 是               | 由平台返回 | String |
-| symbol  | 币种类型 | 是               |            | String |
+| symbol  | 币种类型 | 是               | 币对       | String |
 
 #### 3. 查询未成交杠杆订单列表
 
-请求路径：{base-endpoint}/lever/openOrders
+请求路径：{base-endpoint}/lever/order/list/open
 
 请求方式：POST
 
 请求参数说明:
 
-| 字段   | 说明             | 必填(是/否/可选) | 备注 | 类型    |
-| ------ | ---------------- | ---------------- | ---- | ------- |
-| symbol |                  | 是               |      | String  |
-| page   | 页码             | 否               |      | Integer |
-| count  | 每一页的显示条数 | 否               |      | Integer |
+| 字段   | 说明             | 必填(是/否/可选) | 备注     | 类型    |
+| ------ | ---------------- | ---------------- | -------- | ------- |
+| symbol | 币对             | 是               |          | String  |
+| page   | 页码             | 否               | 缺省值1  | Integer |
+| count  | 每一页的显示条数 | 否               | 缺省值10 | Integer |
 
 返回结果说明:
 
@@ -1311,7 +1278,7 @@ list说明：
 
 #### 4. 查询历史订单列表
 
-请求路径：{base-endpoint}/lever/orderList
+请求路径：{base-endpoint}/lever/order/list
 
 请求方式：POST
 
@@ -1377,120 +1344,56 @@ list说明：
 }
 ```
 
-#### 5. 订单交易明细
+#### 5. 查询成交记录
 
-请求路径：{base-endpoint}/lever/orderDetail
-
-请求方式：POST
-
-请求参数说明:
-
-| 字段    | 说明     | 必填(是/否/可选) | 备注                  | 类型   |
-| ------- | -------- | ---------------- | --------------------- | ------ |
-| orderId | 订单id   | 是               |                        | String |
-| symbol  |          | 是               |                       | String |
-| page    | 页码     | 可选             | 不选默认1             | String |
-| count   | 显示条数 | 可选             | 不选默认10            | String |
-
-返回结果说明:
-
-| 字段 | 说明         | 备注 | 类型 |
-| ---- | ------------ | ---- | ---- |
-| num  | 总条数       |      | Long |
-| list | 交易明细列表 |      | List |
-
-返回结果说明 (List):
-
-| 字段          | 说明             | 备注                   | 类型   |
-| ------------- | ---------------- | ---------------------- | ------ |
-| orderId       | 订单号           |                        | String |
-| orderSign     | 当前订单当前状态 | 当前make还是taker 成交 | String |
-| getCount      | 获得数量         |                        | String |
-| getCountUnit  | 获得数量单位     | 币种                   | String |
-| loseCount     | 失去数量         |                        | String |
-| loseCountUnit | 失去数量         | 币种                   | String |
-| price         | 成交价格         |                        | String |
-| priceUnit     | 成交价格单位     | 币种                   | String |
-| fee           | 手续费           | 手续费                 | String |
-| feeUnit       | 手续费单位       | 币种                   | String |
-| time          | 时间             |                        | Long   |
-| fsymbol       | 交易币对         | BTC-USDT               | String |
-| side          | 方向             | 买 or 卖               | String |
-
-响应示例：
-	
-	{
-	"data":{
-	    "num":"10",
-	    "list":[{
-				"orderId":"12300993210",
-				"orderSign":"taker",
-				"getCount":"0.1",
-				"getCountUnit":"BTC",
-				"loseCount":"370.01",
-				"loseCountUnit":"USDT",
-				"price":"3700.01",
-				"priceUnit":"USDT",
-				"fee":"0.0001",
-				"feeUnit":"BTC",
-				"time":"1552878781",
-				"fsymbol":"BTC-USDT",
-				"side":"buy"
-				},
-				...
-			]
-	},
-	"code": "0",
-	"msg": "success",
-	"timestamp": 1551346473238,
-	"params": []
-	}
-
-#### 6. 单个订单查询
-
-请求路径：{base-endpoint}/lever/singleOrder
+请求路径：{base-endpoint}/lever/trades/list
 
 请求方式：POST
 
 请求参数说明:
 
-| 字段    | 说明         | 必填(是/否/可选) | 备注 | 类型   |
-| ------- | ------------ | ---------------- | ---- | ------ |
-| orderId | 订单唯一编号 | 是               |      | String |
-| symbol  |              | 是               |      | String |
+| 字段            | 说明       | 必填(是/否/可选) | 备注       | 类型    |
+| --------------- | ---------- | ---------------- | ---------- | ------- |
+| symbol          | 币对       | 是               |            | String  |
+| limit           | 显示条数   | 是               |            | Integer |
+| orderId         | 订单ID     | 否               |            | String  |
+| page            | 分页页数   | 否               |            | Integer |
+| count           | 分页没页数 | 否               |            | Integer |
+| exchangeOrderId | 交易流水ID | 否               |            | String  |
+| startTime       | 开始时间   | 否               | yyyy-mm-dd | String  |
+| endTime         | 结束时间   | 否               | yyyy-mm-dd | String  |
 
-返回结果说明：
+返回结果说明:
 
-| 字段       | 说明         | 备注                           | 类型    |
-| ---------- | ------------ | ------------------------------ | ------- |
-| orderId    | 订单id       |                                | String  |
-| symbol     |              |                                | String  |
-| price      | 挂单价格     |                                | Decimal |
-| tradedNum  | 已成交数量   |                                | Decimal |
-| quantity   | 挂单数量     |                                | Decimal |
-| avgPrice   | 平均成交价格 |                                | Decimal |
-| status     | 订单状态     | send，pending，success，cancel | String  |
-| type       | 订单类型     | market，limit                  | String  |
-| side       | 订单方向     | buy，sell                      | String  |
-| createTime | 挂单时间     |                                | Date    |
-| tradeTotal | 委托总额     |                                | Decimal |
+| 字段       | 说明                       | 备注 | 类型       |
+| ---------- | -------------------------- | ---- | ---------- |
+| createTime |                            |      | String     |
+| price      | 成交价格                   |      | BigDecimal |
+| quantity   | 成交量                     |      | BigDecimal |
+| side       | 成交类型（buy or sell）    |      | String     |
+| direction  | 成交角色（taker or maker） |      | String     |
+| time       | 成交时间                   |      | Date       |
+| total      | 总量                       |      | BigDecimal |
+| fee        | 手续费                     |      | BigDecimal |
+| feeUnit    | 手续费币                   |      | String     |
 
 响应示例：
 
 ```
 "data":{
-			"orderId":"12300993210",
-			"symbol":"BTC-USDT",
-			"price":"3700",
-			"tradedNum":"0.01",
-			"quantity":"0.5",
-			"avgPrice":"0",
-			"status":"pending",
-			"type":"limit",
-			"side":"buy",
-			"createTime":"1552878781",
-			"tradeTotal":"0.5"
-	},
+            "num":1,
+            list:[{
+                "createTime":"1574048908593",
+                "price":"10000",
+                "quantity":"1",
+                "total":"10000",
+                "fee":"0.001",
+                "feeUnit":"BTC",
+                "side":"buy",
+                "symbol":"BTC-USDT",
+                "direction":"maker"
+            }]
+        },
 "code": "0",
 "msg": "success",
 "timestamp": 1551346473238,
@@ -1498,81 +1401,41 @@ list说明：
 }
 ```
 
-#### 7. 查询我的成交记录
+#### 6. 下单可用查询
 
-请求路径：{base-endpoint}/lever/myTrades
+请求路径：{base-endpoint}/lever/available
 
 请求方式：POST
 
 请求参数说明:
 
-| 字段      | 说明             | 必填(是/否/可选) | 备注 | 类型    |
-| --------- | ---------------- | ---------------- | ---- | ------- |
-| symbol    |                  | 是               |      | String  |
-| startTime | 指定成交起始时间 | 是               | 毫秒 | Long    |
-| limit     | 显示条数         | 是               |      | Integer |
+| 字段   | 说明        | 必填(是/否/可选) | 备注 | 类型   |
+| ------ | ----------- | ---------------- | ---- | ------ |
+| symbol | 币对        | 是               |      | String |
+| side   | buy or sell | 是               |      | String |
+
 
 返回结果说明:
 
-| 字段      | 说明                       | 备注 | 类型       |
-| --------- | -------------------------- | ---- | ---------- |
-| id        |                            |      | Long       |
-| price     | 成交价格                   |      | BigDecimal |
-| amount    | 成交量                     |      | BigDecimal |
-| side      | 成交类型（buy or sell）    |      | String     |
-| direction | 成交角色（taker or maker） |      | String     |
-| time      | 成交时间                   |      | Date       |
+| 字段           | 说明           | 备注 | 类型       |
+| -------------- | -------------- | ---- | ---------- |
+| available      | 可用余额       |      | BigDecimal |
+| availableLever | 可用额度       |      | BigDecimal |
+| borrowed       | 当前已借贷     |      | BigDecimal |
+| lever          | 当前币杠杆倍数 |      | String     |
+| coin           | 当前使用币     |      | String     |
+
 
 响应示例：
 
-```
-"data":[
-			"id":"12300993210",
-			"price":"100.01",
-			"amount":"0.1",
-			"side":"buy",
-			"direction":"taker",
-			"time": 1557047375000
-			},
-			...
-		],
-"code": "0",
-"msg": "success",
-"timestamp": 1551346473238,
-"params": []
-}
-```
-
-### [合约普通接口] (已废弃)
-
-#### 1. 订单薄
-
-请求路径：{base-endpoint}/contract/orderBook
-
-请求方式：GET
-
-请求参数说明：
-
-| 字段   | 说明                          | 必填(是/否/可选) | 备注                                       | 类型   |
-| ------ | ----------------------------- | ---------------- | ------------------------------------------ | ------ |
-| symbol | 币对符号，格式是 token-market | 是               | 前面交易币种 后面是交易市场     (BTC-USDT) | String |
-
-返回结果说明:
-
-| 字段 | 说明               | 备注                                    | 类型   |
-| ---- | ------------------ | --------------------------------------- | ------ |
-| b    | 买方向订单薄(bids) | （以:分割，第一个为价格，第二个为数量） | String |
-| s    | 卖方向订单薄(asks) | （以:分割，第一个为价格，第二个为数量） | String |
-| type | 类型               |                                         |        |
-
-响应示例：
-
-```
+```json
 "data":{
-		"b":["3701:1","3700:0.5"],
-		"s":["3800:0.2","3801.1:0.3"],
-		"type":""
-	},
+        "available": "0.0000000000000000",
+        "availableLever": "0",
+        "borrowed": "0.0000000000000000",
+        "lever": "5",
+        "coin": "USDT"
+    },
 "code": "0",
 "msg": "success",
 "timestamp": 1551346473238,
@@ -1580,371 +1443,29 @@ list说明：
 }
 ```
 
-#### 2. 行情
+#### 7. 批量取消订单
 
-请求路径：{base-endpoint}/contract/ticker
+请求路径：{base-endpoint}/lever/order/cancel/batch
 
-请求方式：GET
+请求方式：POST
 
-请求参数说明：
+请求参数说明:
 
-| 字段   | 说明                          | 必填(是/否/可选) | 备注                                       | 类型   |
-| ------ | ----------------------------- | ---------------- | ------------------------------------------ | ------ |
-| symbol | 币对符号，格式是 token-market | 是               | 前面交易币种 后面是交易市场     (BTC-USDT) | String |
-
-返回结果说明:
-
-| 字段         | 说明                             | 备注 | 类型   |
-| ------------ | -------------------------------- | ---- | ------ |
-| symbol       | 合约符号                         |      | String |
-| type         | 类型                             |      | String |
-| lastPrice    | 最新成交价                       |      | String |
-| high         | 24小时最高                       |      | String |
-| low          | 24小时最低                       |      | String |
-| volume       | 24小时成交量                     |      | String |
-| change       | 需要*100才是百分数               |      | String |
-| openValue    | 未平仓数量                       |      | String |
-| fundRate0    | 下次合约费率交换值               |      | String |
-| fundTime0    | 下次费率交换的时间(时间戳到毫秒) |      | String |
-| adlRanker    | ADL排位区间                      |      | String |
-| ver          | 版本号                           |      | String |
-| openInterest |                                  |      | String |
-| turnover     |                                  |      | String |
+| 字段   | 说明   | 必填(是/否/可选) | 备注                                          | 类型   |
+| ------ | ------ | ---------------- | --------------------------------------------- | ------ |
+| symbol | 币对   | 是               |                                               | String |
+| ids    | 指定id | 否               | 如果需要取消指定id的订单，用,拼接成一条字符串 | String |
 
 响应示例：
 
-```
-"data":{
-		"symbol":"BTC-USDT",
-		"type":"",
-		"lastPrice":"3700",
-		"high":"3800.1",
-		"low":"3699.01",
-		"volume":"23",
-		"change":"0.0123",
-		"openValue":"10",
-		"fundRate0":"",
-		"fundTime0":"",
-		"adlRanker":"",
-		"ver":"0",
-		"openInterest":"",
-		"turnover":""
-	},
+```json
+"data":{},
 "code": "0",
 "msg": "success",
 "timestamp": 1551346473238,
 "params": []
 }
 ```
-
-### [合约认证接口] （已废弃）
-
-#### 1. 合约下单
-
-请求路径：{base-endpoint}/contract/order/create
-
-请求方式：POST
-
-请求参数说明：
-
-| 字段             | 说明                            | 必填(是/否/可选) | 备注                                                         | 类型   |
-| ---------------- | ------------------------------- | ---------------- | ------------------------------------------------------------ | ------ |
-| property         | 合约类型，目前仅支持normal单    | 是               |                                                              | String |
-| symbol           | 合约符号，如BTCUSD              | 是               |                                                              | String |
-| type             | 订单类型                        | 是               | market或者limit                                              | String |
-| amount           | 数量                            | 是               | （只能是整数）                                               | String |
-| amountDisplay    | 显示数量（用于冰山单）          | 是               |                                                              | String |
-| price            | 价格                            | 否               | market不需要（必须是tickerPrice的整数倍）                    | String |
-| side             | 订单方向                        | 是               | buy或者sell                                                  | String |
-| postOnly         | 是否只下post单（是否只做maker） | 是               | false或者true                                                | String |
-| reduceOnly       | 是否只下reduce单（是否只减仓）  | 是               | false或true                                                  | String |
-| timeInForce      | 订单时效类型（默认GTC）         | 是               | 'GTC'（一直有效直到取消），'FOK'（全部成交或取消）， 'IOC'（立即成交或取消，可以是部分成交） | String |
-| leverage         | 杠杆值                          | 否               |                                                              | String |
-| triggerPrice     | 触发价格                        | 否               | trigger单需填写（用于触发单）                                | String |
-| benchmarkPrice   | 触发订单字段。                  | 否               | 下单时候的价格，用于判断是价格是向上还是向下穿越触发         | String |
-| triggerPriceType | 触发价格的类型                  | 否               | mark（mark price类型）/index（正常的指数价格）/last（最新成交价） | String |
-
-返回结果说明:
-
-| 字段    | 说明           | 备注                        | 类型   |
-| ------- | -------------- | --------------------------- | ------ |
-| orderId | 返回平台订单号 | 供撤单查询使用 不支持 msgNo | String |
-
-响应示例：
-
-```
-"data":{
-		"orderId":"12314342399321"
-	},
-"code": "0",
-"msg": "success",
-"timestamp": 1551346473238,
-"params": []
-}
-```
-
-#### 2. 合约取消订单
-
-请求路径：{base-endpoint}/contract/order/cancel
-
-请求方式：POST
-
-请求参数说明：
-
-| 字段    | 说明   | 必填(是/否/可选) | 备注 | 类型   |
-| ------- | ------ | ---------------- | ---- | ------ |
-| orderId | 订单号 | 是               |      | String |
-
-返回参数说明：code = "0"为成功
-
-#### 3. 修改杠杆
-
-请求路径：{base-endpoint}/contract/leverage/update
-
-请求方式：POST
-
-请求参数说明：
-
-| 字段     | 说明                 | 必填(是/否/可选) | 备注 | 类型   |
-| -------- | -------------------- | ---------------- | ---- | ------ |
-| symbol   | 合约符号             | 是               |      | String |
-| leverage | 请求修改的合约杠杆值 | 是               |      | String |
-
-返回参数说明：code="0"为成功
-
-#### 4. 仓位信息
-
-请求路径：{base-endpoint}/contract/position
-
-请求方式：POST
-
-请求参数说明：
-
-| 字段   | 说明     | 必填(是/否/可选) | 备注 | 类型   |
-| ------ | -------- | ---------------- | ---- | ------ |
-| symbol | 合约符号 | 是               |      | String |
-
-返回参数说明：
-
-| 字段             | 说明             | 备注 | 类型   |
-| ---------------- | ---------------- | ---- | ------ |
-| positionId       | 仓位ID           |      | String |
-| symbol           | 合约符号         |      | String |
-| amount           | 仓位数量         |      | String |
-| margin           | 仓位保证金       |      | String |
-| positionValue    | 仓位价值         |      | String |
-| leverage         | 杠杆             |      | String |
-| status           | 仓位状态         |      | String |
-| openPositionTime | 开仓时间的时间戳 |      | String |
-| flatPositionTime | 平仓时间的时间戳 |      | String |
-| realProfit       | 已实现盈亏       |      | String |
-| liquidation      | 强平价           |      | String |
-| side             | 仓位方向         |      | String |
-| frozen           | 仓位冻结金       |      | String |
-
-#### 5. 调整保证金
-
-请求路径：{base-endpoint}/contract/margin/update
-
-请求方式：POST
-
-请求参数说明：
-
-| 字段         | 说明                         | 必填(是/否/可选) | 备注 | 类型   |
-| ------------ | ---------------------------- | ---------------- | ---- | ------ |
-| symbol       | 合约符号                     | 是               |      | String |
-| changeAmount | 变更数量（带正负号表示方向） | 是               |      | String |
-
-返回参数说明：code="0"为成功
-
-#### 6. 合约资产查询
-
-请求路径：{base-endpoint}/contract/asset/info
-
-请求方式：POST
-
-请求参数说明：
-
-| 字段       | 说明                                           | 必填(是/否/可选) | 备注 | 类型   |
-| ---------- | ---------------------------------------------- | ---------------- | ---- | ------ |
-| page       | 分页当前页                                     | 是               |      | int    |
-| count      | 分页每页记录数                                 | 是               |      | int    |
-| coinIdLike | 币种类型，前端已经要求将模糊查询改成精确查询。 | 否               |      | String |
-
-返回参数说明：
-
-| 字段     | 说明           | 备注 | 类型 |
-| -------- | -------------- | ---- | ---- |
-| pageInfo | 返回的分页信息 |      | 对象 |
-| records  | 返回的记录数组 |      | 数组 |
-
-pageInfo:通用分页参数（见orderList）
-
-records数组中的元素参数：
-
-| 字段     | 说明         | 备注 | 类型   |
-| -------- | ------------ | ---- | ------ |
-| btcValue | BTC估值      |      | String |
-| coinId   | 币种类型     |      | String |
-| count    | 资产数量     |      | String |
-| frozen   | 冻结资产数量 |      | String |
-
-#### 7. 查询用户私有合约信息 
-
-请求路径：{base-endpoint}/contract/info
-
-请求方式：POST
-
-请求参数说明：
-
-| 字段   | 说明     | 必填(是/否/可选) | 备注 | 类型   |
-| ------ | -------- | ---------------- | ---- | ------ |
-| symbol | 合约符号 | 是               |      | String |
-
-返回参数说明：
-
-| 字段      | 说明               | 备注 | 类型   |
-| --------- | ------------------ | ---- | ------ |
-| symbol    | 合约符号           |      | String |
-| leverage  | 杠杆值的字符串形式 |      | String |
-| fundRate0 | 资金费用           |      | String |
-| riskLimit | 风险限额           |      | String |
-
-#### 8. 查询用户合约账户信息 
-
-请求路径：{base-endpoint}/contract/account/info
-
-请求方式：POST
-
-请求参数说明：
-
-| 字段 | 说明     | 必填(是/否/可选) | 备注 | 类型   |
-| ---- | -------- | ---------------- | ---- | ------ |
-| coin | 币种符号 | 是               |      | String |
-
-返回参数说明：
-
-| 字段                 | 说明               | 备注 | 类型   |
-| -------------------- | ------------------ | ---- | ------ |
-| coin                 | 币种符号           |      | String |
-| totalAmount          | 总资产             |      | String |
-| remainMargin         | 剩余保证金         |      | String |
-| openPositionMargin   | 仓位保证金         |      | String |
-| openOrderMarginTotal | 活动委托订单保证金 |      | String |
-| availableAmount      | 可用数量           |      | String |
-
-#### 9. 订单列表查询（活动委托和历史委托）
-
-请求路径：{base-endpoint}/contract/orders
-
-请求方式：POST
-
-请求参数说明：
-
-| 字段   | 说明                        | 必填(是/否/可选) | 备注   | 类型    |
-| ------ | --------------------------- | ---------------- | ------ | ------- |
-| symbol | 合约符号                    | 是               |        | String  |
-| type   | 订单类型（open or history） | 是               |        | String  |
-| page   |                             | 否               | 默认1  | Integer |
-| count  |                             | 否               | 默认10 | Integer |
-
-返回参数说明:
-
-| 字段     | 说明     | 备注 | 类型 |
-| -------- | -------- | ---- | ---- |
-| pageInfo | 分页信息 |      | 对象 |
-| records  | 记录数组 |      | 数组 |
-
-pageInfo：
-
-| 字段        | 说明         | 备注 | 类型 |
-| ----------- | ------------ | ---- | ---- |
-| page        | 分页当前页数 |      | int  |
-| count       | 每页记录数   |      | int  |
-| pageTotal   | 总页数       |      | int  |
-| recordTotal | 总记录数     |      | int  |
-
-records数组中的元素参数：
-
-| 字段       | 说明              | 备注                                      | 类型   |
-| ---------- | ----------------- | ----------------------------------------- | ------ |
-| orderId    | 订单ID            |                                           | String |
-| symbol     | 合约符号          |                                           | String |
-| type       | 下单类型          | limit or market                           | String |
-| side       | 下单方向          | buy or sell                               | String |
-| price      | 价格，market单为0 |                                           | String |
-| amountReal | 真实数量          |                                           | String |
-| amountFill | 成交数量          |                                           | String |
-| status     | 订单状态          | open、cancel、filled、rejected、untrigger | String |
-| avgPrice   | 平均成交价        |                                           | String |
-| time       | 下单的时间戳      |                                           | Long   |
-
-#### 10. 查询用户合约的交易记录 
-
-请求路径：{base-endpoint}/contract/trades
-
-请求方式：POST
-
-请求参数说明：
-
-| 字段   | 说明     | 必填(是/否/可选) | 备注       | 类型    |
-| ------ | -------- | ---------------- | ---------- | ------- |
-| symbol | 合约符号 | 是               |            | String  |
-| page   |          | 否               | default=1  | Integer |
-| count  |          | 否               | default=10 | Integer |
-
-返回参数说明：
-
-| 字段     | 说明           | 备注 | 类型 |
-| -------- | -------------- | ---- | ---- |
-| pageInfo | 返回的分页信息 |      | 对象 |
-| records  | 返回的记录数组 |      | 数组 |
-
-pageInfo:通用分页参数（见orderList）
-
-records返回参数说明：
-
-| 字段    | 说明                    | 备注 | 类型    |
-| ------- | ----------------------- | ---- | ------- |
-| symbol  | 合约符号                |      | String  |
-| orderId | 订单id                  |      | String  |
-| isTaker | 是否为taker             |      | Boolean |
-| side    | 订单方向（buy or sell） |      | String  |
-| fee     | 手续费                  |      | String  |
-| price   | 成交价格                |      | String  |
-| amount  | 成交数量                |      | String  |
-| time    | 成交时间                |      | String  |
-| version | 版本号                  |      | Long    |
-
-#### 11. 查询用户合约单个订单接口
-
-请求路径：{base-endpoint}/contract/queryOrder
-
-请求方式：POST
-
-请求参数说明：
-
-| 字段    | 说明 | 必填(是/否/可选) | 备注       | 类型   |
-| ------- | ---- | ---------------- | ---------- | ------ |
-| orderId |      | 否               | 内部订单号 | String |
-| msgNo   |      | 否               | 外部订单号 | String |
-
-返回参数说明：
-
-| 字段       | 说明                    | 备注                    | 类型   |
-| ---------- | ----------------------- | ----------------------- | ------ |
-| symbol     | 合约符号                |                         | String |
-| orderId    | 订单id                  |                         | String |
-| type       | 订单类型                |                         | String |
-| status     | 订单状态                |                         | String |
-| side       | 订单方向（buy or sell） |                         | String |
-| avgPrice   | 平均成交价              |                         | String |
-| price      | 成交价格                |                         | String |
-| amountFill | 成交数量                |                         | String |
-| amountReal | 委托数量                |                         | String |
-| time       | 成交时间                |                         | Long   |
-| msgNo      | 外部订单号              | 通过API发送保存的订单号 | String |
-| version    | 版本号                  |                         | Long   |
 
 ### [C2C接口]
 **1、获取订单列表**
