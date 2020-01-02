@@ -1283,6 +1283,7 @@ records:
 | 9999  | system error                                 |             |      |
 |       |                                              |             |      |
 | 20003 | asset not enough                             |             |      |
+| 20012 | cancel faild,order status changed            |             |      |
 | 20043 | price accuracy is wrong for placing order    |             |      |
 | 20044 | quantity accuracy is wrong for placing order |             |      |
 | 20053 | need sign protocol in website                |             |      |
