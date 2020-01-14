@@ -1466,6 +1466,25 @@ list说明：
 "params": []
 }
 ```
+#### 8. 签名
+
+请求路径：{base-endpoint}/lever/sign
+
+请求方式：POST
+
+请求参数说明:
+无
+
+响应示例：
+
+```json
+"data":{},
+"code": "0",
+"msg": "success",
+"timestamp": 1551346473238,
+"params": []
+}
+```
 
 ### [C2C接口]
 **1、获取订单列表**
