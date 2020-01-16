@@ -1274,14 +1274,17 @@ records:
 | code  | msg                                          | Description | Mark |
 | ----- | -------------------------------------------- | ----------- | ---- |
 | 0     | success                                      |             |      |
-| 9000  | missing parameter                            |             |      |
+| 9000  | missing parameter(apiKey not exist)                            |             |      |
 | 9001  | version not matched                          |             |      |
 | 9002  | verifySignature failed                       |             |      |
-| 9004  | access denied                                |             |      |
+| 9004  | access denied or request's params absent                               |             |      |
 | 9005  | key expired                                  |             |      |
 | 9006  | no server                                    |             |      |
 | 9999  | system error                                 |             |      |
 |       |                                              |             |      |
+|       |                                              |             |      |
+|       |                                              |             |      |
+|    20000   |    order params error                                           |             |      |
 | 20003 | asset not enough                             |             |      |
 | 20012 | cancel faild,order status changed            |             |      |
 | 20043 | price accuracy is wrong for placing order    |             |      |
