@@ -1274,12 +1274,14 @@ records:
 | code  | msg                                          | Description | Mark |
 | ----- | -------------------------------------------- | ----------- | ---- |
 | 0     | success                                      |             |      |
-| 9000  | missing parameter(apiKey not exist)                            |             |      |
+| 9000  | missing parameter                            | apiKey or signature is absent |      |
 | 9001  | version not matched                          |             |      |
 | 9002  | verifySignature failed                       |             |      |
-| 9004  | access denied or request's params absent                               |             |      |
+| 9004  | access denied or request's params absent                               | if access denied, please check your bind ip,api's  permission,or account's status |      |
 | 9005  | key expired                                  |             |      |
 | 9006  | no server                                    |             |      |
+| 9007 | request invalid | check your request timestamp(compare with server time),msgNo's length need to less than or equal 50 | |
+| 9008 | api request params error | | |
 | 9999  | system error                                 |             |      |
 |       |                                              |             |      |
 |       |                                              |             |      |
@@ -1289,13 +1291,13 @@ records:
 | 20003 | user asset not enough                        |             |      |
 | 20004 | order absent | | |
 | 20010 | trade pair had been closed | | |
-| 20012 | cancel faild,order status changed(canceled or succeed) |             |      |
-| 20043 | price accuracy is wrong for placing order    |             |      |
-| 20044 | quantity accuracy is wrong for placing order |             |      |
+| 20012 | cancel faild,order status changed | order's status is succeed or canceled |      |
+| 20043 | price accuracy is wrong for placing order    | check symbol's accuracy from config api |      |
+| 20044 | quantity accuracy is wrong for placing order | check symbol's accuracy from config api |      |
 | 20048 | trade pair not open | | |
-| 20053 | need sign protocol in website                |             |      |
-| 20054 | order price out of range                     |             |      |
-| 20056 | order quantity out of range(max < 100000000) |             |      |
+| 20053 | need sign protocol in website                | if place order at first time, need to sign protocol in bithumb global website at trade page, just place one order |      |
+| 20054 | order price out of range                     | check symbol's percentPrice from config api |      |
+| 20056 | order quantity out of range | the max quantity need to less than 100000000 |      |
 |       |                                              |             |      |
 |       |                                              |             |      |
 |       |                                              |             |      |
