@@ -64,9 +64,9 @@ args requests：
 **sign example**:
 
  request path="/message/realtime"
- 
+
  signatureString=request path + current timestamp(millisecond) + apiKey
- 
+
  apiSignature = sha256_HMAC(signatureString,secretKey)
 
 ### topic：
@@ -109,6 +109,20 @@ example：
 ```
 
 ORDERBOOK: the last spot order book changed data
+
+import：The creation of a complete order book on the client side must strictly depend on the processing of the 'ver' field. When the client subscribes to this topic, the message of code = 00007 is the incremental change information of the order book, and the message of code = 00006 is the one-time complete order book information. However, the 'ver' of these two times may not be continuous. At this time, the message may be lost. The complete order book The creation process is as follows：
+
+1. The client first subscribes to the order book subject of websocket of the specific transaction pair, and stores the change information of the order book with code = 00006 in the cache of the client;
+
+2. The client requests the complete order book information once through the REST API;
+
+3. Finally, the cached order book change information and the complete order book are merged once. The rules for merging as follows:
+
+   a. Judge that the change version "ver" of the first order book received by websocket should be less than or equal to the complete order book version "ver" + 1, otherwise the above process should be resumed to rebuild the order book;
+
+   b. Judge that the change version "ver" of each order book must be greater than the complete order book version "ver", otherwise, discard the change information of the order book.
+
+example: https://github.com/bithumb-pro/java-api-client/blob/master/src/test/java/cn/bithumb/pro/api/example/BuildOrderBook.java
 
 response data：
 
