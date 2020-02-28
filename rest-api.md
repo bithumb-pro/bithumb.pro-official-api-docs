@@ -1287,7 +1287,7 @@ records:
 |       |                                              |             |      |
 |       |                                              |             |      |
 |    20000   |    order params error                                           |             |      |
-| 20002 | user asset abnormal | | |
+| 20002 | user asset account abnormal | | |
 | 20003 | user asset not enough                        |             |      |
 | 20004 | order absent | | |
 | 20010 | trade pair had been closed | | |
@@ -1295,7 +1295,7 @@ records:
 | 20043 | price accuracy is wrong for placing order    | check symbol's accuracy from config api |      |
 | 20044 | quantity accuracy is wrong for placing order | check symbol's accuracy from config api |      |
 | 20048 | trade pair not open | | |
-| 20053 | need sign protocol in website                | if place order at first time, need to sign protocol in bithumb global website at trade page, just place one order |      |
+| 20053 | need sign protocol in website                | if place order at first time, need to sign protocol in bithumb global website at trade page, just place one order before using trade's api. |      |
 | 20054 | order price out of range                     | check symbol's percentPrice from config api |      |
 | 20056 | order quantity out of range | the max quantity need to less than 100000000 |      |
 |       |                                              |             |      |
