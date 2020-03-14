@@ -210,7 +210,7 @@ spotConfig对象：
 
 | 字段        | 说明        | 必填(是/否/可选) | 备注                 | 类型   |
 | ----------- | ----------- | ---------------- | -------------------- | ------ |
-| coinType    | 币种类型    | 是               | 例如:BTC             | String |
+| coinType    | 币种类型    | 是               | 例如:BTC，USDT(USDT-ERC20、USDT-OMNI）             | String |
 | address     | 提币地址    | 是               | 外部的虚拟币钱包地址 | String |
 | extendParam | memo或者tag | 否               |                      | String |
 | quantity    | 数量        | 是               |                      | String |
