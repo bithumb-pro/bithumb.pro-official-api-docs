@@ -216,7 +216,7 @@ request parameter infomation:
 
 | Filed       | Description           | Required(Y or N) | Mark                     | Type   |
 | ----------- | --------------------- | ---------------- | ------------------------ | ------ |
-| coinType    |                       | Y                | e.g BTC                  | String |
+| coinType    |                       | Y                | e.g BTC,USDT(USDT-ERC20,USDT-OMNI)                  | String |
 | address     | target wallet address | Y                |                          | String |
 | extendParam | memo or tag           | N                |                          | String |
 | quantity    |                       | Y                |                          | String |
