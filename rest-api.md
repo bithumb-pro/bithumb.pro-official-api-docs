@@ -5,10 +5,22 @@ catalog
 ## [General Rest Api Information]
 
 - The base-endpoint is: **https://global-openapi.bithumb.pro/openapi/v1**
+
 - All endpoints return either a JSON object or array.
+
 - For `GET` endpoints, parameters must be sent as a `query string`.
+
 - For POST endpoints, parameters must be send in the request body, with content-type(application/json) in headers.
-- Parameters may be sent in any order.
+
+- some restfull api client demos: 
+
+  Java : https://github.com/bithumb-pro/java-api-client 
+
+  Python: https://github.com/bithumb-pro/python-api-client 
+
+  C++: https://github.com/bithumb-pro/bthmcpp 
+
+  Go: https://github.com/bithumb-pro/go-api-client
 
 | Version | Description                                                  | Time    | Mark   |
 | ------- | ------------------------------------------------------------ | ------- | ------ |

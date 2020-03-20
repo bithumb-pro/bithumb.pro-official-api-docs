@@ -5,10 +5,24 @@
 ## [REST API简介]
 
 - rest api的基本请求路径base-endpoint：**https://global-openapi.bithumb.pro/openapi/v1**
+
 - 所有api的响应都是JSON格式
+
 - GET方法的api, 参数必须在query string中发送
+
 - POST方法的api，参数必须在request body中发送(headers里需添加content-type:application/json)
+
 - 对参数的顺序不做要求。
+
+- restfull api的相关语言demo地址如下： 
+
+   Java : https://github.com/bithumb-pro/java-api-client 
+
+   Python: https://github.com/bithumb-pro/python-api-client
+
+   C++: https://github.com/bithumb-pro/bthmcpp 
+
+  Go: https://github.com/bithumb-pro/go-api-client
 
 | 版本号 | 说明                               | 时间        | 备注 |
 | ------ | ---------------------------------- | ----------- | ---- |
