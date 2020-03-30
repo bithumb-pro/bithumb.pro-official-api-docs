@@ -1297,7 +1297,9 @@ records:
 | 9007 | request invalid | check your request timestamp(compare with server time),msgNo's length need to less than or equal 50 | |
 | 9008 | api request params error | | |
 | 9999  | system error                                 |             |      |
-|       |                                              |             |      |
+| 9010 | access denied(ip is invalid) | request ip not in your bind's ip whitelist |      |
+| 9011 | access denied(no permission) | no api's permission | |
+| 9012 | access denied(account is abnormal) | account is abnormal | |
 |       |                                              |             |      |
 |       |                                              |             |      |
 |    20000   |    order params error                                           |             |      |

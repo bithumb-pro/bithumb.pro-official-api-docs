@@ -1889,7 +1889,10 @@ list说明：
 | 9005  | key expired            | apiKey过期       |          |
 | 9006  | no server              | 无服务           |          |
 | 9999  | system error           | 系统异常         |          |
-|       |                        |                  |          |
+| 9010 | access denied(ip is invalid) | 请求不允许（非IP白名单） |          |
+| 9011 | access denied(no permission) | 请求不允许（无API权限） | |
+| 9012 | access denied(account is abnormal) | 请求不允许 （账户异常） | |
+| | | | |
 |       |                        |                  |          |
 | 20003 | asset not enough       | 资产不足                 |          |
 | 20012 | cancel faild,order status changed | 该订单不允许撤销，请联系客服 | |
