@@ -12,7 +12,7 @@ catalog
 
 - For POST endpoints, parameters must be send in the request body, with content-type(application/json) in headers.
 
-- some restfull api client demos: 
+- Some restfull api client demos: 
 
   Java : https://github.com/bithumb-pro/java-api-client 
 
@@ -23,6 +23,8 @@ catalog
   Go: https://github.com/bithumb-pro/go-api-client
 
   Php: https://github.com/bithumb-pro/php-api-client
+  
+- Api request rate limit: 10 time/s for create/cancel order
 
 | Version | Description                                                  | Time    | Mark   |
 | ------- | ------------------------------------------------------------ | ------- | ------ |
