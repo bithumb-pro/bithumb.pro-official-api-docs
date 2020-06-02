@@ -798,11 +798,11 @@ request method: POST
 
 request parameter information: 
 
-| Field     | Description       | Required(Y or N) | Mark | Type    |
-| --------- | ----------------- | ---------------- | ---- | ------- |
-| symbol    |                   | Y                |      | String  |
-| startTime | trades start time | N                |      | Long    |
-| limit     |                   | N                |      | Integer |
+| Field     | Description       | Required(Y or N) | Mark                                | Type    |
+| --------- | ----------------- | ---------------- | ----------------------------------- | ------- |
+| symbol    |                   | Y                |                                     | String  |
+| startTime | trades start time | N                | if null, will use current timestamp | Long    |
+| limit     |                   | N                |                                     | Integer |
 
 response description:
 
