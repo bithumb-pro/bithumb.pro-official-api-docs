@@ -75,7 +75,7 @@ topic for certain type msg,the style such as "topic" or "topic:symbol", example:
 
 #### public topic：
 
-TICKER: the last new spot ticker msg
+##### TICKER: the last new spot ticker msg
 
 response data：
 
@@ -108,7 +108,7 @@ example：
 }
 ```
 
-ORDERBOOK: the last spot order book changed data
+##### ORDERBOOK: the last spot order book changed data
 
 import：The creation of a complete order book on the client side must strictly depend on the processing of the 'ver' field. When the client subscribes to this topic, the message of code = 00007 is the incremental change information of the order book, and the message of code = 00006 is the one-time complete order book information. However, the 'ver' of these two times may not be continuous. At this time, the message may be lost. The complete order book The creation process is as follows：
 
@@ -149,7 +149,7 @@ example：
 }
 ```
 
-TRADE：the last spot trade msg
+##### TRADE：the last spot trade msg
 
 response data：
 
@@ -254,7 +254,7 @@ response data refer to CONTRACT_ORDERBOOK
 
 #### private topic：
 
-ORDER: the last new private spot order msg, if client subscribe the topic,once user order changed, server will send msg to channel.
+##### ORDER: the last new private spot order msg, if client subscribe the topic,once user order changed, server will send msg to channel.
 
 response data：
 
