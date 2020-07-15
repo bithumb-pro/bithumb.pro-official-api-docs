@@ -112,7 +112,7 @@ example：
 
 import：The creation of a complete order book on the client side must strictly depend on the processing of the 'ver' field. When the client subscribes to this topic, the message of code = 00007 is the incremental change information of the order book, and the message of code = 00006 is the one-time complete order book information. However, the 'ver' of these two times may not be continuous. At this time, the message may be lost. The complete order book The creation process is as follows：
 
-1. The client first subscribes to the order book subject of websocket of the specific transaction pair, and stores the change information of the order book with code = 00006 in the cache of the client;
+1. The client first subscribes to the order book subject of websocket of the specific transaction pair, and stores the change information of the order book with code = 00007 in the cache of the client;
 
 2. The client requests the complete order book information once through the REST API;
 
