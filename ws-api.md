@@ -6,6 +6,7 @@
 - The websocket server supply some topics for api user, such as ticker,orderbook etc. user can get real time msg by subscribing the topic which include normal (no security, like ticker, orderbook etc.) and private (need authenticate, like order change,position change etc. ).
 - The single connection between server and client can keepalive a long time, so keep connection need client send {"cmd":"ping"},if the websocket server receive the msg,then server will call back a {"code":"0","msg":"pong"} 
 specially, some topic response include field "ver",the field mark this message's version, prevent message backtracking
+- specially, if you had subscribed a private topic with the authentication's connection, just use the exists, one account just have one authentication's connection with private topic in the same moment.
 
 ## 2、Access Process
 
