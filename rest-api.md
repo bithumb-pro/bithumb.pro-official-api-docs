@@ -253,6 +253,109 @@ request parameter infomation:
 | from     | from account type（WALLET,SPOT,CONTRACT）   | Y                |         | String |
 | to       | target account type（WALLET,SPOT,CONTRACT） | Y                |         | String |
 
+#### 3. query depository history
+
+request url: {base-endpoint}/wallet/depositHistory
+
+request method:POST
+
+request parameter infomation:
+
+| Field | Description           | Required(Y or N) | Mark                                         | Type    |
+| ----- | --------------------- | ---------------- | -------------------------------------------- | ------- |
+| coin  | coin type             | N                | eg. BTC                                      | String  |
+| start | query start time      | Y                |                                              | Long    |
+| end   | query end time        | N                | end - start should less than or equal 90 day | Long    |
+| limit | response record limit | N                | Default：50，max record size: 50             | Integer |
+
+response:
+
+| Field      | Description    | Mark                                                         | Type   |
+| ---------- | -------------- | ------------------------------------------------------------ | ------ |
+| id         |                |                                                              | String |
+| status     | deposit status | 0:fail, 1:success                                            | String |
+| coinType   |                | eg. BTC                                                      | String |
+| quantity   |                |                                                              | String |
+| createTime | deposit time   |                                                              | Long   |
+| address    |                | if accountName=no, the field may be block deposit address or inner transfer address of exchange, or be memo. | String |
+| txid       | block hash     |                                                              | String |
+| acountName |                | default is 'no', or be contract address                      | String |
+
+response example：
+
+```json
+{
+    "msg":"success",
+    "code":"0",
+    "data":[
+        {
+            "coinType":"BTC",
+            "address":"TW5T6Hr9jmvMAcc24p6LwFguzN2tucyHD9",
+            "quantity":"50",
+            "createTime":1590740736177,
+            "txid":"195419472734384128",
+            "acountName":"no",
+            "id":"195419472734384128",
+            "status":"1"
+        }
+    ],
+    "timestamp":1602816606787
+}
+```
+
+#### 4. query withdraw history
+
+request uri：{base-endpoint}/wallet/withdrawHistory
+
+request method：POST
+
+request parameter infomation:
+
+| Field | Description           | Required(Y or N) | Mark                                         | Type    |
+| ----- | --------------------- | ---------------- | -------------------------------------------- | ------- |
+| coin  | coin type             | N                | eg: BTC                                      | String  |
+| start | query start time      | Y                |                                              | Long    |
+| end   | query end time        | N                | end - start should less than or equal 90 day | Long    |
+| limit | resposne record limit | N                | Default：50，max record size: 50             | Integer |
+
+response:
+
+| Field        | Description | Mark                              | Type   |
+| ------------ | ----------- | --------------------------------- | ------ |
+| id           |             |                                   | String |
+| status       |             | 0,1,2,3=pending, 7=success,8=fail | String |
+| coinType     |             |                                   | String |
+| quantity     |             |                                   | String |
+| createTime   |             |                                   | Long   |
+| address      |             |                                   | String |
+| txid         |             |                                   | String |
+| withdrawType |             | 0:inner transfer，1: wallet       | String |
+| fee          |             |                                   |        |
+
+response example：
+
+```json
+{
+    "msg":"success",
+    "code":"0",
+    "data":[
+        {
+            "coinType":"BTC",
+            "address":"muwrRD3uVPkHNEC1D8HNBsaSrXUP2cWCyR",
+            "quantity":"5",
+            "createTime":1560850512385,
+            "fee":"0.002",
+            "withdrawType":"1",
+            "memo":"",
+            "id":"70050787097739264",
+            "status":"0",
+          	"txid":"xxxxxxxxxxxx"
+        }
+    ],
+    "timestamp":1602817609134
+}
+```
+
 ### [Normal api for spot]
 
 #### 1. ticker

@@ -247,6 +247,109 @@ spotConfig对象：
 | from     | 来源类型（SPOT=币币账户，LEVER=杠杆账户） | 是               |          | String |
 | to       | 目标类型（SPOT=币币账户，LEVER=杠杆账户） | 是               |          | String |
 
+#### 3. 查询用户充值记录
+
+请求路径：{base-endpoint}/wallet/depositHistory
+
+请求方式：POST
+
+请求参数说明：
+
+| 字段  | 说明         | 必填(是/否/可选) | 备注                                                         | 类型    |
+| ----- | ------------ | ---------------- | ------------------------------------------------------------ | ------- |
+| coin  | 币种类型     | 否               | 例如:BTC                                                     | String  |
+| start | 查询开始时间 | 是               |                                                              | Long    |
+| end   | 查询结束时间 | 否               | 如果指定了end时间，则end - start <= 90天，否则end = start + 90天 | Long    |
+| limit | 返回结果限制 | 否               | 默认：50，最大50                                             | Integer |
+
+返回结果说明:
+
+| 字段       | 说明     | 备注                                                         | 类型   |
+| ---------- | -------- | ------------------------------------------------------------ | ------ |
+| id         |          |                                                              | String |
+| status     | 充值状态 | 0失败，1成功                                                 | String |
+| coinType   | 资产类型 |                                                              | String |
+| quantity   | 数量     |                                                              | String |
+| createTime | 充值时间 |                                                              | Long   |
+| address    | 充值地址 | accountName = no, 该字段为虚拟币链上充值地址或者是内部划转地址，否则为memo | String |
+| txid       | 区块hash |                                                              | String |
+| acountName |          | 如果是带有memo的资产，则该字段为该币的合约地址，否则为“no”   | String |
+
+响应示例：
+
+```json
+{
+    "msg":"success",
+    "code":"0",
+    "data":[
+        {
+            "coinType":"BTC",
+            "address":"TW5T6Hr9jmvMAcc24p6LwFguzN2tucyHD9",
+            "quantity":"50",
+            "createTime":1590740736177,
+            "txid":"195419472734384128",
+            "acountName":"no",
+            "id":"195419472734384128",
+            "status":"1"
+        }
+    ],
+    "timestamp":1602816606787
+}
+```
+
+#### 4. 查询用户提币记录
+
+请求路径：{base-endpoint}/wallet/withdrawHistory
+
+请求方式：POST
+
+请求参数说明：
+
+| 字段  | 说明         | 必填(是/否/可选) | 备注                                                         | 类型    |
+| ----- | ------------ | ---------------- | ------------------------------------------------------------ | ------- |
+| coin  | 币种类型     | 否               | 例如:BTC                                                     | String  |
+| start | 查询开始时间 | 是               |                                                              | Long    |
+| end   | 查询结束时间 | 否               | 如果指定了end时间，则end - start <= 90天，否则end = start + 90天 | Long    |
+| limit | 返回结果限制 | 否               | 默认：50，最大50                                             | Integer |
+
+返回结果说明:
+
+| 字段         | 说明       | 备注                                                     | 类型   |
+| ------------ | ---------- | -------------------------------------------------------- | ------ |
+| id           |            |                                                          | String |
+| status       | 提币状态   | 0=进行中，1=待领取，2=审核中，3=审核成功，7=成功，8=驳回 | String |
+| coinType     | 资产类型   |                                                          | String |
+| quantity     | 数量       |                                                          | String |
+| createTime   | 提币时间   |                                                          | Long   |
+| address      | 提币地址   |                                                          | String |
+| txid         | 区块hash   |                                                          | String |
+| withdrawType | 提币类型   | 0:内部划转，1:链上提币                                   | String |
+| fee          | 提币手续费 |                                                          |        |
+
+响应示例：
+
+```json
+{
+    "msg":"success",
+    "code":"0",
+    "data":[
+        {
+            "coinType":"BTC",
+            "address":"muwrRD3uVPkHNEC1D8HNBsaSrXUP2cWCyR",
+            "quantity":"5",
+            "createTime":1560850512385,
+            "fee":"0.002",
+            "withdrawType":"1",
+            "memo":"",
+            "id":"70050787097739264",
+            "status":"0",
+          	"txid":"xxxxxxxxxxxx"
+        }
+    ],
+    "timestamp":1602817609134
+}
+```
+
 ### [现货普通接口]
 
 #### 1. 行情
